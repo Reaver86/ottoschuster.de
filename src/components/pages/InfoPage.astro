@@ -1,0 +1,65 @@
+---
+import ContactBand from "../ContactBand.astro";
+import Icon from "../Icon.astro";
+import SectionHeading from "../SectionHeading.astro";
+import { getContent } from "../../data/content";
+import type { Locale } from "../../data/site";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+interface Props { locale: Locale }
+const { locale } = Astro.props;
+const copy = getContent(locale);
+const page = copy.infoPage;
+---
+
+<BaseLayout locale={locale} page="info" title={page.metaTitle} description={page.metaDescription}>
+  <section class="page-hero info-page-hero">
+    <div class="container page-hero-narrow">
+      <SectionHeading eyebrow={page.eyebrow} title={page.title} intro={page.intro} level="h1" />
+    </div>
+  </section>
+
+  <section class="info-content section">
+    <div class="container info-layout">
+      <aside class="contents-card">
+        <h2>{page.contentsLabel}</h2>
+        <ol>
+          {page.sections.map((section) => <li><a href={`#${section.id}`}>{section.title}</a></li>)}
+        </ol>
+      </aside>
+
+      <div class="info-articles">
+        <div class="warning-panel">
+          <div><Icon name="document" size={25} /></div>
+          <div><h2>{page.warningTitle}</h2><p>{page.warningText}</p></div>
+        </div>
+
+        {page.sections.map((section) => (
+          <article id={section.id} class="info-article">
+            <h2>{section.title}</h2>
+            {section.paragraphs.map((paragraph) => <p>{paragraph}</p>)}
+            {"links" in section && section.links?.length && (
+              <ul class="resource-links">
+                {section.links.map((link) => {
+                  const external = link.href.startsWith("http");
+                  return (
+                    <li>
+                      <a href={link.href} target="_blank" rel="noopener noreferrer">
+                        <Icon name={external ? "external" : "document"} size={18} />
+                        <span>{link.label}</span>
+                        <Icon name="arrow" size={17} />
+                      </a>
+                    </li>
+                  );
+                })}
+              </ul>
+            )}
+          </article>
+        ))}
+
+        <p class="disclaimer">{page.disclaimer}</p>
+      </div>
+    </div>
+  </section>
+  <ContactBand locale={locale} />
+</BaseLayout>

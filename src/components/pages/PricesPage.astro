@@ -1,0 +1,36 @@
+---
+import ContactBand from "../ContactBand.astro";
+import Icon from "../Icon.astro";
+import PriceCatalogue from "../PriceCatalogue.astro";
+import SectionHeading from "../SectionHeading.astro";
+import { getContent } from "../../data/content";
+import type { Locale } from "../../data/site";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+interface Props { locale: Locale }
+const { locale } = Astro.props;
+const copy = getContent(locale);
+const page = copy.pricePage;
+---
+
+<BaseLayout locale={locale} page="prices" title={page.metaTitle} description={page.metaDescription}>
+  <section class="page-hero price-page-hero">
+    <div class="container page-hero-grid">
+      <SectionHeading eyebrow={page.eyebrow} title={page.title} intro={page.intro} level="h1" />
+      <div class="page-hero-mark" aria-hidden="true"><span>€</span></div>
+    </div>
+  </section>
+  <section class="price-facts">
+    <div class="container">
+      <ul>
+        {page.facts.map((fact) => <li><Icon name="check" size={17} />{fact}</li>)}
+      </ul>
+    </div>
+  </section>
+  <section class="section catalogue-section">
+    <div class="container">
+      <PriceCatalogue locale={locale} />
+    </div>
+  </section>
+  <ContactBand locale={locale} />
+</BaseLayout>

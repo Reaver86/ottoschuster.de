@@ -1,0 +1,192 @@
+---
+import ContactActions from "../ContactActions.astro";
+import ContactBand from "../ContactBand.astro";
+import Icon from "../Icon.astro";
+import MountainPath from "../MountainPath.astro";
+import SectionHeading from "../SectionHeading.astro";
+import { getContent } from "../../data/content";
+import { priceEntries, type Price } from "../../data/prices";
+import { assetPath, routes, type Locale } from "../../data/site";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+interface Props { locale: Locale }
+const { locale } = Astro.props;
+const copy = getContent(locale);
+const page = copy.home;
+const priceCopy = copy.pricePage;
+const formatter = new Intl.NumberFormat(locale === "de" ? "de-DE" : "ro-RO", {
+  style: "currency",
+  currency: "EUR",
+  minimumFractionDigits: 0,
+});
+const formatPrice = (price: Price) => {
+  if (price.type === "fixed") return `${formatter.format(price.amount)} ${priceCopy.net}`;
+  if (price.type === "range") return `${formatter.format(price.min)}–${formatter.format(price.max)} ${priceCopy.net}`;
+  if (price.type === "free") return priceCopy.free;
+  return priceCopy.quote;
+};
+const featuredPrices = page.prices.featuredIds
+  .map((id) => priceEntries.find((entry) => entry.id === id))
+  .filter((entry) => entry !== undefined);
+---
+
+<BaseLayout locale={locale} page="home" title={page.metaTitle} description={page.metaDescription}>
+  <section class="hero">
+    <MountainPath />
+    <div class="container hero-grid">
+      <div class="hero-copy">
+        <p class="eyebrow">{page.eyebrow}</p>
+        <h1>{page.title}</h1>
+        <p class="hero-intro">{page.intro}</p>
+        <ul class="hero-proof-list">
+          {page.proofPoints.map((point) => <li><span><Icon name="check" size={16} /></span>{point}</li>)}
+        </ul>
+        <ContactActions locale={locale} />
+      </div>
+
+      <div class="hero-profile">
+        <div class="portrait-frame">
+          <picture>
+            <source media="(max-width: 640px)" srcset={assetPath.portrait480} />
+            <img
+              src={assetPath.portrait900}
+              width="900"
+              height="900"
+              alt={page.portraitAlt}
+              fetchpriority="high"
+            />
+          </picture>
+          <div class="portrait-accent accent-yellow"></div>
+          <div class="portrait-accent accent-red"></div>
+        </div>
+        <div class="credential-card">
+          <div class="credential-icon"><Icon name="seal" size={28} /></div>
+          <div>
+            <p class="credential-kicker">{page.credentialKicker}</p>
+            <h2>{page.credentialTitle}</h2>
+            <p>{page.credentialText}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="trust-strip" aria-label={locale === "de" ? "Vertrauensmerkmale" : "Garanții de încredere"}>
+    <div class="container">
+      <ul>
+        {page.trust.map((item) => <li><Icon name={item.icon} size={22} /><span>{item.text}</span></li>)}
+      </ul>
+    </div>
+  </section>
+
+  <section class="section categories-section">
+    <div class="container">
+      <SectionHeading eyebrow={page.categories.eyebrow} title={page.categories.title} intro={page.categories.intro} />
+      <div class="category-grid">
+        {page.categories.items.map((item) => (
+          <a class="category-card" href={routes.prices[locale]}>
+            <div class="category-icon"><Icon name={item.icon} size={27} /></div>
+            <h3>{item.title}</h3>
+            <p>{item.text}</p>
+            <span class="card-link"><span>{copy.actions.prices}</span><Icon name="arrow" size={18} /></span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section process-section">
+    <div class="container">
+      <SectionHeading eyebrow={page.process.eyebrow} title={page.process.title} align="center" />
+      <ol class="process-list">
+        {page.process.items.map((item, index) => (
+          <li>
+            <div class="step-number">{index + 1}</div>
+            <h3>{item.title}</h3>
+            <p>{item.text}</p>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <section class="section price-preview-section">
+    <div class="container">
+      <div class="section-heading-row">
+        <SectionHeading eyebrow={page.prices.eyebrow} title={page.prices.title} intro={page.prices.intro} />
+        <a class="text-link desktop-link" href={routes.prices[locale]}>{copy.actions.prices}<Icon name="arrow" size={19} /></a>
+      </div>
+      <div class="price-preview-grid">
+        {featuredPrices.map((entry) => (
+          <a class="price-preview-card" href={`${routes.prices[locale]}#${entry.id}`}>
+            <span>{entry.name[locale]}</span>
+            <strong>{formatPrice(entry.price)}</strong>
+            <Icon name="arrow" size={19} />
+          </a>
+        ))}
+      </div>
+      <a class="text-link mobile-link" href={routes.prices[locale]}>{copy.actions.prices}<Icon name="arrow" size={19} /></a>
+    </div>
+  </section>
+
+  <section class="biography-section">
+    <figure class="mountain-figure">
+      <picture>
+        <source media="(max-width: 720px)" srcset={assetPath.mountain720} />
+        <img src={assetPath.mountain1200} width="1200" height="807" alt={page.biography.imageAlt} loading="lazy" />
+      </picture>
+      <figcaption class="container">{page.biography.imageCaption}</figcaption>
+    </figure>
+    <div class="container biography-grid">
+      <div>
+        <SectionHeading eyebrow={page.biography.eyebrow} title={page.biography.title} />
+        <div class="prose">
+          {page.biography.paragraphs.map((paragraph) => <p>{paragraph}</p>)}
+        </div>
+      </div>
+      <ol class="timeline">
+        {page.biography.timeline.map((item) => (
+          <li><span class="timeline-year">{item.year}</span><span>{item.text}</span></li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <section class="section credentials-section">
+    <div class="container">
+      <SectionHeading eyebrow={page.credentials.eyebrow} title={page.credentials.title} intro={page.credentials.intro} />
+      <div class="credential-grid">
+        {page.credentials.cards.map((card) => {
+          const external = card.href.startsWith("http");
+          return (
+            <a class="credential-link-card" href={card.href} target="_blank" rel="noopener noreferrer">
+              <div class="credential-card-top">
+                <Icon name={external ? "building" : "document"} size={25} />
+                <span>{card.type}</span>
+              </div>
+              <h3>{card.title}</h3>
+              <p>{card.text}</p>
+              <span class="card-link"><span>{external ? copy.actions.external : copy.actions.pdf}</span><Icon name="external" size={17} /></span>
+            </a>
+          );
+        })}
+      </div>
+    </div>
+  </section>
+
+  <section class="section faq-section">
+    <div class="container faq-grid">
+      <SectionHeading eyebrow={page.faq.eyebrow} title={page.faq.title} />
+      <div class="faq-list">
+        {page.faq.items.map((item, index) => (
+          <details class="faq-item" open={index === 0}>
+            <summary><span>{item.question}</span><span class="faq-chevron"><Icon name="chevron" size={20} /></span></summary>
+            <div class="faq-answer"><p>{item.answer}</p></div>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <ContactBand locale={locale} />
+</BaseLayout>

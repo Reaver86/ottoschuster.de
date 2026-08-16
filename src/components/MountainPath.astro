@@ -1,0 +1,12 @@
+---
+interface Props {
+  position?: "hero" | "footer";
+}
+const { position = "hero" } = Astro.props;
+---
+
+<svg class:list={["mountain-path", position]} viewBox="0 0 1200 180" aria-hidden="true" preserveAspectRatio="none">
+  <path class="path-blue" d="M0 132C145 102 212 119 330 74s170-36 264 13 156 54 247 5 182-45 359-5" />
+  <path class="path-yellow" d="M0 150c145-30 212-13 330-58s170-36 264 13 156 54 247 5 182-45 359-5" />
+  <path class="path-red" d="M0 168c145-30 212-13 330-58s170-36 264 13 156 54 247 5 182-45 359-5" />
+</svg>

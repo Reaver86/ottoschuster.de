@@ -1,0 +1,102 @@
+---
+import Icon from "../Icon.astro";
+import { site } from "../../data/site";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+interface Props {
+  type: "imprint" | "privacy";
+}
+
+const { type } = Astro.props;
+const isImprint = type === "imprint";
+const title = isImprint ? "Impressum | Übersetzungsbüro Schuster" : "Datenschutz | Übersetzungsbüro Schuster";
+const description = isImprint
+  ? "Anbieterkennzeichnung des Übersetzungsbüros Schuster."
+  : "Informationen zur Verarbeitung personenbezogener Daten auf ottoschuster.de.";
+---
+
+<BaseLayout locale="de" page="contact" title={title} description={description} localized={false}>
+  <section class="page-hero legal-page-hero">
+    <div class="container page-hero-narrow">
+      <p class="eyebrow">Rechtliche Informationen</p>
+      <h1>{isImprint ? "Impressum" : "Datenschutzerklärung"}</h1>
+      <p class="section-intro">{isImprint ? "Angaben gemäß § 5 Digitale-Dienste-Gesetz (DDG)." : "Wie auf dieser Website personenbezogene Daten verarbeitet werden."}</p>
+    </div>
+  </section>
+
+  <section class="section legal-section">
+    <div class="container legal-prose">
+      {isImprint ? (
+        <>
+          <section>
+            <h2>Anbieter</h2>
+            <p><strong>{site.name}</strong><br />Inhaber: {site.owner}<br />{site.address.street}<br />{site.address.city}<br />{site.address.country}</p>
+          </section>
+          <section>
+            <h2>Kontakt</h2>
+            <p>Telefon: <a href={site.phone.landlineHref}>{site.phone.landlineDisplay}</a><br />Mobil: <a href={site.phone.mobileHref}>{site.phone.mobileDisplay}</a><br />E-Mail: <a href={`mailto:${site.email}`}>{site.email}</a></p>
+          </section>
+          <section>
+            <h2>Umsatzsteuer</h2>
+            <p>Umsatzsteuer-Identifikationsnummer gemäß § 27a Umsatzsteuergesetz: <strong>{site.vatId}</strong></p>
+          </section>
+          <section>
+            <h2>Berufsbezeichnung und Bestellung</h2>
+            <p>Öffentlich bestellter und beeidigter Urkundenübersetzer für die rumänische Sprache. Die öffentliche Bestellung und Beeidigung erfolgte am 25. Mai 1993 durch den Präsidenten des Landgerichts Offenburg in der Bundesrepublik Deutschland.</p>
+            <p><a class="inline-external" href="https://www.justiz-dolmetscher.de/Recherche/" target="_blank" rel="noopener noreferrer">Bundesweite Dolmetscher- und Übersetzerdatenbank <Icon name="external" size={16} /></a></p>
+          </section>
+          <section>
+            <h2>Verantwortlich für den Inhalt</h2>
+            <p>{site.owner}, Anschrift wie oben.</p>
+          </section>
+          <section>
+            <h2>Haftung für externe Links</h2>
+            <p>Diese Website enthält Links zu externen Websites Dritter. Auf deren Inhalte und Datenschutzpraktiken besteht kein Einfluss. Für die Inhalte verlinkter Seiten ist stets der jeweilige Anbieter verantwortlich.</p>
+          </section>
+          <section>
+            <h2>Urheberrecht</h2>
+            <p>Die auf dieser Website erstellten Inhalte und Werke unterliegen dem deutschen Urheberrecht. Eine Vervielfältigung oder Verwertung außerhalb der gesetzlichen Grenzen bedarf der vorherigen Zustimmung des jeweiligen Rechteinhabers.</p>
+          </section>
+        </>
+      ) : (
+        <>
+          <section>
+            <h2>1. Verantwortlicher</h2>
+            <p><strong>{site.name}</strong><br />{site.owner}<br />{site.address.street}<br />{site.address.city}<br />E-Mail: <a href={`mailto:${site.email}`}>{site.email}</a><br />Telefon: <a href={site.phone.landlineHref}>{site.phone.landlineDisplay}</a></p>
+          </section>
+          <section>
+            <h2>2. Bereitstellung der Website und Server-Protokolle</h2>
+            <p>Beim Aufruf der Website verarbeitet der Hosting-Anbieter technisch notwendige Verbindungsdaten. Dazu können IP-Adresse, Zeitpunkt des Zugriffs, aufgerufene Adresse, übertragene Datenmenge, Referrer, Browser und Betriebssystem gehören. Diese Daten sind erforderlich, um die Website sicher und zuverlässig auszuliefern und technische Störungen zu untersuchen.</p>
+            <p>Rechtsgrundlage ist Art. 6 Abs. 1 lit. f DSGVO. Das berechtigte Interesse liegt im sicheren und funktionsfähigen Betrieb dieser Website. Protokolldaten werden nur so lange gespeichert, wie dies für Betrieb und Sicherheit erforderlich ist, und anschließend gelöscht, sofern keine gesetzliche Aufbewahrungspflicht besteht.</p>
+          </section>
+          <section>
+            <h2>3. Kontakt per E-Mail, Telefon oder WhatsApp</h2>
+            <p>Wenn Sie Kontakt aufnehmen, werden die von Ihnen übermittelten Angaben verarbeitet, um Ihre Anfrage zu beantworten und gegebenenfalls einen Auftrag vorzubereiten oder auszuführen. Rechtsgrundlage ist je nach Anliegen Art. 6 Abs. 1 lit. b DSGVO oder Art. 6 Abs. 1 lit. f DSGVO.</p>
+            <p>Der WhatsApp-Link öffnet eine leere Unterhaltung. Erst wenn Sie WhatsApp aufrufen oder eine Nachricht senden, verarbeitet auch der Anbieter von WhatsApp Daten nach seinen eigenen Datenschutzbestimmungen. Senden Sie nur Unterlagen und Angaben, die für die Anfrage erforderlich sind. Alternativ können Sie E-Mail, Telefon oder Post verwenden.</p>
+          </section>
+          <section>
+            <h2>4. Externe Links und soziale Netzwerke</h2>
+            <p>Links und QR-Codes zu WhatsApp, Facebook, Instagram, Google sowie zu Behörden und öffentlichen Verzeichnissen stellen erst beim Anklicken beziehungsweise Scannen eine Verbindung zum jeweiligen externen Anbieter her. Auf dessen weitere Datenverarbeitung besteht kein Einfluss.</p>
+          </section>
+          <section>
+            <h2>5. Cookies, Analyse und Schriftarten</h2>
+            <p>Diese Website setzt keine Analyse- oder Marketingdienste ein und speichert selbst keine Cookies. Die verwendeten Schriftarten und Bilder werden lokal ausgeliefert; beim Seitenaufruf wird dafür keine Verbindung zu einem externen Schriftanbieter aufgebaut.</p>
+          </section>
+          <section>
+            <h2>6. Speicherdauer</h2>
+            <p>Kontakt- und Auftragsdaten werden gelöscht, sobald sie für die Bearbeitung nicht mehr benötigt werden und keine gesetzlichen Aufbewahrungspflichten entgegenstehen. Geschäfts- und steuerrechtlich relevante Unterlagen werden entsprechend den geltenden gesetzlichen Fristen aufbewahrt.</p>
+          </section>
+          <section>
+            <h2>7. Ihre Rechte</h2>
+            <p>Sie haben im Rahmen der gesetzlichen Voraussetzungen das Recht auf Auskunft, Berichtigung, Löschung, Einschränkung der Verarbeitung, Datenübertragbarkeit und Widerspruch. Eine erteilte Einwilligung können Sie mit Wirkung für die Zukunft widerrufen. Außerdem können Sie sich bei einer Datenschutz-Aufsichtsbehörde beschweren.</p>
+            <p>Für die Wahrnehmung Ihrer Rechte genügt eine Nachricht an <a href={`mailto:${site.email}`}>{site.email}</a>.</p>
+          </section>
+          <section>
+            <h2>8. Stand</h2>
+            <p>Stand dieser Datenschutzerklärung: August 2026.</p>
+          </section>
+        </>
+      )}
+    </div>
+  </section>
+</BaseLayout>

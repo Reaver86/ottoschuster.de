@@ -1,0 +1,17 @@
+---
+const target = "/de/";
+---
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta http-equiv="refresh" content={`0;url=${target}`} />
+    <link rel="canonical" href={new URL(target, Astro.site)} />
+    <title>Übersetzungsbüro Schuster</title>
+    <script is:inline define:vars={{ target }}>window.location.replace(target);</script>
+  </head>
+  <body>
+    <p><a href={target}>Weiter zur deutschen Startseite</a></p>
+  </body>
+</html>

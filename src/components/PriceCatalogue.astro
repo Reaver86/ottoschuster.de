@@ -1,0 +1,126 @@
+---
+import Icon from "./Icon.astro";
+import { getContent } from "../data/content";
+import { priceCategories, priceEntries, type Price } from "../data/prices";
+import { site, type Locale } from "../data/site";
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const copy = getContent(locale);
+const pageCopy = copy.pricePage;
+const formatter = new Intl.NumberFormat(locale === "de" ? "de-DE" : "ro-RO", {
+  style: "currency",
+  currency: "EUR",
+  minimumFractionDigits: 2,
+});
+
+const formatPrice = (price: Price) => {
+  if (price.type === "fixed") return `${formatter.format(price.amount)} ${pageCopy.net}`;
+  if (price.type === "range") return `${formatter.format(price.min)}–${formatter.format(price.max)} ${pageCopy.net}`;
+  if (price.type === "free") return pageCopy.free;
+  return pageCopy.quote;
+};
+---
+
+<div class="price-catalogue" data-price-catalogue>
+  <div class="price-controls js-only" aria-label={pageCopy.filterLabel}>
+    <div class="search-field">
+      <label for="price-search">{pageCopy.searchLabel}</label>
+      <div class="search-input-wrap">
+        <Icon name="search" size={20} />
+        <input
+          id="price-search"
+          type="search"
+          placeholder={pageCopy.searchPlaceholder}
+          autocomplete="off"
+          data-price-search
+        />
+      </div>
+    </div>
+
+    <fieldset class="category-filter">
+      <legend>{pageCopy.filterLabel}</legend>
+      <div class="filter-list">
+        <button type="button" class="filter-chip active" aria-pressed="true" data-price-filter="all">
+          {pageCopy.allCategories}
+        </button>
+        {priceCategories.map((category) => (
+          <button type="button" class="filter-chip" aria-pressed="false" data-price-filter={category}>
+            {pageCopy.categories[category]}
+          </button>
+        ))}
+      </div>
+    </fieldset>
+
+    <p class="result-count" aria-live="polite" data-price-count>
+      {priceEntries.length} {pageCopy.resultPlural}
+    </p>
+  </div>
+
+  <div class="price-list" data-price-list>
+    {priceEntries.map((entry) => {
+      const searchText = [
+        entry.name.de,
+        entry.name.ro,
+        ...(entry.searchTerms?.de ?? []),
+        ...(entry.searchTerms?.ro ?? []),
+        entry.note?.de ?? "",
+        entry.note?.ro ?? "",
+      ].join(" ").toLocaleLowerCase();
+
+      return (
+        <article
+          class="price-entry"
+          data-price-entry
+          data-category={entry.category}
+          data-search={searchText}
+        >
+          <div class="price-entry-main">
+            <div>
+              <p class="price-category">{pageCopy.categories[entry.category]}</p>
+              <h2>{entry.name[locale]}</h2>
+            </div>
+            <p class:list={["price-value", { quote: entry.price.type === "quote" }]}>{formatPrice(entry.price)}</p>
+          </div>
+          {(entry.note || entry.examples?.length) && (
+            <details class="price-details" open data-price-details>
+              <summary>{pageCopy.details}<Icon name="chevron" size={18} /></summary>
+              <div class="price-detail-content">
+                {entry.note && <p>{entry.note[locale]}</p>}
+                {entry.examples?.length && (
+                  <ul class="document-links">
+                    {entry.examples.map((item) => (
+                      <li>
+                        <a href={item.file} target="_blank" rel="noopener noreferrer">
+                          <Icon name="document" size={18} />
+                          <span>{item.label[locale]}</span>
+                          <Icon name="external" size={16} />
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
+                )}
+              </div>
+            </details>
+          )}
+        </article>
+      );
+    })}
+  </div>
+
+  <div class="price-empty js-only" hidden data-price-empty>
+    <div class="empty-icon"><Icon name="search" size={28} /></div>
+    <h2>{pageCopy.noResultsTitle}</h2>
+    <p>{pageCopy.noResultsText}</p>
+    <div class="empty-actions">
+      <button type="button" class="button button-secondary" data-price-clear>{pageCopy.clear}</button>
+      <a class="button button-whatsapp" href={site.whatsapp} target="_blank" rel="noopener noreferrer">
+        <Icon name="whatsapp" size={20} />
+        {copy.actions.whatsapp}
+      </a>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,29 @@
+---
+import { getContent } from "../data/content";
+import { site, type Locale } from "../data/site";
+import Icon from "./Icon.astro";
+
+interface Props {
+  locale: Locale;
+  compact?: boolean;
+  class?: string;
+}
+
+const { locale, compact = false, class: className } = Astro.props;
+const copy = getContent(locale);
+---
+
+<div class:list={["contact-actions", { compact }, className]}>
+  <a class="button button-whatsapp" href={site.whatsapp} target="_blank" rel="noopener noreferrer">
+    <Icon name="whatsapp" size={20} />
+    <span>{copy.actions.whatsapp}</span>
+  </a>
+  <a class="button button-secondary" href={site.phone.mobileHref}>
+    <Icon name="phone" size={20} />
+    <span>{copy.actions.call}</span>
+  </a>
+  <a class="button button-secondary button-email" href={`mailto:${site.email}`}>
+    <Icon name="mail" size={20} />
+    <span>{copy.actions.email}</span>
+  </a>
+</div>

@@ -1,0 +1,53 @@
+---
+import { getContent, navigationOrder } from "../data/content";
+import { routes, site, type Locale } from "../data/site";
+import Icon from "./Icon.astro";
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const copy = getContent(locale);
+---
+
+<footer class="site-footer">
+  <div class="container footer-grid">
+    <div class="footer-brand">
+      <a class="wordmark footer-wordmark" href={routes.home[locale]}>
+        <span class="wordmark-main">Übersetzungsbüro Schuster</span>
+        <span class="wordmark-sub">Deutsch <span aria-hidden="true">↔</span> Rumänisch</span>
+      </a>
+      <p>{copy.footer.claim}</p>
+    </div>
+
+    <div>
+      <h2>{copy.footer.navigation}</h2>
+      <ul class="footer-links">
+        {navigationOrder.map((item) => <li><a href={routes[item][locale]}>{copy.nav[item]}</a></li>)}
+      </ul>
+    </div>
+
+    <div>
+      <h2>{copy.footer.contact}</h2>
+      <ul class="footer-links icon-links">
+        <li><a href={site.whatsapp} target="_blank" rel="noopener noreferrer"><Icon name="whatsapp" size={18} />WhatsApp</a></li>
+        <li><a href={site.phone.mobileHref}><Icon name="phone" size={18} />{site.phone.mobileDisplay}</a></li>
+        <li><a href={`mailto:${site.email}`}><Icon name="mail" size={18} />{site.email}</a></li>
+      </ul>
+    </div>
+
+    <div>
+      <h2>{copy.footer.legal}</h2>
+      <ul class="footer-links">
+        <li><a href="/impressum/">{copy.footer.imprint}</a></li>
+        <li><a href="/datenschutz/">{copy.footer.privacy}</a></li>
+      </ul>
+      {locale === "ro" && <p class="footer-note">{copy.footer.legalNote}</p>}
+    </div>
+  </div>
+  <div class="container footer-bottom">
+    <p>© {new Date().getFullYear()} {site.owner}. {copy.footer.rights}</p>
+    <p>{site.address.street} · {site.address.city}</p>
+  </div>
+</footer>

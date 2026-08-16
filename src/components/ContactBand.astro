@@ -1,0 +1,25 @@
+---
+import { getContent } from "../data/content";
+import type { Locale } from "../data/site";
+import ContactActions from "./ContactActions.astro";
+import MountainPath from "./MountainPath.astro";
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const copy = getContent(locale).home.closing;
+---
+
+<section class="contact-band">
+  <MountainPath position="footer" />
+  <div class="container contact-band-inner">
+    <div>
+      <p class="eyebrow">{copy.eyebrow}</p>
+      <h2>{copy.title}</h2>
+      <p>{copy.text}</p>
+    </div>
+    <ContactActions locale={locale} compact />
+  </div>
+</section>

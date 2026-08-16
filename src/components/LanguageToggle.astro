@@ -1,0 +1,35 @@
+---
+import { assetPath, routes, type Locale, type PageId } from "../data/site";
+
+interface Props {
+  locale: Locale;
+  page: PageId;
+}
+
+const { locale, page } = Astro.props;
+---
+
+<div class="language-toggle" aria-label={locale === "de" ? "Sprache wählen" : "Alege limba"}>
+  <a
+    href={routes[page].de}
+    class:list={["language-option", { active: locale === "de" }]}
+    aria-current={locale === "de" ? "page" : undefined}
+    aria-label="Deutsch"
+    title="Deutsch"
+    lang="de"
+  >
+    <img src={assetPath.flagDe} width="28" height="22" alt="" />
+    <span class="sr-only">Deutsch</span>
+  </a>
+  <a
+    href={routes[page].ro}
+    class:list={["language-option", { active: locale === "ro" }]}
+    aria-current={locale === "ro" ? "page" : undefined}
+    aria-label="Română"
+    title="Română"
+    lang="ro"
+  >
+    <img src={assetPath.flagRo} width="28" height="22" alt="" />
+    <span class="sr-only">Română</span>
+  </a>
+</div>

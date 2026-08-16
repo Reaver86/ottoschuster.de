@@ -1,0 +1,18 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { content } from "../data/content";
+const copy = content.de.notFound;
+---
+<BaseLayout locale="de" page="home" title={copy.metaTitle} description={copy.text} noindex={true}>
+  <section class="not-found-section">
+    <div class="container not-found-card">
+      <p class="eyebrow">{copy.eyebrow}</p>
+      <h1>{copy.title}</h1>
+      <p>{copy.text}</p>
+      <div class="not-found-actions">
+        <a class="button button-primary" href="/de/">{copy.home}</a>
+        <a class="button button-secondary" href="/ro/">{copy.other}</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
