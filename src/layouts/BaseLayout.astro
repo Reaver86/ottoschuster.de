@@ -5,7 +5,7 @@ import "../styles/global.css";
 import Footer from "../components/Footer.astro";
 import Header from "../components/Header.astro";
 import { getContent } from "../data/content";
-import { routes, type Locale, type PageId } from "../data/site";
+import { assetPath, routes, type Locale, type PageId } from "../data/site";
 
 interface Props {
   locale: Locale;
@@ -22,7 +22,7 @@ const {
   page,
   title,
   description,
-  image = "/images/otto-portrait-900.jpg",
+  image = assetPath.portrait900,
   noindex = false,
   localized = true,
 } = Astro.props;
@@ -39,7 +39,7 @@ const imageUrl = new URL(image, Astro.site);
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
     <meta name="theme-color" content="#fcfbf8" />
-    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href={assetPath.favicon} type="image/svg+xml" />
     <meta name="description" content={description} />
     {noindex && <meta name="robots" content="noindex" />}
     <link rel="canonical" href={canonical} />

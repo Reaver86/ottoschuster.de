@@ -3,6 +3,7 @@ import { existsSync } from "node:fs";
 import { extname, join, normalize } from "node:path";
 
 const outputRoot = "dist";
+const basePath = (process.env.BASE_PATH ?? "/").replace(/\/$/, "");
 const failures = [];
 
 const walk = async (directory) => {
@@ -29,7 +30,10 @@ const resolveTarget = (reference) => {
   const withoutFragment = reference.split("#")[0].split("?")[0];
   if (!withoutFragment) return null;
   const decoded = decodeURIComponent(withoutFragment);
-  const relative = decoded.startsWith("/") ? decoded.slice(1) : decoded;
+  const withoutBase = basePath && decoded.startsWith(`${basePath}/`)
+    ? decoded.slice(basePath.length)
+    : decoded;
+  const relative = withoutBase.startsWith("/") ? withoutBase.slice(1) : withoutBase;
   const normalized = normalize(relative);
   if (normalized.startsWith("..")) return null;
   if (decoded.endsWith("/")) return join(outputRoot, normalized, "index.html");

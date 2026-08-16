@@ -1,6 +1,6 @@
 ---
 import { getContent, navigationOrder } from "../data/content";
-import { routes, site, type Locale } from "../data/site";
+import { routes, site, withBasePath, type Locale } from "../data/site";
 import Icon from "./Icon.astro";
 
 interface Props {
@@ -40,8 +40,8 @@ const copy = getContent(locale);
     <div>
       <h2>{copy.footer.legal}</h2>
       <ul class="footer-links">
-        <li><a href="/impressum/">{copy.footer.imprint}</a></li>
-        <li><a href="/datenschutz/">{copy.footer.privacy}</a></li>
+        <li><a href={withBasePath("/impressum/")}>{copy.footer.imprint}</a></li>
+        <li><a href={withBasePath("/datenschutz/")}>{copy.footer.privacy}</a></li>
       </ul>
       {locale === "ro" && <p class="footer-note">{copy.footer.legalNote}</p>}
     </div>

@@ -1,7 +1,11 @@
 import { defineConfig } from "astro/config";
 
+const site = process.env.SITE_URL ?? "https://www.ottoschuster.de";
+const base = process.env.BASE_PATH ?? "/";
+
 export default defineConfig({
-  site: "https://www.ottoschuster.de",
+  site,
+  base,
   output: "static",
   trailingSlash: "always",
   build: {

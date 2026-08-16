@@ -1,4 +1,4 @@
-import type { Locale, PageId } from "./site";
+import { withBasePath, type Locale, type PageId } from "./site";
 
 const commonResources = {
   apostilleGermany: "https://www.auswaertiges-amt.de/de/2570832-2570832",
@@ -132,13 +132,13 @@ export const content = {
             type: "PDF · 1993",
             title: "Protokoll über die Beeidigung",
             text: "Urkundenübersetzer für die rumänische Sprache",
-            href: "/documents/credentials/zulassung1.pdf",
+            href: withBasePath("/documents/credentials/zulassung1.pdf"),
           },
           {
             type: "PDF · Landgericht",
             title: "Bestätigung der Beeidigung",
             text: "Bestätigung des zuständigen Landgerichts",
-            href: "/documents/credentials/zulassung2.pdf",
+            href: withBasePath("/documents/credentials/zulassung2.pdf"),
           },
           {
             type: "Offizielles Verzeichnis",
@@ -254,7 +254,7 @@ export const content = {
           ],
           links: [
             { label: "Auswärtiges Amt: Haager Apostille-Übereinkommen", href: commonResources.apostilleGermany },
-            { label: "Beispiel einer rumänischen Apostille", href: "/documents/examples/apostille-ro.pdf" },
+            { label: "Beispiel einer rumänischen Apostille", href: withBasePath("/documents/examples/apostille-ro.pdf") },
           ],
         },
         {
@@ -266,7 +266,7 @@ export const content = {
           ],
           links: [
             { label: "Regierungspräsidium Baden-Württemberg: Beglaubigungen", href: commonResources.authenticationBw },
-            { label: "Beispiel einer deutschen Apostille", href: "/documents/examples/apostille-de-scan1.pdf" },
+            { label: "Beispiel einer deutschen Apostille", href: withBasePath("/documents/examples/apostille-de-scan1.pdf") },
           ],
         },
         {
@@ -315,7 +315,7 @@ export const content = {
             "Sollten Sie später eine weitere Ausfertigung benötigen, ist das auch nach vielen Jahren möglich. Preis und gegebenenfalls notwendige Anpassungen stimmen wir vorher ab.",
           ],
           links: [
-            { label: "Beispiel einer gedruckten Übersetzung", href: "/documents/examples/bsp.pdf" },
+            { label: "Beispiel einer gedruckten Übersetzung", href: withBasePath("/documents/examples/bsp.pdf") },
           ],
         },
       ],
@@ -508,13 +508,13 @@ export const content = {
             type: "PDF · 1993",
             title: "Proces-verbal privind depunerea jurământului",
             text: "Traducător de documente pentru limba română",
-            href: "/documents/credentials/zulassung1.pdf",
+            href: withBasePath("/documents/credentials/zulassung1.pdf"),
           },
           {
             type: "PDF · Tribunal regional",
             title: "Confirmarea autorizării",
             text: "Confirmarea instanței competente",
-            href: "/documents/credentials/zulassung2.pdf",
+            href: withBasePath("/documents/credentials/zulassung2.pdf"),
           },
           {
             type: "Registru oficial",
@@ -630,7 +630,7 @@ export const content = {
           ],
           links: [
             { label: "Ministerul Federal de Externe: Convenția Apostilei", href: commonResources.apostilleGermany },
-            { label: "Exemplu de apostilă românească", href: "/documents/examples/apostille-ro.pdf" },
+            { label: "Exemplu de apostilă românească", href: withBasePath("/documents/examples/apostille-ro.pdf") },
           ],
         },
         {
@@ -642,7 +642,7 @@ export const content = {
           ],
           links: [
             { label: "Autorități Baden-Württemberg: certificări", href: commonResources.authenticationBw },
-            { label: "Exemplu de apostilă germană", href: "/documents/examples/apostille-de-scan1.pdf" },
+            { label: "Exemplu de apostilă germană", href: withBasePath("/documents/examples/apostille-de-scan1.pdf") },
           ],
         },
         {
@@ -691,7 +691,7 @@ export const content = {
             "Dacă aveți nevoie mai târziu de încă un exemplar, acesta poate fi realizat chiar și după mulți ani. Prețul și eventualele adaptări se stabilesc în prealabil.",
           ],
           links: [
-            { label: "Exemplu de traducere tipărită", href: "/documents/examples/bsp.pdf" },
+            { label: "Exemplu de traducere tipărită", href: withBasePath("/documents/examples/bsp.pdf") },
           ],
         },
       ],

@@ -3,7 +3,7 @@ import ContactBand from "../ContactBand.astro";
 import Icon from "../Icon.astro";
 import SectionHeading from "../SectionHeading.astro";
 import { getContent } from "../../data/content";
-import { assetPath, site, type Locale } from "../../data/site";
+import { assetPath, site, withBasePath, type Locale } from "../../data/site";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 
 interface Props { locale: Locale }
@@ -95,7 +95,7 @@ const page = copy.contactPage;
       <div class="qr-grid">
         {page.connect.items.map((item) => (
           <a class="qr-card" href={item.href} target="_blank" rel="noopener noreferrer">
-            <img src={`/qr/${item.id}.svg`} width="220" height="220" alt={`QR-Code: ${item.label}`} loading="lazy" />
+            <img src={withBasePath(`/qr/${item.id}.svg`)} width="220" height="220" alt={`QR-Code: ${item.label}`} loading="lazy" />
             <span>{item.label}<Icon name="external" size={16} /></span>
           </a>
         ))}

@@ -3,11 +3,16 @@ export type PageId = "home" | "prices" | "info" | "contact";
 
 export const locales: Locale[] = ["de", "ro"];
 
+const basePath = (process.env.BASE_PATH ?? "/").replace(/\/$/, "");
+
+export const withBasePath = (path: string): string =>
+  path.startsWith("/") ? `${basePath}${path}` : path;
+
 export const routes: Record<PageId, Record<Locale, string>> = {
-  home: { de: "/de/", ro: "/ro/" },
-  prices: { de: "/de/preise/", ro: "/ro/preturi/" },
-  info: { de: "/de/infos/", ro: "/ro/informatii/" },
-  contact: { de: "/de/kontakt/", ro: "/ro/contact/" },
+  home: { de: withBasePath("/de/"), ro: withBasePath("/ro/") },
+  prices: { de: withBasePath("/de/preise/"), ro: withBasePath("/ro/preturi/") },
+  info: { de: withBasePath("/de/infos/"), ro: withBasePath("/ro/informatii/") },
+  contact: { de: withBasePath("/de/kontakt/"), ro: withBasePath("/ro/contact/") },
 };
 
 export const site = {
@@ -53,12 +58,13 @@ export const getAlternateRoute = (page: PageId, locale: Locale): string =>
   routes[page][getAlternateLocale(locale)];
 
 export const assetPath = {
-  portrait480: "/images/otto-portrait-480.jpg",
-  portrait900: "/images/otto-portrait-900.jpg",
-  mountain720: "/images/bucegi-720.jpg",
-  mountain1200: "/images/bucegi-1200.jpg",
-  card720: "/images/business-card-720.jpg",
-  card1440: "/images/business-card-1440.jpg",
-  flagDe: "/images/flag-de.jpg",
-  flagRo: "/images/flag-ro.jpg",
+  favicon: withBasePath("/favicon.svg"),
+  portrait480: withBasePath("/images/otto-portrait-480.jpg"),
+  portrait900: withBasePath("/images/otto-portrait-900.jpg"),
+  mountain720: withBasePath("/images/bucegi-720.jpg"),
+  mountain1200: withBasePath("/images/bucegi-1200.jpg"),
+  card720: withBasePath("/images/business-card-720.jpg"),
+  card1440: withBasePath("/images/business-card-1440.jpg"),
+  flagDe: withBasePath("/images/flag-de.jpg"),
+  flagRo: withBasePath("/images/flag-ro.jpg"),
 } as const;

@@ -4,7 +4,14 @@ import { priceCategories, priceEntries } from "../src/data/prices";
 import { assetPath, locales, routes } from "../src/data/site";
 
 const failures: string[] = [];
+const basePath = (process.env.BASE_PATH ?? "/").replace(/\/$/, "");
 const fail = (message: string) => failures.push(message);
+const resolvePublicPath = (path: string) => {
+  const withoutBase = basePath && path.startsWith(`${basePath}/`)
+    ? path.slice(basePath.length)
+    : path;
+  return `public${withoutBase.startsWith("/") ? withoutBase : `/${withoutBase}`}`;
+};
 
 const compareShape = (left: unknown, right: unknown, path = "content") => {
   if (Array.isArray(left) || Array.isArray(right)) {
@@ -60,14 +67,15 @@ for (const entry of priceEntries) {
   if (entry.price.type === "range" && entry.price.min > entry.price.max) fail(`Invalid price range on ${entry.id}`);
   if (entry.note && (!entry.note.de.trim() || !entry.note.ro.trim())) fail(`Incomplete note on ${entry.id}`);
   for (const example of entry.examples ?? []) {
-    const path = `public${example.file}`;
+    const path = resolvePublicPath(example.file);
     if (!existsSync(path)) fail(`Missing example PDF for ${entry.id}: ${path}`);
     if (!example.label.de.trim() || !example.label.ro.trim()) fail(`Incomplete example label on ${entry.id}`);
   }
 }
 
 for (const [name, path] of Object.entries(assetPath)) {
-  if (!existsSync(`public${path}`)) fail(`Missing shared asset ${name}: public${path}`);
+  const publicPath = resolvePublicPath(path);
+  if (!existsSync(publicPath)) fail(`Missing shared asset ${name}: ${publicPath}`);
 }
 
 for (const qr of ["whatsapp", "facebook", "instagram", "google"]) {

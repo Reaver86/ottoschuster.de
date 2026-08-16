@@ -1,4 +1,4 @@
-import type { Locale } from "./site";
+import { withBasePath, type Locale } from "./site";
 
 export type PriceCategory =
   | "civil"
@@ -37,7 +37,7 @@ const example = (
   file: string,
   de = "Dokumentbeispiel",
   ro = "Exemplu de document",
-): PriceExample => ({ label: { de, ro }, file: `/documents/examples/${file}` });
+): PriceExample => ({ label: { de, ro }, file: withBasePath(`/documents/examples/${file}`) });
 
 export const priceCategories: PriceCategory[] = [
   "civil",
