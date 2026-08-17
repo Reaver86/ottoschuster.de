@@ -13,7 +13,16 @@ const page = copy.contactPage;
 ---
 
 <BaseLayout locale={locale} page="contact" title={page.metaTitle} description={page.metaDescription}>
-  <section class="page-hero contact-page-hero">
+  <section class="page-hero contact-page-hero map-page-hero">
+    <img
+      class="map-page-hero-image"
+      src={assetPath.infoContactHero}
+      width="604"
+      height="436"
+      alt=""
+      aria-hidden="true"
+      fetchpriority="high"
+    />
     <div class="container page-hero-narrow">
       <SectionHeading eyebrow={page.eyebrow} title={page.title} intro={page.intro} level="h1" />
     </div>

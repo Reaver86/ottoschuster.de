@@ -28,6 +28,7 @@ export const content = {
       call: "Anrufen",
       email: "E-Mail schreiben",
       prices: "Alle Preise ansehen",
+      categoryPrices: "Preise ansehen",
       contact: "Kontakt aufnehmen",
       external: "Externer Link",
       pdf: "PDF öffnen",
@@ -63,14 +64,14 @@ export const content = {
         intro:
           "Viele häufig benötigte Dokumente haben einen festen Preis. Für umfangreichere Unterlagen erhalten Sie ein persönliches Angebot.",
         items: [
-          { icon: "heart", title: "Standesurkunden", text: "Geburt, Heirat, Tod, Namensänderung und Familienstand" },
-          { icon: "graduation", title: "Diplome & Zeugnisse", text: "Schule, Ausbildung, Studium und Qualifikationen" },
-          { icon: "id", title: "Ausweis & Führerschein", text: "Identitäts-, Reise-, Melde- und Aufenthaltsdokumente" },
-          { icon: "scale", title: "Gericht & Verträge", text: "Beschlüsse, Verträge und andere juristische Unterlagen" },
-          { icon: "signature", title: "Vollmachten", text: "Vollmachten, Erklärungen und vorbereitete Dokumente" },
-          { icon: "medical", title: "Medizinische Dokumente", text: "Befunde, Bescheinigungen und weitere Fachunterlagen" },
-          { icon: "moldova", title: "Republik Moldau", text: "Urkunden, Diplome, Apostillen und Legalisierungen" },
-          { icon: "document", title: "Weitere Dokumente", text: "Arbeitsbücher, Zweitfertigungen und individuelle Aufträge" },
+          { icon: "certificate", priceCategory: "civil", title: "Standesurkunden", text: "Geburt, Heirat, Tod, Namensänderung und Familienstand" },
+          { icon: "graduation", priceCategory: "education", title: "Diplome & Zeugnisse", text: "Schule, Ausbildung, Studium und Qualifikationen" },
+          { icon: "id", priceCategory: "identity", title: "Ausweis & Führerschein", text: "Identitäts-, Reise-, Melde- und Aufenthaltsdokumente" },
+          { icon: "scale", priceCategory: "legal", title: "Gericht & Verträge", text: "Beschlüsse, Verträge und andere juristische Unterlagen" },
+          { icon: "signature", priceCategory: "legal", title: "Vollmachten", text: "Vollmachten, Erklärungen und vorbereitete Dokumente" },
+          { icon: "medical", priceCategory: "other", title: "Medizinische Dokumente", text: "Befunde, Bescheinigungen und weitere Fachunterlagen" },
+          { icon: "location", priceCategory: "moldova", title: "Republik Moldau", text: "Urkunden, Diplome, Apostillen und Legalisierungen" },
+          { icon: "document", priceCategory: "other", title: "Weitere Dokumente", text: "Arbeitsbücher, Zweitfertigungen und individuelle Aufträge" },
         ],
       },
       process: {
@@ -119,8 +120,7 @@ export const content = {
         timeline: [
           { year: "1990", text: "Übersiedlung nach Deutschland" },
           { year: "1993", text: "Öffentliche Bestellung und Beeidigung" },
-          { year: "1997", text: "Lehrtätigkeit in Schramberg" },
-          { year: "Heute", text: "Persönliche Übersetzungen Deutsch ↔ Rumänisch" },
+          { year: "seit 1997", text: "Lehrtätigkeit in Schramberg" },
         ],
       },
       credentials: {
@@ -192,7 +192,7 @@ export const content = {
       closing: {
         eyebrow: "Direkter Kontakt",
         title: "Schicken Sie Ihr Dokument einfach per WhatsApp",
-        text: "Sie erhalten eine persönliche Einschätzung zu Preis, benötigten Unterlagen und Zeitrahmen – direkt von Otto Schuster.",
+        text: "Sie erhalten eine persönliche Einschätzung zu Preis, benötigten Unterlagen und Zeitrahmen – direkt von mir.",
       },
     },
     pricePage: {
@@ -219,7 +219,7 @@ export const content = {
       noResultsTitle: "Kein passender Eintrag gefunden",
       noResultsText: "Probieren Sie einen anderen Begriff oder senden Sie mir das Dokument direkt per WhatsApp.",
       clear: "Filter zurücksetzen",
-      net: "netto",
+      net: "+ MwSt.",
       quote: "Persönliches Angebot",
       free: "kostenlos",
       categories: {
@@ -325,12 +325,12 @@ export const content = {
     contactPage: {
       metaTitle: "Kontakt | Übersetzungsbüro Schuster",
       metaDescription: "Otto Schuster direkt per WhatsApp, Telefon oder E-Mail erreichen und Dokumente für ein Übersetzungsangebot senden.",
-      eyebrow: "Direkt mit Otto Schuster sprechen",
+      eyebrow: "Direkt mit mir sprechen",
       title: "Am schnellsten geht es per WhatsApp",
       intro:
         "Senden Sie gut lesbare Fotos oder PDFs Ihrer Dokumente. Ich antworte persönlich mit Preis, benötigten Unterlagen und voraussichtlichem Termin.",
       whatsappTitle: "Dokumente per WhatsApp senden",
-      whatsappText: "Öffnet einen leeren Chat. Sie entscheiden selbst, welche Angaben und Dateien Sie senden.",
+      whatsappText: "Einfach schreiben – ich antworte schnell und persönlich.",
       phoneTitle: "Telefon",
       phoneText: "Anrufe bitte möglichst nach 14:00 Uhr. Davor bin ich nicht immer erreichbar.",
       emailTitle: "E-Mail",
@@ -369,7 +369,6 @@ export const content = {
     },
     footer: {
       claim: "Beglaubigte Übersetzungen Deutsch ↔ Rumänisch – persönlich seit 1993.",
-      navigation: "Navigation",
       contact: "Kontakt",
       legal: "Rechtliches",
       imprint: "Impressum",
@@ -404,6 +403,7 @@ export const content = {
       call: "Sună",
       email: "Scrie un e-mail",
       prices: "Vezi toate prețurile",
+      categoryPrices: "Vezi prețurile",
       contact: "Ia legătura",
       external: "Link extern",
       pdf: "Deschide PDF",
@@ -439,14 +439,14 @@ export const content = {
         intro:
           "Multe documente uzuale au un preț fix. Pentru documentele voluminoase primiți o ofertă personală.",
         items: [
-          { icon: "heart", title: "Acte de stare civilă", text: "Naștere, căsătorie, deces, schimbarea numelui și stare civilă" },
-          { icon: "graduation", title: "Diplome și certificate", text: "Școală, formare profesională, studii și calificări" },
-          { icon: "id", title: "Acte și permis", text: "Identitate, călătorie, domiciliu și ședere" },
-          { icon: "scale", title: "Instanță și contracte", text: "Hotărâri, contracte și alte documente juridice" },
-          { icon: "signature", title: "Procuri", text: "Procuri, declarații și documente pregătite" },
-          { icon: "medical", title: "Documente medicale", text: "Rapoarte, adeverințe și alte documente de specialitate" },
-          { icon: "moldova", title: "Republica Moldova", text: "Acte, diplome, apostile și legalizări" },
-          { icon: "document", title: "Alte documente", text: "Cărți de muncă, duplicate și solicitări individuale" },
+          { icon: "certificate", priceCategory: "civil", title: "Acte de stare civilă", text: "Naștere, căsătorie, deces, schimbarea numelui și stare civilă" },
+          { icon: "graduation", priceCategory: "education", title: "Diplome și certificate", text: "Școală, formare profesională, studii și calificări" },
+          { icon: "id", priceCategory: "identity", title: "Acte și permis", text: "Identitate, călătorie, domiciliu și ședere" },
+          { icon: "scale", priceCategory: "legal", title: "Instanță și contracte", text: "Hotărâri, contracte și alte documente juridice" },
+          { icon: "signature", priceCategory: "legal", title: "Procuri", text: "Procuri, declarații și documente pregătite" },
+          { icon: "medical", priceCategory: "other", title: "Documente medicale", text: "Rapoarte, adeverințe și alte documente de specialitate" },
+          { icon: "location", priceCategory: "moldova", title: "Republica Moldova", text: "Acte, diplome, apostile și legalizări" },
+          { icon: "document", priceCategory: "other", title: "Alte documente", text: "Cărți de muncă, duplicate și solicitări individuale" },
         ],
       },
       process: {
@@ -495,8 +495,7 @@ export const content = {
         timeline: [
           { year: "1990", text: "Stabilirea în Germania" },
           { year: "1993", text: "Autorizarea și depunerea jurământului" },
-          { year: "1997", text: "Activitate didactică în Schramberg" },
-          { year: "Astăzi", text: "Traduceri personale germană ↔ română" },
+          { year: "din 1997", text: "Activitate didactică în Schramberg" },
         ],
       },
       credentials: {
@@ -706,7 +705,7 @@ export const content = {
       intro:
         "Trimiteți fotografii clare sau fișiere PDF. Vă răspund personal cu prețul, actele necesare și termenul estimat.",
       whatsappTitle: "Trimiteți documentele prin WhatsApp",
-      whatsappText: "Se deschide o conversație goală. Dumneavoastră decideți ce date și fișiere trimiteți.",
+      whatsappText: "Scrieți-mi simplu – vă răspund rapid și personal.",
       phoneTitle: "Telefon",
       phoneText: "Vă rog să sunați pe cât posibil după ora 14:00. Înainte nu sunt întotdeauna disponibil.",
       emailTitle: "E-mail",
@@ -745,7 +744,6 @@ export const content = {
     },
     footer: {
       claim: "Traduceri autorizate germană ↔ română – personal din 1993.",
-      navigation: "Navigație",
       contact: "Contact",
       legal: "Informații juridice",
       imprint: "Impressum",

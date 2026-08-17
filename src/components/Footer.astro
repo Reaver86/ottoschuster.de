@@ -1,5 +1,5 @@
 ---
-import { getContent, navigationOrder } from "../data/content";
+import { getContent } from "../data/content";
 import { routes, site, withBasePath, type Locale } from "../data/site";
 import Icon from "./Icon.astro";
 
@@ -19,13 +19,6 @@ const copy = getContent(locale);
         <span class="wordmark-sub">Deutsch <span aria-hidden="true">↔</span> Rumänisch</span>
       </a>
       <p>{copy.footer.claim}</p>
-    </div>
-
-    <div>
-      <h2>{copy.footer.navigation}</h2>
-      <ul class="footer-links">
-        {navigationOrder.map((item) => <li><a href={routes[item][locale]}>{copy.nav[item]}</a></li>)}
-      </ul>
     </div>
 
     <div>

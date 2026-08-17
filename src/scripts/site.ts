@@ -94,29 +94,59 @@ if (catalogue) {
     if (list) list.hidden = visible === 0;
   };
 
-  search?.addEventListener("input", updateResults);
+  const setActiveCategory = (category: string, updateUrl = false) => {
+    const matchingFilter = filters.find((filter) => filter.dataset.priceFilter === category);
+    activeCategory = matchingFilter?.dataset.priceFilter ?? "all";
+
+    filters.forEach((filter) => {
+      const active = filter.dataset.priceFilter === activeCategory;
+      filter.classList.toggle("active", active);
+      filter.setAttribute("aria-pressed", String(active));
+    });
+
+    if (updateUrl) {
+      const url = new URL(window.location.href);
+      if (activeCategory === "all") {
+        url.searchParams.delete("category");
+      } else {
+        url.searchParams.set("category", activeCategory);
+      }
+      window.history.replaceState({}, "", `${url.pathname}${url.search}${url.hash}`);
+    }
+
+    updateResults();
+  };
+
+  search?.addEventListener("input", () => {
+    const url = new URL(window.location.href);
+    const searchTerm = search.value;
+    if (searchTerm.trim()) {
+      url.searchParams.set("search", searchTerm);
+    } else {
+      url.searchParams.delete("search");
+    }
+    window.history.replaceState({}, "", `${url.pathname}${url.search}${url.hash}`);
+    updateResults();
+  });
 
   filters.forEach((filter) => {
     filter.addEventListener("click", () => {
-      activeCategory = filter.dataset.priceFilter ?? "all";
-      filters.forEach((item) => {
-        const active = item === filter;
-        item.classList.toggle("active", active);
-        item.setAttribute("aria-pressed", String(active));
-      });
-      updateResults();
+      setActiveCategory(filter.dataset.priceFilter ?? "all", true);
     });
   });
 
   clear?.addEventListener("click", () => {
-    activeCategory = "all";
     if (search) search.value = "";
-    filters.forEach((item) => {
-      const active = item.dataset.priceFilter === "all";
-      item.classList.toggle("active", active);
-      item.setAttribute("aria-pressed", String(active));
-    });
-    updateResults();
+    const url = new URL(window.location.href);
+    url.searchParams.delete("category");
+    url.searchParams.delete("search");
+    window.history.replaceState({}, "", `${url.pathname}${url.search}${url.hash}`);
+    setActiveCategory("all");
     search?.focus();
   });
+
+  const initialUrl = new URL(window.location.href);
+  const requestedCategory = initialUrl.searchParams.get("category") ?? "all";
+  if (search) search.value = initialUrl.searchParams.get("search") ?? "";
+  setActiveCategory(requestedCategory);
 }

@@ -25,6 +25,7 @@ const formatPrice = (price: Price) => {
   if (price.type === "free") return priceCopy.free;
   return priceCopy.quote;
 };
+const firstWord = (value: string) => value.trim().split(/\s+/, 1)[0]?.replace(/[.,;:!?]+$/, "") ?? "";
 const featuredPrices = page.prices.featuredIds
   .map((id) => priceEntries.find((entry) => entry.id === id))
   .filter((entry) => entry !== undefined);
@@ -56,8 +57,6 @@ const featuredPrices = page.prices.featuredIds
               fetchpriority="high"
             />
           </picture>
-          <div class="portrait-accent accent-yellow"></div>
-          <div class="portrait-accent accent-red"></div>
         </div>
         <div class="credential-card">
           <div class="credential-icon"><Icon name="seal" size={28} /></div>
@@ -84,11 +83,11 @@ const featuredPrices = page.prices.featuredIds
       <SectionHeading eyebrow={page.categories.eyebrow} title={page.categories.title} intro={page.categories.intro} />
       <div class="category-grid">
         {page.categories.items.map((item) => (
-          <a class="category-card" href={routes.prices[locale]}>
+          <a class="category-card" href={`${routes.prices[locale]}?category=${item.priceCategory}#price-catalogue`}>
             <div class="category-icon"><Icon name={item.icon} size={27} /></div>
             <h3>{item.title}</h3>
             <p>{item.text}</p>
-            <span class="card-link"><span>{copy.actions.prices}</span><Icon name="arrow" size={18} /></span>
+            <span class="card-link"><span>{copy.actions.categoryPrices}</span><Icon name="arrow" size={18} /></span>
           </a>
         ))}
       </div>
@@ -118,7 +117,10 @@ const featuredPrices = page.prices.featuredIds
       </div>
       <div class="price-preview-grid">
         {featuredPrices.map((entry) => (
-          <a class="price-preview-card" href={`${routes.prices[locale]}#${entry.id}`}>
+          <a
+            class="price-preview-card"
+            href={`${routes.prices[locale]}?search=${encodeURIComponent(firstWord(entry.name[locale]))}#price-catalogue`}
+          >
             <span>{entry.name[locale]}</span>
             <strong>{formatPrice(entry.price)}</strong>
             <Icon name="arrow" size={19} />

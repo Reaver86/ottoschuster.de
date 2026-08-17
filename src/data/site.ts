@@ -63,6 +63,8 @@ export const assetPath = {
   portrait900: withBasePath("/images/otto-portrait-900.jpg"),
   mountain720: withBasePath("/images/bucegi-720.jpg"),
   mountain1200: withBasePath("/images/bucegi-1200.jpg"),
+  priceHero: withBasePath("/images/one-leu-banknote.jpg"),
+  infoContactHero: withBasePath("/images/romania-map-background.jpg"),
   card720: withBasePath("/images/business-card-720.jpg"),
   card1440: withBasePath("/images/business-card-1440.jpg"),
   flagDe: withBasePath("/images/flag-de.jpg"),

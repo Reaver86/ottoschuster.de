@@ -4,7 +4,7 @@ import Icon from "../Icon.astro";
 import PriceCatalogue from "../PriceCatalogue.astro";
 import SectionHeading from "../SectionHeading.astro";
 import { getContent } from "../../data/content";
-import type { Locale } from "../../data/site";
+import { assetPath, type Locale } from "../../data/site";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 
 interface Props { locale: Locale }
@@ -15,9 +15,17 @@ const page = copy.pricePage;
 
 <BaseLayout locale={locale} page="prices" title={page.metaTitle} description={page.metaDescription}>
   <section class="page-hero price-page-hero">
+    <img
+      class="price-page-hero-image"
+      src={assetPath.priceHero}
+      width="562"
+      height="383"
+      alt=""
+      aria-hidden="true"
+      fetchpriority="high"
+    />
     <div class="container page-hero-grid">
       <SectionHeading eyebrow={page.eyebrow} title={page.title} intro={page.intro} level="h1" />
-      <div class="page-hero-mark" aria-hidden="true"><span>€</span></div>
     </div>
   </section>
   <section class="price-facts">

@@ -676,27 +676,8 @@ h3 {
   width: 100%;
   aspect-ratio: 1;
   object-fit: cover;
-}
-
-.portrait-accent {
-  position: absolute;
-  border-radius: 99px;
-}
-
-.accent-yellow {
-  top: 38px;
-  right: -5px;
-  width: 8px;
-  height: 90px;
-  background: var(--yellow);
-}
-
-.accent-red {
-  top: 135px;
-  right: -5px;
-  width: 8px;
-  height: 48px;
-  background: var(--red);
+  transform: scale(1.12);
+  transform-origin: 0 75%;
 }
 
 .credential-card {
@@ -977,15 +958,14 @@ h3 {
 }
 
 .mountain-figure {
-  width: min(calc(100% - 64px), 1360px);
-  margin: 0 auto 84px;
+  width: 100%;
+  margin: 0 0 84px;
 }
 
 .mountain-figure picture {
   display: block;
   overflow: hidden;
   max-height: 410px;
-  border-radius: var(--radius-lg);
   background: var(--blue-pale);
 }
 
@@ -994,7 +974,13 @@ h3 {
   height: min(32vw, 410px);
   min-height: 280px;
   object-fit: cover;
-  object-position: center 55%;
+  object-position: center top;
+}
+
+@media (min-width: 900px) {
+  .mountain-figure img {
+    object-position: center 24%;
+  }
 }
 
 .mountain-figure figcaption {
@@ -1203,29 +1189,36 @@ h3 {
   position: relative;
   overflow: hidden;
   color: var(--white);
-  background: var(--blue-deep);
+  background: linear-gradient(120deg, #194e9c 0%, #164783 58%, #123a6b 100%);
 }
 
-.contact-band .mountain-path {
-  right: -2%;
-  bottom: -30px;
-  width: 70%;
-  opacity: 0.32;
-}
-
-.contact-band .path-blue {
-  stroke: #8eb8ec;
+.contact-band::before {
+  content: "";
+  position: absolute;
+  z-index: 2;
+  inset: 0 0 auto;
+  height: 4px;
+  background: linear-gradient(
+    90deg,
+    #2775d8 0 33.333%,
+    var(--yellow) 33.333% 66.666%,
+    var(--red) 66.666% 100%
+  );
 }
 
 .contact-band-inner {
   position: relative;
   z-index: 1;
   display: grid;
-  min-height: 330px;
+  min-height: 340px;
   align-items: center;
-  gap: 70px;
-  padding-block: 64px;
-  grid-template-columns: minmax(0, 1.15fr) minmax(380px, 0.85fr);
+  gap: clamp(48px, 7vw, 92px);
+  padding-block: 72px;
+  grid-template-columns: minmax(0, 1.15fr) minmax(410px, 0.85fr);
+}
+
+.contact-band-copy {
+  max-width: 680px;
 }
 
 .contact-band .eyebrow {
@@ -1270,7 +1263,7 @@ h3 {
   display: grid;
   gap: 56px;
   padding-bottom: 64px;
-  grid-template-columns: 1.45fr 0.75fr 1.1fr 0.8fr;
+  grid-template-columns: 1.45fr 1.1fr 0.8fr;
 }
 
 .footer-wordmark {
@@ -1417,6 +1410,104 @@ h3 {
 
 /* Prices */
 
+.price-page-hero {
+  isolation: isolate;
+  background: #edf4fa;
+}
+
+.price-page-hero::before {
+  z-index: 1;
+  inset: 0;
+  width: auto;
+  height: auto;
+  border: 0;
+  border-radius: 0;
+  background: linear-gradient(
+    90deg,
+    rgb(237 244 250 / 100%) 0%,
+    rgb(237 244 250 / 96%) 38%,
+    rgb(237 244 250 / 72%) 62%,
+    rgb(237 244 250 / 20%) 100%
+  );
+}
+
+.price-page-hero::after {
+  display: none;
+}
+
+.price-page-hero .page-hero-grid {
+  z-index: 2;
+}
+
+.price-page-hero-image {
+  position: absolute;
+  z-index: 0;
+  top: 50%;
+  right: clamp(-120px, -4vw, -28px);
+  width: clamp(560px, 52vw, 760px);
+  max-width: none;
+  opacity: 0.82;
+  pointer-events: none;
+  transform: translateY(-50%);
+}
+
+@media (min-width: 900px) {
+  .price-page-hero-image {
+    -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 34%);
+    mask-image: linear-gradient(90deg, transparent 0%, #000 34%);
+  }
+}
+
+/* Infos and contact */
+
+.map-page-hero {
+  isolation: isolate;
+  background: #edf4fa;
+}
+
+.map-page-hero::before {
+  z-index: 1;
+  inset: 0;
+  width: auto;
+  height: auto;
+  border: 0;
+  border-radius: 0;
+  background: linear-gradient(
+    90deg,
+    rgb(237 244 250 / 100%) 0%,
+    rgb(237 244 250 / 96%) 38%,
+    rgb(237 244 250 / 72%) 62%,
+    rgb(237 244 250 / 20%) 100%
+  );
+}
+
+.map-page-hero::after {
+  display: none;
+}
+
+.map-page-hero .page-hero-narrow {
+  z-index: 2;
+}
+
+.map-page-hero-image {
+  position: absolute;
+  z-index: 0;
+  top: 50%;
+  right: clamp(-88px, -4vw, -28px);
+  width: clamp(560px, 48vw, 680px);
+  max-width: none;
+  opacity: 0.92;
+  pointer-events: none;
+  transform: translateY(-50%);
+}
+
+@media (min-width: 900px) {
+  .map-page-hero-image {
+    -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 34%);
+    mask-image: linear-gradient(90deg, transparent 0%, #000 34%);
+  }
+}
+
 .price-facts {
   border-bottom: 1px solid var(--border);
   background: var(--white);
@@ -1449,14 +1540,9 @@ h3 {
 
 .price-controls {
   margin-bottom: 34px;
-  padding: 28px;
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  background: var(--white);
-  box-shadow: var(--shadow-sm);
 }
 
-.js .price-controls {
+.js .price-controls.js-only:not([hidden]) {
   display: grid !important;
   gap: 26px;
 }
@@ -2198,11 +2284,7 @@ a.contact-card:hover {
   }
 
   .footer-grid {
-    grid-template-columns: 1.2fr 0.8fr 1fr;
-  }
-
-  .footer-grid > div:last-child {
-    grid-column: 2;
+    grid-template-columns: 1.2fr 1fr 0.8fr;
   }
 
   .price-facts ul {
@@ -2386,9 +2468,6 @@ a.contact-card:hover {
     grid-template-columns: repeat(2, 1fr);
   }
 
-  .footer-grid > div:last-child {
-    grid-column: auto;
-  }
 }
 
 /* Mobile */
@@ -2441,10 +2520,7 @@ a.contact-card:hover {
   }
 
   .wordmark-main {
-    max-width: 150px;
-    overflow: hidden;
     font-size: 0.76rem;
-    text-overflow: ellipsis;
     white-space: nowrap;
   }
 
@@ -2656,7 +2732,7 @@ a.contact-card:hover {
   .contact-band-inner {
     min-height: 0;
     gap: 32px;
-    padding-block: 54px;
+    padding-block: 58px;
   }
 
   .contact-band .contact-actions {
@@ -2688,6 +2764,36 @@ a.contact-card:hover {
 
   .page-hero-grid {
     grid-template-columns: 1fr;
+  }
+
+  .price-page-hero::before {
+    background: linear-gradient(
+      90deg,
+      rgb(237 244 250 / 96%) 0%,
+      rgb(237 244 250 / 88%) 62%,
+      rgb(237 244 250 / 54%) 100%
+    );
+  }
+
+  .price-page-hero-image {
+    right: -170px;
+    width: 570px;
+    opacity: 0.62;
+  }
+
+  .map-page-hero::before {
+    background: linear-gradient(
+      90deg,
+      rgb(237 244 250 / 96%) 0%,
+      rgb(237 244 250 / 88%) 62%,
+      rgb(237 244 250 / 54%) 100%
+    );
+  }
+
+  .map-page-hero-image {
+    right: -190px;
+    width: 570px;
+    opacity: 0.7;
   }
 
   .price-facts ul {
