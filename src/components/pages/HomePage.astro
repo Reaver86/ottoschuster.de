@@ -48,9 +48,10 @@ const featuredPrices = page.prices.featuredIds
       <div class="hero-profile">
         <div class="portrait-frame">
           <picture>
-            <source media="(max-width: 640px)" srcset={assetPath.portrait480} />
             <img
-              src={assetPath.portrait900}
+              src={assetPath.portrait480}
+              srcset={`${assetPath.portrait480} 480w, ${assetPath.portrait900} 900w`}
+              sizes="(max-width: 639px) calc(100vw - 32px), 460px"
               width="900"
               height="900"
               alt={page.portraitAlt}

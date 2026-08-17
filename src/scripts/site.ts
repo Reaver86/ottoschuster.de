@@ -17,7 +17,6 @@ const setMenu = (open: boolean) => {
   document.body.classList.toggle("menu-open", open);
 };
 
-updateHeader();
 window.addEventListener("scroll", updateHeader, { passive: true });
 
 menuToggle?.addEventListener("click", () => {

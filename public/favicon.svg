@@ -1,6 +1,14 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
-  <rect width="64" height="64" rx="14" fill="#162f45"/>
-  <path d="M13 18h38v7H13zm0 21h38v7H13z" fill="#fff"/>
-  <path d="M21 15h7v34h-7z" fill="#f2c94c"/>
-  <path d="M36 15h7v34h-7z" fill="#c74747"/>
+  <title>Romanian flag</title>
+  <defs>
+    <clipPath id="flag-shape">
+      <rect x="4" y="8" width="56" height="48" rx="10" />
+    </clipPath>
+  </defs>
+  <g clip-path="url(#flag-shape)">
+    <path fill="#2468c9" d="M4 8h19v48H4z" />
+    <path fill="#f2c94c" d="M23 8h19v48H23z" />
+    <path fill="#c74747" d="M42 8h18v48H42z" />
+  </g>
+  <rect x="4.5" y="8.5" width="55" height="47" rx="9.5" fill="none" stroke="#162f45" stroke-opacity=".16" />
 </svg>

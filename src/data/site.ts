@@ -59,14 +59,14 @@ export const getAlternateRoute = (page: PageId, locale: Locale): string =>
 
 export const assetPath = {
   favicon: withBasePath("/favicon.svg"),
-  portrait480: withBasePath("/images/otto-portrait-480.jpg"),
-  portrait900: withBasePath("/images/otto-portrait-900.jpg"),
-  mountain720: withBasePath("/images/bucegi-720.jpg"),
-  mountain1200: withBasePath("/images/bucegi-1200.jpg"),
-  priceHero: withBasePath("/images/one-leu-banknote.jpg"),
-  infoContactHero: withBasePath("/images/romania-map-background.jpg"),
+  portrait480: withBasePath("/images/otto-schuster-portrait-480.webp"),
+  portrait900: withBasePath("/images/otto-schuster-portrait-900.webp"),
+  mountain720: withBasePath("/images/bucegi-mountains-720.webp"),
+  mountain1200: withBasePath("/images/bucegi-mountains-1200.webp"),
+  priceHero: withBasePath("/images/one-leu-banknote.webp"),
+  infoContactHero: withBasePath("/images/romania-map.webp"),
   card720: withBasePath("/images/business-card-720.jpg"),
   card1440: withBasePath("/images/business-card-1440.jpg"),
-  flagDe: withBasePath("/images/flag-de.jpg"),
-  flagRo: withBasePath("/images/flag-ro.jpg"),
+  flagDe: withBasePath("/images/germany-flag.webp"),
+  flagRo: withBasePath("/images/romania-flag.webp"),
 } as const;
