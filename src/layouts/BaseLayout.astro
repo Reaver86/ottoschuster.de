@@ -3,31 +3,30 @@ import "../styles/global.css";
 import Footer from "../components/Footer.astro";
 import Header from "../components/Header.astro";
 import { getContent } from "../data/content";
-import { assetPath, routes, type Locale, type PageId } from "../data/site";
+import { assetPath } from "../data/site";
+import { getCurrentLocale, type PageId } from "../i18n/config";
+import { getLocalizedUrl } from "../i18n/routes";
 
 interface Props {
-  locale: Locale;
   page: PageId;
   title: string;
   description: string;
   image?: string;
   noindex?: boolean;
-  localized?: boolean;
 }
 
 const {
-  locale,
   page,
   title,
   description,
   image = assetPath.portrait900,
   noindex = false,
-  localized = true,
 } = Astro.props;
+const locale = getCurrentLocale(Astro.currentLocale);
 const copy = getContent(locale);
 const canonical = new URL(Astro.url.pathname, Astro.site);
-const deUrl = new URL(routes[page].de, Astro.site);
-const roUrl = new URL(routes[page].ro, Astro.site);
+const deUrl = getLocalizedUrl(page, "de");
+const roUrl = getLocalizedUrl(page, "ro");
 const imageUrl = new URL(image, Astro.site);
 ---
 
@@ -41,11 +40,12 @@ const imageUrl = new URL(image, Astro.site);
     <meta name="description" content={description} />
     {noindex && <meta name="robots" content="noindex" />}
     <link rel="canonical" href={canonical} />
-    {localized && <link rel="alternate" hreflang="de" href={deUrl} />}
-    {localized && <link rel="alternate" hreflang="ro" href={roUrl} />}
-    {localized && <link rel="alternate" hreflang="x-default" href={deUrl} />}
+    <link rel="alternate" hreflang="de" href={deUrl} />
+    <link rel="alternate" hreflang="ro" href={roUrl} />
+    <link rel="alternate" hreflang="x-default" href={deUrl} />
     <meta property="og:type" content="website" />
     <meta property="og:locale" content={locale === "de" ? "de_DE" : "ro_RO"} />
+    <meta property="og:locale:alternate" content={locale === "de" ? "ro_RO" : "de_DE"} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonical} />

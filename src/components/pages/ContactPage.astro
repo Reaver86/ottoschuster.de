@@ -3,16 +3,16 @@ import ContactBand from "../ContactBand.astro";
 import Icon from "../Icon.astro";
 import SectionHeading from "../SectionHeading.astro";
 import { getContent } from "../../data/content";
-import { assetPath, site, withBasePath, type Locale } from "../../data/site";
+import { assetPath, site, withBasePath } from "../../data/site";
+import { getCurrentLocale } from "../../i18n/config";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 
-interface Props { locale: Locale }
-const { locale } = Astro.props;
+const locale = getCurrentLocale(Astro.currentLocale);
 const copy = getContent(locale);
 const page = copy.contactPage;
 ---
 
-<BaseLayout locale={locale} page="contact" title={page.metaTitle} description={page.metaDescription}>
+<BaseLayout page="contact" title={page.metaTitle} description={page.metaDescription}>
   <section class="page-hero contact-page-hero map-page-hero">
     <img
       class="map-page-hero-image"

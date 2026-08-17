@@ -1,19 +1,7 @@
-export type Locale = "de" | "ro";
-export type PageId = "home" | "prices" | "info" | "contact";
-
-export const locales: Locale[] = ["de", "ro"];
-
 const basePath = (process.env.BASE_PATH ?? "/").replace(/\/$/, "");
 
 export const withBasePath = (path: string): string =>
   path.startsWith("/") ? `${basePath}${path}` : path;
-
-export const routes: Record<PageId, Record<Locale, string>> = {
-  home: { de: withBasePath("/de/"), ro: withBasePath("/ro/") },
-  prices: { de: withBasePath("/de/preise/"), ro: withBasePath("/ro/preturi/") },
-  info: { de: withBasePath("/de/infos/"), ro: withBasePath("/ro/informatii/") },
-  contact: { de: withBasePath("/de/kontakt/"), ro: withBasePath("/ro/contact/") },
-};
 
 export const site = {
   name: "Übersetzungsbüro Schuster",
@@ -21,7 +9,6 @@ export const site = {
   address: {
     street: "Eva-Zeisel-Str. 4",
     city: "78713 Schramberg-Sulgen",
-    country: "Deutschland",
   },
   phone: {
     mobileDisplay: "+49 176 62712091",
@@ -50,12 +37,6 @@ export const site = {
     gerichte: "https://www.gerichts-dolmetscher.de/",
   },
 } as const;
-
-export const getAlternateLocale = (locale: Locale): Locale =>
-  locale === "de" ? "ro" : "de";
-
-export const getAlternateRoute = (page: PageId, locale: Locale): string =>
-  routes[page][getAlternateLocale(locale)];
 
 export const assetPath = {
   favicon: withBasePath("/favicon.svg"),

@@ -50,6 +50,10 @@ for (const htmlFile of htmlFiles) {
   const references = [...html.matchAll(/(?:href|src)="([^"]+)"/g)].map((match) => match[1]);
   for (const reference of references) {
     if (/^(?:https?:|mailto:|tel:|data:|#)/i.test(reference)) continue;
+    if (basePath && reference.startsWith("/") && !reference.startsWith(`${basePath}/`)) {
+      failures.push(`${htmlFile}: local reference omits base path ${reference}`);
+      continue;
+    }
     const target = resolveTarget(reference);
     if (!target) continue;
     localReferenceCount += 1;

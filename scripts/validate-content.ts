@@ -1,7 +1,9 @@
 import { existsSync } from "node:fs";
 import { content } from "../src/data/content";
+import { legalContent } from "../src/data/legal";
 import { priceCategories, priceEntries } from "../src/data/prices";
-import { assetPath, locales, routes } from "../src/data/site";
+import { assetPath } from "../src/data/site";
+import { locales, pagePaths } from "../src/i18n/config";
 
 const failures: string[] = [];
 const basePath = (process.env.BASE_PATH ?? "/").replace(/\/$/, "");
@@ -46,14 +48,17 @@ const compareShape = (left: unknown, right: unknown, path = "content") => {
 };
 
 compareShape(content.de, content.ro);
+compareShape(legalContent.de, legalContent.ro, "legalContent");
 
 const routeValues = new Set<string>();
-for (const [page, pair] of Object.entries(routes)) {
+for (const [page, path] of Object.entries(pagePaths)) {
+  if (routeValues.has(path)) fail(`Duplicate page path: ${path || "<home>"}`);
+  routeValues.add(path);
+
   for (const locale of locales) {
-    const route = pair[locale];
-    if (!route) fail(`Missing ${locale} route for ${page}`);
-    if (routeValues.has(route)) fail(`Duplicate route: ${route}`);
-    routeValues.add(route);
+    const filename = path ? `${path}.astro` : "index.astro";
+    const routeFile = `src/pages/${locale}/${filename}`;
+    if (!existsSync(routeFile)) fail(`Missing ${locale} route file for ${page}: ${routeFile}`);
   }
 }
 
@@ -87,4 +92,4 @@ if (failures.length) {
   process.exit(1);
 }
 
-console.log(`Validated 2 locales, ${Object.keys(routes).length * 2} localized routes, ${priceEntries.length} price entries, and shared assets.`);
+console.log(`Validated ${locales.length} locales, ${Object.keys(pagePaths).length * locales.length} localized routes, ${priceEntries.length} price entries, legal content, and shared assets.`);

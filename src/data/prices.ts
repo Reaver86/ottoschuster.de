@@ -1,4 +1,5 @@
-import { withBasePath, type Locale } from "./site";
+import type { Locale } from "../i18n/config";
+import { withBasePath } from "./site";
 
 export type PriceCategory =
   | "civil"

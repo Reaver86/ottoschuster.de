@@ -1312,12 +1312,6 @@ h3 {
   word-break: break-word;
 }
 
-.footer-note {
-  margin-top: 16px;
-  font-size: 0.77rem;
-  line-height: 1.45;
-}
-
 .footer-bottom {
   display: flex;
   align-items: center;

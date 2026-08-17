@@ -1,6 +1,8 @@
 ---
 import { getContent, navigationOrder } from "../data/content";
-import { routes, site, type Locale, type PageId } from "../data/site";
+import { site } from "../data/site";
+import type { Locale, PageId } from "../i18n/config";
+import { getLocalizedPath } from "../i18n/routes";
 import Icon from "./Icon.astro";
 import LanguageToggle from "./LanguageToggle.astro";
 
@@ -15,7 +17,7 @@ const copy = getContent(locale);
 
 <header class="site-header" data-site-header>
   <div class="container header-inner">
-    <a class="wordmark" href={routes.home[locale]}>
+    <a class="wordmark" href={getLocalizedPath("home", locale)}>
       <span class="wordmark-main">Übersetzungsbüro Schuster</span>
       <span class="wordmark-sub">Deutsch <span aria-hidden="true">↔</span> Rumänisch</span>
     </a>
@@ -24,7 +26,7 @@ const copy = getContent(locale);
       <ul>
         {navigationOrder.map((item) => (
           <li>
-            <a href={routes[item][locale]} aria-current={page === item ? "page" : undefined}>{copy.nav[item]}</a>
+            <a href={getLocalizedPath(item, locale)} aria-current={page === item ? "page" : undefined}>{copy.nav[item]}</a>
           </li>
         ))}
       </ul>
@@ -58,7 +60,7 @@ const copy = getContent(locale);
       <ul>
         {navigationOrder.map((item) => (
           <li>
-            <a href={routes[item][locale]} aria-current={page === item ? "page" : undefined}>
+            <a href={getLocalizedPath(item, locale)} aria-current={page === item ? "page" : undefined}>
               <span>{copy.nav[item]}</span>
               <Icon name="arrow" size={20} />
             </a>
@@ -77,7 +79,7 @@ const copy = getContent(locale);
       <div class="container">
         <a href={site.whatsapp} target="_blank" rel="noopener noreferrer">WhatsApp</a>
         {navigationOrder.map((item) => (
-          <a href={routes[item][locale]} aria-current={page === item ? "page" : undefined}>{copy.nav[item]}</a>
+          <a href={getLocalizedPath(item, locale)} aria-current={page === item ? "page" : undefined}>{copy.nav[item]}</a>
         ))}
       </div>
     </nav>

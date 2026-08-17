@@ -1,18 +1,8 @@
 ---
-import { routes } from "../data/site";
-const target = routes.home.de;
+import { defaultLocale } from "../i18n/config";
+import { getLocalizedPath } from "../i18n/routes";
+
+const target = getLocalizedPath("home", defaultLocale);
+Astro.response.status = 301;
+Astro.response.headers.set("Location", target);
 ---
-<!doctype html>
-<html lang="de">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
-    <meta http-equiv="refresh" content={`0;url=${target}`} />
-    <link rel="canonical" href={new URL(target, Astro.site)} />
-    <title>Übersetzungsbüro Schuster</title>
-    <script is:inline define:vars={{ target }}>window.location.replace(target);</script>
-  </head>
-  <body>
-    <p><a href={target}>Weiter zur deutschen Startseite</a></p>
-  </body>
-</html>

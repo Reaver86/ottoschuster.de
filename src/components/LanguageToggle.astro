@@ -1,5 +1,7 @@
 ---
-import { assetPath, routes, type Locale, type PageId } from "../data/site";
+import { assetPath } from "../data/site";
+import type { Locale, PageId } from "../i18n/config";
+import { getLocalizedPath } from "../i18n/routes";
 
 interface Props {
   locale: Locale;
@@ -11,23 +13,25 @@ const { locale, page } = Astro.props;
 
 <div class="language-toggle" aria-label={locale === "de" ? "Sprache wählen" : "Alege limba"}>
   <a
-    href={routes[page].de}
+    href={getLocalizedPath(page, "de")}
     class:list={["language-option", { active: locale === "de" }]}
     aria-current={locale === "de" ? "page" : undefined}
     aria-label="Deutsch"
     title="Deutsch"
     lang="de"
+    hreflang="de"
   >
     <img src={assetPath.flagDe} width="28" height="22" alt="" />
     <span class="sr-only">Deutsch</span>
   </a>
   <a
-    href={routes[page].ro}
+    href={getLocalizedPath(page, "ro")}
     class:list={["language-option", { active: locale === "ro" }]}
     aria-current={locale === "ro" ? "page" : undefined}
     aria-label="Română"
     title="Română"
     lang="ro"
+    hreflang="ro"
   >
     <img src={assetPath.flagRo} width="28" height="22" alt="" />
     <span class="sr-only">Română</span>

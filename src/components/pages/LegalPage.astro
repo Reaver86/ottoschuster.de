@@ -1,6 +1,8 @@
 ---
 import Icon from "../Icon.astro";
+import { getLegalContent, type LegalLinkId, type LegalParagraph } from "../../data/legal";
 import { site } from "../../data/site";
+import { getCurrentLocale } from "../../i18n/config";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 
 interface Props {
@@ -8,103 +10,67 @@ interface Props {
 }
 
 const { type } = Astro.props;
-const isImprint = type === "imprint";
-const title = isImprint ? "Impressum | Übersetzungsbüro Schuster" : "Datenschutz | Übersetzungsbüro Schuster";
-const description = isImprint
-  ? "Anbieterkennzeichnung des Übersetzungsbüros Schuster."
-  : "Informationen zur Verarbeitung personenbezogener Daten auf ottoschuster.de.";
+const locale = getCurrentLocale(Astro.currentLocale);
+const legal = getLegalContent(locale);
+const page = legal[type];
+
+const links: Record<LegalLinkId, { href: string; external: boolean }> = {
+  directory: { href: site.directories.justiz, external: true },
+  email: { href: `mailto:${site.email}`, external: false },
+  whatsappPrivacy: { href: "https://www.whatsapp.com/legal/privacy-policy-eea", external: true },
+};
+
+const richParagraph = (paragraph: LegalParagraph) =>
+  typeof paragraph === "string" ? undefined : { ...paragraph, ...links[paragraph.link] };
 ---
 
-<BaseLayout locale="de" page="contact" title={title} description={description} localized={false}>
+<BaseLayout page={type} title={page.metaTitle} description={page.metaDescription}>
   <section class="page-hero legal-page-hero">
     <div class="container page-hero-narrow">
-      <p class="eyebrow">Rechtliche Informationen</p>
-      <h1>{isImprint ? "Impressum" : "Datenschutzerklärung"}</h1>
-      <p class="section-intro">{isImprint ? "Angaben gemäß § 5 Digitale-Dienste-Gesetz (DDG)." : "Wie auf dieser Website personenbezogene Daten verarbeitet werden."}</p>
+      <p class="eyebrow">{legal.eyebrow}</p>
+      <h1>{page.title}</h1>
+      <p class="section-intro">{page.intro}</p>
     </div>
   </section>
 
   <section class="section legal-section">
     <div class="container legal-prose">
-      {isImprint ? (
+      {type === "imprint" ? (
         <>
           <section>
-            <h2>Anbieter</h2>
-            <p><strong>{site.name}</strong><br />Inhaber: {site.owner}<br />{site.address.street}<br />{site.address.city}<br />{site.address.country}</p>
+            <h2>{legal.imprint.providerTitle}</h2>
+            <p><strong>{site.name}</strong><br />{legal.imprint.ownerLabel}: {site.owner}<br />{site.address.street}<br />{site.address.city}<br />{legal.imprint.country}</p>
           </section>
           <section>
-            <h2>Kontakt</h2>
-            <p>Telefon: <a href={site.phone.landlineHref}>{site.phone.landlineDisplay}</a><br />Mobil: <a href={site.phone.mobileHref}>{site.phone.mobileDisplay}</a><br />E-Mail: <a href={`mailto:${site.email}`}>{site.email}</a></p>
+            <h2>{legal.imprint.contactTitle}</h2>
+            <p>{legal.imprint.phoneLabel}: <a href={site.phone.landlineHref}>{site.phone.landlineDisplay}</a><br />{legal.imprint.mobileLabel}: <a href={site.phone.mobileHref}>{site.phone.mobileDisplay}</a><br />{legal.imprint.emailLabel}: <a href={`mailto:${site.email}`}>{site.email}</a></p>
           </section>
           <section>
-            <h2>Umsatzsteuer</h2>
-            <p>Umsatzsteuer-Identifikationsnummer gemäß § 27a Umsatzsteuergesetz: <strong>{site.vatId}</strong></p>
-          </section>
-          <section>
-            <h2>Berufsbezeichnung und Bestellung</h2>
-            <p>Öffentlich bestellter und beeidigter Urkundenübersetzer für die rumänische Sprache. Die öffentliche Bestellung und Beeidigung erfolgte am 25. Mai 1993 durch den Präsidenten des Landgerichts Offenburg in der Bundesrepublik Deutschland.</p>
-            <p><a class="inline-external" href="https://www.justiz-dolmetscher.de/Recherche/" target="_blank" rel="noopener noreferrer">Bundesweite Dolmetscher- und Übersetzerdatenbank <Icon name="external" size={16} /></a></p>
-          </section>
-          <section>
-            <h2>Verantwortlich für den Inhalt</h2>
-            <p>{site.owner}, Anschrift wie oben.</p>
-          </section>
-          <section>
-            <h2>Haftung für externe Links</h2>
-            <p>Diese Website enthält Links zu externen Websites Dritter. Auf deren Inhalte und Datenschutzpraktiken besteht kein Einfluss. Für die Inhalte verlinkter Seiten ist stets der jeweilige Anbieter verantwortlich.</p>
-          </section>
-          <section>
-            <h2>Urheberrecht</h2>
-            <p>Die auf dieser Website erstellten Inhalte und Werke unterliegen dem deutschen Urheberrecht. Eine Vervielfältigung oder Verwertung außerhalb der gesetzlichen Grenzen bedarf der vorherigen Zustimmung des jeweiligen Rechteinhabers.</p>
+            <h2>{legal.imprint.vatTitle}</h2>
+            <p>{legal.imprint.vatText} <strong>{site.vatId}</strong></p>
           </section>
         </>
       ) : (
         <>
           <section>
-            <h2>1. Verantwortlicher</h2>
-            <p><strong>{site.name}</strong><br />{site.owner}<br />{site.address.street}<br />{site.address.city}<br />E-Mail: <a href={`mailto:${site.email}`}>{site.email}</a><br />Telefon: <a href={site.phone.landlineHref}>{site.phone.landlineDisplay}</a></p>
-          </section>
-          <section>
-            <h2>2. Bereitstellung der Website und Server-Protokolle</h2>
-            <p>Beim Aufruf der Website verarbeitet der Hosting-Anbieter technisch notwendige Verbindungsdaten. Dazu können IP-Adresse, Zeitpunkt des Zugriffs, aufgerufene Adresse, übertragene Datenmenge, Referrer, Browser und Betriebssystem gehören. Diese Daten sind erforderlich, um die Website sicher und zuverlässig auszuliefern und technische Störungen zu untersuchen.</p>
-            <p>Rechtsgrundlage ist Art. 6 Abs. 1 lit. f DSGVO. Das berechtigte Interesse liegt im sicheren und funktionsfähigen Betrieb dieser Website. Protokolldaten werden nur so lange gespeichert, wie dies für Betrieb und Sicherheit erforderlich ist, und anschließend gelöscht, sofern keine gesetzliche Aufbewahrungspflicht besteht.</p>
-          </section>
-          <section>
-            <h2>3. Kontakt per E-Mail, Telefon oder WhatsApp</h2>
-            <p>Wenn Sie Kontakt aufnehmen, werden die von Ihnen übermittelten Kontaktdaten, Nachrichten und Dokumente verarbeitet, um Ihre Anfrage zu beantworten und gegebenenfalls einen Auftrag vorzubereiten oder auszuführen. Rechtsgrundlage ist je nach Anliegen Art. 6 Abs. 1 lit. b DSGVO oder Art. 6 Abs. 1 lit. f DSGVO. Das berechtigte Interesse liegt in der sachgerechten Bearbeitung und Dokumentation Ihrer Anfrage.</p>
-            <p>Die Bereitstellung Ihrer Daten ist freiwillig. Ohne die Angaben und Unterlagen, die für ein Angebot oder einen Auftrag erforderlich sind, kann die jeweilige Anfrage jedoch nicht bearbeitet werden. Bitte übermitteln Sie nur die hierfür notwendigen Daten.</p>
-            <p>Bei einer Kontaktaufnahme über WhatsApp wird der Dienst der WhatsApp Ireland Limited, Merrion Road, Dublin 4, D04 X2K5, Irland, genutzt. Der WhatsApp-Link öffnet eine leere Unterhaltung. Beim Aufruf von WhatsApp und beim Versand einer Nachricht verarbeitet WhatsApp insbesondere Konto-, Nutzungs-, Geräte- und Verbindungsdaten nach eigener Verantwortung. Nachrichten und übermittelte Dateien sind nach Angaben von WhatsApp Ende-zu-Ende-verschlüsselt.</p>
-            <p>WhatsApp setzt für den Betrieb des Dienstes Unternehmen der Meta-Gruppe und weitere Dienstleister ein. Dabei können Daten auch in die USA und andere Staaten außerhalb des Europäischen Wirtschaftsraums übertragen werden. WhatsApp stützt Übermittlungen an WhatsApp LLC und Meta Platforms, Inc. in die USA nach eigenen Angaben auf den EU-US Data Privacy Framework; für weitere Übermittlungen verwendet WhatsApp unter anderem Angemessenheitsbeschlüsse und Standardvertragsklauseln. Einzelheiten enthält die <a class="inline-external" href="https://www.whatsapp.com/legal/privacy-policy-eea" target="_blank" rel="noopener noreferrer">Datenschutzrichtlinie von WhatsApp <Icon name="external" size={16} /></a>.</p>
-            <p>Alternativ können Sie E-Mail, Telefon oder Post verwenden.</p>
-          </section>
-          <section>
-            <h2>4. Empfänger von Daten</h2>
-            <p>Personenbezogene Daten werden nur weitergegeben, soweit dies für die genannten Zwecke erforderlich oder gesetzlich vorgeschrieben ist. Als Empfänger kommen insbesondere der Hosting-Anbieter, E-Mail- und Telekommunikationsanbieter, Post- und Versanddienstleister, Steuerberatung und Finanzbehörden sowie WhatsApp bei Nutzung dieses Kontaktwegs in Betracht. Soweit Dienstleister im Auftrag tätig werden, werden sie nur nach den gesetzlichen Vorgaben eingesetzt.</p>
-          </section>
-          <section>
-            <h2>5. Externe Links und soziale Netzwerke</h2>
-            <p>Links und QR-Codes zu WhatsApp, Facebook, Instagram, Google sowie zu Behörden und öffentlichen Verzeichnissen stellen erst beim Anklicken beziehungsweise Scannen eine Verbindung zum jeweiligen externen Anbieter her. Dabei erhält der Anbieter technisch notwendige Verbindungsdaten wie die IP-Adresse. Für die anschließende Verarbeitung ist der jeweilige Anbieter verantwortlich.</p>
-          </section>
-          <section>
-            <h2>6. Cookies, Analyse und Schriftarten</h2>
-            <p>Diese Website setzt keine Analyse- oder Marketingdienste ein und speichert selbst keine Cookies. Die verwendeten Schriftarten und Bilder werden lokal ausgeliefert; beim Seitenaufruf wird dafür keine Verbindung zu einem externen Schriftanbieter aufgebaut.</p>
-          </section>
-          <section>
-            <h2>7. Speicherdauer</h2>
-            <p>Reine Anfragedaten werden gelöscht, sobald die Anfrage abschließend bearbeitet ist, kein Auftrag zustande kommt und die Daten nicht mehr zur Geltendmachung, Ausübung oder Verteidigung von Rechtsansprüchen benötigt werden. Bei einem Auftrag werden die Daten zunächst für dessen Durchführung gespeichert.</p>
-            <p>Geschäfts- und steuerrechtlich relevante Unterlagen werden anschließend nur im gesetzlich erforderlichen Umfang aufbewahrt. Die regelmäßigen Aufbewahrungsfristen betragen nach § 147 Abgabenordnung sechs Jahre für Handels- und Geschäftsbriefe sowie sonstige steuerlich relevante Unterlagen, acht Jahre für Buchungsbelege und zehn Jahre für Bücher, Aufzeichnungen und Jahresabschlüsse. Die Frist beginnt grundsätzlich mit dem Schluss des Kalenderjahres, in dem die jeweilige Unterlage entstanden ist. Eine längere Speicherung erfolgt nur, wenn sie gesetzlich vorgeschrieben oder zur Sicherung von Rechtsansprüchen erforderlich ist.</p>
-          </section>
-          <section>
-            <h2>8. Ihre Rechte</h2>
-            <p>Sie haben im Rahmen der gesetzlichen Voraussetzungen das Recht auf Auskunft, Berichtigung, Löschung, Einschränkung der Verarbeitung, Datenübertragbarkeit und Widerspruch. Eine erteilte Einwilligung können Sie mit Wirkung für die Zukunft widerrufen. Außerdem können Sie sich bei einer Datenschutz-Aufsichtsbehörde beschweren.</p>
-            <p>Für die Wahrnehmung Ihrer Rechte genügt eine Nachricht an <a href={`mailto:${site.email}`}>{site.email}</a>.</p>
-          </section>
-          <section>
-            <h2>9. Stand</h2>
-            <p>Stand dieser Datenschutzerklärung: August 2026.</p>
+            <h2>{legal.privacy.controllerTitle}</h2>
+            <p><strong>{site.name}</strong><br />{site.owner}<br />{site.address.street}<br />{site.address.city}<br />{legal.privacy.emailLabel}: <a href={`mailto:${site.email}`}>{site.email}</a><br />{legal.privacy.phoneLabel}: <a href={site.phone.landlineHref}>{site.phone.landlineDisplay}</a></p>
           </section>
         </>
       )}
+      {page.sections.map((section) => (
+        <section>
+          <h2>{section.title}</h2>
+          {section.paragraphs.map((paragraph) => {
+            const rich = richParagraph(paragraph);
+            return rich ? (
+              <p>
+                {rich.before}<a class:list={{ "inline-external": rich.external }} href={rich.href} target={rich.external ? "_blank" : undefined} rel={rich.external ? "noopener noreferrer" : undefined}>{rich.label}{rich.external && <> <Icon name="external" size={16} /></>}</a>{rich.after}
+              </p>
+            ) : <p>{paragraph}</p>;
+          })}
+        </section>
+      ))}
     </div>
   </section>
 </BaseLayout>

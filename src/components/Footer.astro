@@ -1,6 +1,8 @@
 ---
 import { getContent } from "../data/content";
-import { routes, site, withBasePath, type Locale } from "../data/site";
+import { site } from "../data/site";
+import type { Locale } from "../i18n/config";
+import { getLocalizedPath } from "../i18n/routes";
 import Icon from "./Icon.astro";
 
 interface Props {
@@ -14,7 +16,7 @@ const copy = getContent(locale);
 <footer class="site-footer">
   <div class="container footer-grid">
     <div class="footer-brand">
-      <a class="wordmark footer-wordmark" href={routes.home[locale]}>
+      <a class="wordmark footer-wordmark" href={getLocalizedPath("home", locale)}>
         <span class="wordmark-main">Übersetzungsbüro Schuster</span>
         <span class="wordmark-sub">Deutsch <span aria-hidden="true">↔</span> Rumänisch</span>
       </a>
@@ -33,10 +35,9 @@ const copy = getContent(locale);
     <div>
       <h2>{copy.footer.legal}</h2>
       <ul class="footer-links">
-        <li><a href={withBasePath("/impressum/")}>{copy.footer.imprint}</a></li>
-        <li><a href={withBasePath("/datenschutz/")}>{copy.footer.privacy}</a></li>
+        <li><a href={getLocalizedPath("imprint", locale)}>{copy.footer.imprint}</a></li>
+        <li><a href={getLocalizedPath("privacy", locale)}>{copy.footer.privacy}</a></li>
       </ul>
-      {locale === "ro" && <p class="footer-note">{copy.footer.legalNote}</p>}
     </div>
   </div>
   <div class="container footer-bottom">

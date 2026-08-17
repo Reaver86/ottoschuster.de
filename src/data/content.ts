@@ -1,4 +1,5 @@
-import { withBasePath, type Locale, type PageId } from "./site";
+import type { Locale, NavigationPageId } from "../i18n/config";
+import { withBasePath } from "./site";
 
 const commonResources = {
   apostilleGermany: "https://www.auswaertiges-amt.de/de/2570832-2570832",
@@ -7,12 +8,10 @@ const commonResources = {
   authenticationBw: "https://rp.baden-wuerttemberg.de/themen/international/beglaubigungen/",
 };
 
-export const navigationOrder: PageId[] = ["home", "prices", "info", "contact"];
+export const navigationOrder: NavigationPageId[] = ["home", "prices", "info", "contact"];
 
 export const content = {
   de: {
-    localeName: "Deutsch",
-    switchTo: "Auf Rumänisch anzeigen",
     skipLink: "Zum Inhalt springen",
     menuOpen: "Menü öffnen",
     menuClose: "Menü schließen",
@@ -373,7 +372,6 @@ export const content = {
       legal: "Rechtliches",
       imprint: "Impressum",
       privacy: "Datenschutz",
-      legalNote: "Die rechtlichen Seiten werden in deutscher Sprache bereitgestellt.",
       rights: "Alle Rechte vorbehalten.",
     },
     notFound: {
@@ -386,8 +384,6 @@ export const content = {
     },
   },
   ro: {
-    localeName: "Română",
-    switchTo: "Afișează în germană",
     skipLink: "Sari la conținut",
     menuOpen: "Deschide meniul",
     menuClose: "Închide meniul",
@@ -746,9 +742,8 @@ export const content = {
       claim: "Traduceri autorizate germană ↔ română – personal din 1993.",
       contact: "Contact",
       legal: "Informații juridice",
-      imprint: "Impressum",
+      imprint: "Mențiuni legale",
       privacy: "Protecția datelor",
-      legalNote: "Paginile juridice sunt puse la dispoziție în limba germană.",
       rights: "Toate drepturile rezervate.",
     },
     notFound: {

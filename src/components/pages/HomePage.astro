@@ -6,14 +6,16 @@ import MountainPath from "../MountainPath.astro";
 import SectionHeading from "../SectionHeading.astro";
 import { getContent } from "../../data/content";
 import { priceEntries, type Price } from "../../data/prices";
-import { assetPath, routes, type Locale } from "../../data/site";
+import { assetPath } from "../../data/site";
+import { getCurrentLocale } from "../../i18n/config";
+import { getLocalizedPath } from "../../i18n/routes";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 
-interface Props { locale: Locale }
-const { locale } = Astro.props;
+const locale = getCurrentLocale(Astro.currentLocale);
 const copy = getContent(locale);
 const page = copy.home;
 const priceCopy = copy.pricePage;
+const pricesPath = getLocalizedPath("prices", locale);
 const formatter = new Intl.NumberFormat(locale === "de" ? "de-DE" : "ro-RO", {
   style: "currency",
   currency: "EUR",
@@ -31,7 +33,7 @@ const featuredPrices = page.prices.featuredIds
   .filter((entry) => entry !== undefined);
 ---
 
-<BaseLayout locale={locale} page="home" title={page.metaTitle} description={page.metaDescription}>
+<BaseLayout page="home" title={page.metaTitle} description={page.metaDescription}>
   <section class="hero">
     <MountainPath />
     <div class="container hero-grid">
@@ -84,7 +86,7 @@ const featuredPrices = page.prices.featuredIds
       <SectionHeading eyebrow={page.categories.eyebrow} title={page.categories.title} intro={page.categories.intro} />
       <div class="category-grid">
         {page.categories.items.map((item) => (
-          <a class="category-card" href={`${routes.prices[locale]}?category=${item.priceCategory}#price-catalogue`}>
+          <a class="category-card" href={`${pricesPath}?category=${item.priceCategory}#price-catalogue`}>
             <div class="category-icon"><Icon name={item.icon} size={27} /></div>
             <h3>{item.title}</h3>
             <p>{item.text}</p>
@@ -114,13 +116,13 @@ const featuredPrices = page.prices.featuredIds
     <div class="container">
       <div class="section-heading-row">
         <SectionHeading eyebrow={page.prices.eyebrow} title={page.prices.title} intro={page.prices.intro} />
-        <a class="text-link desktop-link" href={routes.prices[locale]}>{copy.actions.prices}<Icon name="arrow" size={19} /></a>
+        <a class="text-link desktop-link" href={pricesPath}>{copy.actions.prices}<Icon name="arrow" size={19} /></a>
       </div>
       <div class="price-preview-grid">
         {featuredPrices.map((entry) => (
           <a
             class="price-preview-card"
-            href={`${routes.prices[locale]}?search=${encodeURIComponent(firstWord(entry.name[locale]))}#price-catalogue`}
+            href={`${pricesPath}?search=${encodeURIComponent(firstWord(entry.name[locale]))}#price-catalogue`}
           >
             <span>{entry.name[locale]}</span>
             <strong>{formatPrice(entry.price)}</strong>
@@ -128,7 +130,7 @@ const featuredPrices = page.prices.featuredIds
           </a>
         ))}
       </div>
-      <a class="text-link mobile-link" href={routes.prices[locale]}>{copy.actions.prices}<Icon name="arrow" size={19} /></a>
+      <a class="text-link mobile-link" href={pricesPath}>{copy.actions.prices}<Icon name="arrow" size={19} /></a>
     </div>
   </section>
 
