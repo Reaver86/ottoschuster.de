@@ -2069,6 +2069,7 @@ a.contact-card:hover {
 
   .process-list h3,
   .process-list p {
+    grid-column: 2;
     max-width: none;
     margin-inline: 0;
   }
