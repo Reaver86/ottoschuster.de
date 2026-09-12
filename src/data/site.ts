@@ -39,6 +39,7 @@ export const site = {
 } as const;
 
 export const assetPath = {
+  translationExample: withBasePath("/documents/translation-example.pdf"),
   favicon: withBasePath("/favicon.svg"),
   portrait480: withBasePath("/images/otto-schuster-portrait-480.webp"),
   portrait900: withBasePath("/images/otto-schuster-portrait-900.webp"),

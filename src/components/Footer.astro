@@ -18,30 +18,28 @@ const copy = getContent(locale);
     <div class="footer-brand">
       <a class="wordmark footer-wordmark" href={getLocalizedPath("home", locale)}>
         <span class="wordmark-main">Übersetzungsbüro Schuster</span>
-        <span class="wordmark-sub">Deutsch <span aria-hidden="true">↔</span> Rumänisch</span>
       </a>
-      <p>{copy.footer.claim}</p>
     </div>
 
     <div>
       <h2>{copy.footer.contact}</h2>
-      <ul class="footer-links icon-links">
-        <li><a href={site.whatsapp} target="_blank" rel="noopener noreferrer"><Icon name="whatsapp" size={18} />WhatsApp</a></li>
+      <ul class="footer-links footer-contact-links icon-links">
         <li><a href={site.phone.mobileHref}><Icon name="phone" size={18} />{site.phone.mobileDisplay}</a></li>
-        <li><a href={`mailto:${site.email}`}><Icon name="mail" size={18} />{site.email}</a></li>
+        <li><a href={site.whatsapp} target="_blank" rel="noopener noreferrer"><Icon name="whatsapp" size={18} />WhatsApp</a></li>
+        <li class="footer-email"><a href={`mailto:${site.email}`}><Icon name="mail" size={18} />{site.email}</a></li>
       </ul>
+      <address class="footer-address">
+        {site.address.street}<br />
+        {site.address.city}
+      </address>
     </div>
 
     <div>
       <h2>{copy.footer.legal}</h2>
-      <ul class="footer-links">
+      <ul class="footer-links footer-legal-links">
         <li><a href={getLocalizedPath("imprint", locale)}>{copy.footer.imprint}</a></li>
         <li><a href={getLocalizedPath("privacy", locale)}>{copy.footer.privacy}</a></li>
       </ul>
     </div>
-  </div>
-  <div class="container footer-bottom">
-    <p>© {new Date().getFullYear()} {site.owner}. {copy.footer.rights}</p>
-    <p>{site.address.street} · {site.address.city}</p>
   </div>
 </footer>

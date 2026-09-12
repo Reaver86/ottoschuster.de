@@ -74,6 +74,8 @@ for (const entry of priceEntries) {
   for (const example of entry.examples ?? []) {
     const path = resolvePublicPath(example.file);
     if (!existsSync(path)) fail(`Missing example PDF for ${entry.id}: ${path}`);
+    const previewPath = resolvePublicPath(example.preview);
+    if (!existsSync(previewPath)) fail(`Missing example preview for ${entry.id}: ${previewPath}`);
     if (!example.label.de.trim() || !example.label.ro.trim()) fail(`Incomplete example label on ${entry.id}`);
   }
 }

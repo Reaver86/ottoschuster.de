@@ -1,25 +1,15 @@
 import type { Locale, NavigationPageId } from "../i18n/config";
-import { withBasePath } from "./site";
-
-const commonResources = {
-  apostilleGermany: "https://www.auswaertiges-amt.de/de/2570832-2570832",
-  apostilleRomania: "https://www.mae.ro/node/1455",
-  apostilleMoldova: "https://www.hcch.net/en/instruments/conventions/status-table/print/?cid=41",
-  authenticationBw: "https://rp.baden-wuerttemberg.de/themen/international/beglaubigungen/",
-};
 
 export const navigationOrder: NavigationPageId[] = ["home", "prices", "info", "contact"];
 
 export const content = {
   de: {
     skipLink: "Zum Inhalt springen",
-    menuOpen: "Menü öffnen",
-    menuClose: "Menü schließen",
     navigationLabel: "Hauptnavigation",
     nav: {
       home: "Startseite",
       prices: "Preise",
-      info: "Infos",
+      info: "FAQ",
       contact: "Kontakt",
     },
     actions: {
@@ -36,10 +26,9 @@ export const content = {
       metaTitle: "Beglaubigte Übersetzungen Deutsch–Rumänisch | Otto Schuster",
       metaDescription:
         "Beglaubigte Übersetzungen Deutsch ↔ Rumänisch durch den öffentlich bestellten und beeidigten Urkundenübersetzer Otto Schuster.",
-      eyebrow: "Persönlich · beglaubigt · direkt",
-      title: "Beglaubigte Übersetzungen Deutsch ↔ Rumänisch",
+      title: "Beglaubigte Übersetzungen Rumänisch ↔ Deutsch",
       intro:
-        "Urkunden, Diplome und persönliche Dokumente übersetze ich zuverlässig in beide Sprachrichtungen – mit Beglaubigung, direkter Abstimmung und über 30 Jahren Erfahrung.",
+        "Urkunden, Diplome, Gerichtsbeschlüsse und persönliche Dokumente übersetze ich korrekt in beide Sprachrichtungen – mit Beglaubigung und über 30 Jahren Erfahrung.",
       portraitAlt: "Otto Schuster, öffentlich bestellter und beeidigter Urkundenübersetzer",
       credentialKicker: "Seit 1993 öffentlich bestellt und beeidigt",
       credentialTitle: "Ihr Übersetzer: Otto Schuster",
@@ -47,15 +36,9 @@ export const content = {
       proofPoints: [
         "Öffentlich bestellt und beeidigt",
         "Seit 1993 persönlich für Sie da",
-        "Bundesweit bei Behörden akzeptiert",
+        "Bundesweit bei Behörden akzeptiert – keine weiteren Beglaubigungen nötig",
         "Meist in 2–4 Arbeitstagen",
-      ],
-      trust: [
-        { icon: "seal", text: "Öffentlich bestellt & beeidigt" },
-        { icon: "languages", text: "Deutsch ↔ Rumänisch" },
-        { icon: "calendar", text: "Aktiv seit 1993" },
-        { icon: "building", text: "Bundesweit akzeptiert" },
-        { icon: "clock", text: "Üblich: 2–4 Arbeitstage" },
+        "Wir können uns auch auf Rumänisch unterhalten",
       ],
       categories: {
         eyebrow: "Was ich übersetze",
@@ -76,32 +59,20 @@ export const content = {
       process: {
         eyebrow: "So funktioniert es",
         title: "In drei klaren Schritten zur Übersetzung",
+        exampleLabel: "So sieht zum Beispiel eine Übersetzung aus",
         items: [
           {
             title: "Dokumente senden",
-            text: "Schicken Sie gut lesbare Fotos oder PDFs per WhatsApp oder E-Mail. Post und ein persönlicher Besuch sind ebenfalls möglich.",
+            text: "Schicken Sie gut lesbare Fotos oder PDFs per WhatsApp oder E-Mail. Post und ein persönlicher Besuch sind ebenfalls möglich. Ihre Originale brauche ich nicht - diese wird die Behörde sehen wollen.",
           },
           {
             title: "Preis & Termin erhalten",
-            text: "Sie bekommen von mir persönlich eine verbindliche Rückmeldung zu Preis, Unterlagen und voraussichtlicher Bearbeitungszeit.",
+            text: "Sie bekommen von mir mein Angebot zu Preis und weiteren Infos.",
           },
           {
             title: "Übersetzung erhalten",
             text: "Die beglaubigte Übersetzung kommt per Post. In der Regel sende ich zusätzlich eine digitale PDF-Kopie.",
           },
-        ],
-      },
-      prices: {
-        eyebrow: "Transparente Preise",
-        title: "Häufige Dokumente auf einen Blick",
-        intro: "Alle Beträge sind Nettopreise. Die Beglaubigung ist bei den gelisteten Urkunden inklusive.",
-        featuredIds: [
-          "birth-certificate",
-          "marriage-certificate",
-          "identity-documents",
-          "university-diploma",
-          "single-status",
-          "duplicate-copy",
         ],
       },
       biography: {
@@ -116,108 +87,36 @@ export const content = {
           "1990 siedelte ich mit meiner Familie nach Deutschland über. Am 25. Mai 1993 wurde ich vom Präsidenten des Landgerichts Offenburg zum öffentlich bestellten und beeidigten Urkundenübersetzer für Rumänisch ernannt.",
           "Neben meiner Übersetzungstätigkeit arbeitete ich seit 1997 als wissenschaftlicher Lehrer an den Beruflichen Schulen Schramberg. Präzision, Verständlichkeit und persönliche Verantwortung prägen bis heute meine Arbeit.",
         ],
-        timeline: [
-          { year: "1990", text: "Übersiedlung nach Deutschland" },
-          { year: "1993", text: "Öffentliche Bestellung und Beeidigung" },
-          { year: "seit 1997", text: "Lehrtätigkeit in Schramberg" },
-        ],
       },
       credentials: {
         eyebrow: "Nachprüfbare Qualifikation",
-        title: "Bestellung, Beeidigung und offizielle Verzeichnisse",
-        intro: "Sie können meine Zulassung direkt in den vorhandenen Dokumenten und in den bundesweiten Datenbanken prüfen.",
-        cards: [
-          {
-            type: "PDF · 1993",
-            title: "Protokoll über die Beeidigung",
-            text: "Urkundenübersetzer für die rumänische Sprache",
-            href: withBasePath("/documents/credentials/zulassung1.pdf"),
-          },
-          {
-            type: "PDF · Landgericht",
-            title: "Bestätigung der Beeidigung",
-            text: "Bestätigung des zuständigen Landgerichts",
-            href: withBasePath("/documents/credentials/zulassung2.pdf"),
-          },
-          {
-            type: "Offizielles Verzeichnis",
-            title: "Justiz-Dolmetscher-Datenbank",
-            text: "Bundesweite Suche nach Otto Schuster",
-            href: "https://www.justiz-dolmetscher.de/Recherche/",
-          },
-        ],
-      },
-      faq: {
-        eyebrow: "Gut zu wissen",
-        title: "Häufige Fragen",
-        items: [
-          {
-            question: "Brauchen Sie das Original?",
-            answer:
-              "Für ein Angebot reichen gut lesbare Fotos oder PDF-Dateien. Ob die spätere Beglaubigung anhand des Originals erforderlich ist, hängt vom Dokument und der empfangenden Stelle ab. Ich kläre das vor Auftragserteilung mit Ihnen.",
-          },
-          {
-            question: "Werden Ihre Übersetzungen in ganz Deutschland akzeptiert?",
-            answer:
-              "Meine beglaubigten Übersetzungen werden grundsätzlich bei deutschen Behörden und bei den Auslandsvertretungen Rumäniens in Deutschland verwendet. Die endgültige Entscheidung trifft immer die jeweilige empfangende Stelle.",
-          },
-          {
-            question: "Wie lange dauert eine Übersetzung?",
-            answer:
-              "Üblicherweise benötige ich 2–4 Arbeitstage. Umfang, Fachgebiet, Postlaufzeit und aktuelle Auslastung können den Termin beeinflussen; Sie erhalten vorab eine persönliche Einschätzung.",
-          },
-          {
-            question: "Was ist der Unterschied zwischen Beglaubigung und Apostille?",
-            answer:
-              "Mit meiner Beglaubigung bestätige ich die Richtigkeit und Vollständigkeit der Übersetzung. Eine Apostille bestätigt die Echtheit einer öffentlichen Urkunde und wird von einer zuständigen Behörde erteilt – nicht vom Übersetzer.",
-          },
-          {
-            question: "Ist eine deutsche Übersetzung automatisch in Rumänien gültig?",
-            answer:
-              "Nicht in jedem Verfahren. Bitte fragen Sie die empfangende Behörde, das Konsulat oder die Botschaft nach den konkreten Anforderungen. Gern unterstütze ich Sie bei der Klärung auf Rumänisch.",
-          },
-          {
-            question: "Erhalte ich auch eine digitale Kopie?",
-            answer:
-              "Ja. Zusätzlich zur gehefteten und gestempelten Postsendung verschicke ich in der Regel eine digitale PDF-Kopie per E-Mail oder WhatsApp.",
-          },
-          {
-            question: "Kann ich später eine Zweitfertigung bekommen?",
-            answer:
-              "Ja, auch nach vielen Jahren. Eine Zweitfertigung ist laut aktueller Preisliste ab 12 € netto möglich; notwendige Anpassungen stimmen wir vorher ab.",
-          },
-        ],
+        title: "Zulassung als Übersetzer",
+        intro: "Sie können mich in der offiziellen Datenbank für Übersetzer und Dolmetscher finden.",
+        link: {
+          label: "Justiz-Dolmetscher-Datenbank",
+          href: "https://www.justiz-dolmetscher.de/Recherche/de/Person/Details/43746",
+        },
       },
       closing: {
         eyebrow: "Direkter Kontakt",
         title: "Schicken Sie Ihr Dokument einfach per WhatsApp",
-        text: "Sie erhalten eine persönliche Einschätzung zu Preis, benötigten Unterlagen und Zeitrahmen – direkt von mir.",
+        text: "Sie bekommen mein Angebot zu Preis, Dauer und weitere Infos",
       },
     },
     pricePage: {
       metaTitle: "Preise für beglaubigte Übersetzungen | Otto Schuster",
       metaDescription: "Aktuelle Nettopreise für beglaubigte Übersetzungen Deutsch–Rumänisch, gültig seit 25.08.2025.",
-      eyebrow: "Preise · aktuell seit 25.08.2025",
-      title: "Transparent kalkuliert, persönlich bestätigt",
+      eyebrow: "aktuell seit 25.08.2025",
+      title: "Preise",
       intro:
-        "Viele Standardurkunden haben einen festen Preis. Bei umfangreichen Unterlagen prüfe ich zuerst den Umfang und sende Ihnen ein persönliches Angebot.",
+        "Viele Standardurkunden haben einen festen Preis. Für alle weiteren Dokumente berechne ich Ihnen gerne mein Angebot.",
       facts: [
         "Alle Beträge sind Nettopreise",
         "19 % Mehrwertsteuer kommen hinzu",
-        "Beglaubigung ist bei gelisteten Urkunden inklusive",
-        "Versand in Deutschland: 3 € normal oder 6 € per Einschreiben",
+        "Beglaubigung im Preis enthalten",
+        "Versand in Deutschland: 3 €",
         "Bezahlung per Vorkasse auf meine IBAN",
       ],
-      searchLabel: "Dokument suchen",
-      searchPlaceholder: "z. B. Geburtsurkunde, permis, Diplom …",
-      filterLabel: "Nach Kategorie filtern",
-      allCategories: "Alle",
-      resultSingular: "Ein Eintrag",
-      resultPlural: "Einträge",
-      details: "Hinweise und Beispiele",
-      noResultsTitle: "Kein passender Eintrag gefunden",
-      noResultsText: "Probieren Sie einen anderen Begriff oder senden Sie mir das Dokument direkt per WhatsApp.",
-      clear: "Filter zurücksetzen",
       net: "+ MwSt.",
       quote: "Persönliches Angebot",
       free: "kostenlos",
@@ -233,93 +132,47 @@ export const content = {
       },
     },
     infoPage: {
-      metaTitle: "Infos zu Apostille und beglaubigter Übersetzung | Otto Schuster",
-      metaDescription: "Verständliche Hinweise zu Beglaubigung, Apostille, Originalen und der Verwendung von Übersetzungen in Deutschland und Rumänien.",
-      eyebrow: "Beglaubigung, Apostille & Verwendung",
-      title: "Wichtige Hinweise für Ihre Dokumente",
-      intro:
-        "Welche Form eine Behörde verlangt, hängt vom Dokument, Ausstellungsland und Verwendungszweck ab. Diese Übersicht hilft bei der Orientierung; die empfangende Stelle entscheidet im Einzelfall.",
-      contentsLabel: "Auf dieser Seite",
-      warningTitle: "Bitte vorab bei der empfangenden Stelle nachfragen",
-      warningText:
-        "Anforderungen können sich ändern. Lassen Sie sich möglichst schriftlich bestätigen, ob Original, beglaubigte Kopie, Übersetzung, Apostille oder Legalisation benötigt werden.",
-      sections: [
+      metaTitle: "FAQ zu beglaubigten Übersetzungen | Otto Schuster",
+      metaDescription: "Antworten auf häufige Fragen zu Originalen, Bearbeitungszeit, Beglaubigung, Apostille und digitalen Kopien.",
+      eyebrow: "Gut zu wissen",
+      title: "Häufige Fragen",
+      items: [
         {
-          id: "beglaubigung-apostille",
-          title: "Beglaubigte Übersetzung und Apostille sind nicht dasselbe",
-          paragraphs: [
-            "Mit dem Beglaubigungsvermerk bestätige ich als öffentlich bestellter und beeidigter Übersetzer, dass die Übersetzung richtig und vollständig ist.",
-            "Die Apostille bestätigt dagegen die Echtheit einer öffentlichen Urkunde – insbesondere Unterschrift, Funktion und Siegel. Sie wird durch eine zuständige Behörde des Ausstellungsstaats erteilt. Ein Übersetzer kann eine Apostille übersetzen, aber nicht ausstellen.",
-          ],
-          links: [
-            { label: "Auswärtiges Amt: Haager Apostille-Übereinkommen", href: commonResources.apostilleGermany },
-            { label: "Beispiel einer rumänischen Apostille", href: withBasePath("/documents/examples/apostille-ro.pdf") },
-          ],
+          question: "Brauchen Sie das Original?",
+          answer:
+            "Für ein Angebot reichen gut lesbare Fotos oder PDF-Dateien. Ob die spätere Beglaubigung anhand des Originals erforderlich ist, hängt vom Dokument und der empfangenden Stelle ab. Ich kläre das vor Auftragserteilung mit Ihnen.",
         },
         {
-          id: "apostille-legalisation",
-          title: "Apostille und Legalisation",
-          paragraphs: [
-            "Sowohl Apostille als auch Legalisation dienen dem internationalen Urkundenverkehr. Die Apostille ist das vereinfachte Verfahren des Haager Übereinkommens. Bei der Legalisation bestätigt eine konsularische Vertretung die Echtheit der ausländischen Urkunde.",
-            "Welches Verfahren gilt, hängt von den beteiligten Staaten und der konkreten Urkunde ab. Offizielle Länderlisten und die empfangende Behörde sind maßgeblich.",
-          ],
-          links: [
-            { label: "Regierungspräsidium Baden-Württemberg: Beglaubigungen", href: commonResources.authenticationBw },
-            { label: "Beispiel einer deutschen Apostille", href: withBasePath("/documents/examples/apostille-de-scan1.pdf") },
-          ],
+          question: "Werden Ihre Übersetzungen in ganz Deutschland akzeptiert?",
+          answer:
+            "Meine beglaubigten Übersetzungen werden grundsätzlich bei deutschen Behörden und bei den Auslandsvertretungen Rumäniens in Deutschland verwendet. Die endgültige Entscheidung trifft immer die jeweilige empfangende Stelle.",
         },
         {
-          id: "rumaenien",
-          title: "Dokumente aus Rumänien",
-          paragraphs: [
-            "Zwischen Deutschland und Rumänien gilt das Haager Apostille-Übereinkommen. Ob eine Apostille im konkreten Fall tatsächlich verlangt wird oder aufgrund besonderer Regeln entfallen kann, klären Sie bitte mit der empfangenden Stelle.",
-            "Wenn eine Apostille erforderlich ist, wird sie grundsätzlich im Ausstellungsstaat auf die öffentliche Urkunde gesetzt. Anschließend kann die Urkunde einschließlich Apostille übersetzt werden.",
-          ],
-          links: [
-            { label: "Rumänisches Außenministerium: Apostille", href: commonResources.apostilleRomania },
-          ],
+          question: "Wie lange dauert eine Übersetzung?",
+          answer:
+            "Üblicherweise benötige ich 2–4 Arbeitstage. Umfang, Fachgebiet, Postlaufzeit und aktuelle Auslastung können den Termin beeinflussen; Sie erhalten vorab eine persönliche Einschätzung.",
         },
         {
-          id: "moldau",
-          title: "Dokumente aus der Republik Moldau",
-          paragraphs: [
-            "Wichtige Änderung: Deutschland hat seinen früheren Einspruch gegen den Beitritt Moldaus zum Haager Apostille-Übereinkommen zurückgenommen. Seit dem 17. Juli 2026 gilt das Übereinkommen zwischen Deutschland und der Republik Moldau.",
-            "Ältere Hinweise, nach denen im deutsch-moldauischen Verhältnis zwingend eine Legalisation statt einer Apostille erforderlich sei, sind daher überholt. Bitte lassen Sie die konkrete Anforderung trotzdem von der empfangenden Behörde bestätigen.",
-          ],
-          links: [
-            { label: "HCCH: offizieller Status des Apostille-Übereinkommens", href: commonResources.apostilleMoldova },
-          ],
+          question: "Was ist der Unterschied zwischen Beglaubigung und Apostille?",
+          answer:
+            "Mit meiner Beglaubigung bestätige ich die Richtigkeit und Vollständigkeit der Übersetzung. Eine Apostille bestätigt die Echtheit einer öffentlichen Urkunde und wird von einer zuständigen Behörde erteilt – nicht vom Übersetzer.",
         },
         {
-          id: "anerkennung",
-          title: "Verwendung in Deutschland und Rumänien",
-          paragraphs: [
-            "Beglaubigte Übersetzungen eines in Deutschland öffentlich bestellten und beeidigten Übersetzers werden grundsätzlich bei deutschen Behörden und bei rumänischen Auslandsvertretungen in Deutschland verwendet.",
-            "Für die direkte Verwendung in Rumänien können andere Formvorgaben gelten. Die rumänische Behörde, das Konsulat oder die Botschaft entscheidet, welche Übersetzung und welche Beglaubigungsform akzeptiert wird.",
-          ],
+          question: "Ist eine deutsche Übersetzung automatisch in Rumänien gültig?",
+          answer:
+            "Nicht in jedem Verfahren. Bitte fragen Sie die empfangende Behörde, das Konsulat oder die Botschaft nach den konkreten Anforderungen. Gern unterstütze ich Sie bei der Klärung auf Rumänisch.",
         },
         {
-          id: "originale",
-          title: "Original, Kopie oder digitale Datei?",
-          paragraphs: [
-            "Für die Preisprüfung genügen meist gut lesbare Fotos oder PDF-Dateien. Für die endgültige Übersetzung kann je nach Verwendungszweck das Original oder eine beglaubigte Kopie erforderlich sein.",
-            "Die gedruckte Übersetzung wird mit der zugrunde gelegten Vorlage zusammengeheftet, gestempelt und unterschrieben. Teilen Sie mir deshalb mit, was die empfangende Stelle verlangt.",
-          ],
+          question: "Erhalte ich auch eine digitale Kopie?",
+          answer:
+            "Ja. Zusätzlich zur gehefteten und gestempelten Postsendung verschicke ich in der Regel eine digitale PDF-Kopie per E-Mail oder WhatsApp.",
         },
         {
-          id: "lieferung-zweitfertigung",
-          title: "Lieferung und Zweitfertigungen",
-          paragraphs: [
-            "Die beglaubigte Ausfertigung erhalten Sie per Post im DIN-A4-Umschlag. Zusätzlich sende ich in der Regel kostenlos eine digitale PDF-Version per E-Mail oder WhatsApp.",
-            "Sollten Sie später eine weitere Ausfertigung benötigen, ist das auch nach vielen Jahren möglich. Preis und gegebenenfalls notwendige Anpassungen stimmen wir vorher ab.",
-          ],
-          links: [
-            { label: "Beispiel einer gedruckten Übersetzung", href: withBasePath("/documents/examples/bsp.pdf") },
-          ],
+          question: "Kann ich später eine Zweitfertigung bekommen?",
+          answer:
+            "Ja, auch nach vielen Jahren. Eine Zweitfertigung ist laut aktueller Preisliste ab 12 € netto möglich; notwendige Anpassungen stimmen wir vorher ab.",
         },
       ],
-      disclaimer:
-        "Diese Hinweise sind allgemeine praktische Informationen und keine Rechtsberatung. Für verbindliche Vorgaben ist die empfangende Behörde oder zuständige Auslandsvertretung maßgeblich.",
     },
     contactPage: {
       metaTitle: "Kontakt | Übersetzungsbüro Schuster",
@@ -348,11 +201,8 @@ export const content = {
         ],
       },
       card: {
-        eyebrow: "Zum Speichern oder Ausdrucken",
-        title: "Aktuelle Visitenkarte",
-        text: "Die kompakte Übersicht enthält Kontaktdaten, Leistungen und QR-Verbindungen.",
+        title: "Visitenkarte",
         alt: "Aktuelle Visitenkarte des Übersetzungsbüros Schuster mit Kontaktdaten und Leistungsübersicht",
-        link: "Visitenkarte in voller Größe öffnen",
       },
       connect: {
         eyebrow: "Direkt verbinden",
@@ -385,13 +235,11 @@ export const content = {
   },
   ro: {
     skipLink: "Sari la conținut",
-    menuOpen: "Deschide meniul",
-    menuClose: "Închide meniul",
     navigationLabel: "Navigație principală",
     nav: {
       home: "Acasă",
       prices: "Prețuri",
-      info: "Informații",
+      info: "FAQ",
       contact: "Contact",
     },
     actions: {
@@ -408,7 +256,6 @@ export const content = {
       metaTitle: "Traduceri autorizate germană–română | Otto Schuster",
       metaDescription:
         "Traduceri autorizate germană ↔ română realizate de traducătorul public autorizat Otto Schuster.",
-      eyebrow: "Personal · autorizat · direct",
       title: "Traduceri autorizate germană ↔ română",
       intro:
         "Traduc acte, diplome și documente personale în ambele sensuri – cu certificare, comunicare directă și peste 30 de ani de experiență.",
@@ -419,15 +266,9 @@ export const content = {
       proofPoints: [
         "Traducător public autorizat",
         "Serviciu personal din 1993",
-        "Acceptat de autorități în Germania",
+        "Acceptat de autorități în Germania – nu sunt necesare alte legalizări",
         "De regulă în 2–4 zile lucrătoare",
-      ],
-      trust: [
-        { icon: "seal", text: "Traducător public autorizat" },
-        { icon: "languages", text: "Germană ↔ română" },
-        { icon: "calendar", text: "Activ din 1993" },
-        { icon: "building", text: "Acceptat în toată Germania" },
-        { icon: "clock", text: "Uzual: 2–4 zile lucrătoare" },
+        "Putem vorbi și în limba română",
       ],
       categories: {
         eyebrow: "Ce traduc",
@@ -448,6 +289,7 @@ export const content = {
       process: {
         eyebrow: "Cum funcționează",
         title: "Trei pași simpli până la traducere",
+        exampleLabel: "Iată cum arată, de exemplu, o traducere",
         items: [
           {
             title: "Trimiteți documentele",
@@ -463,19 +305,6 @@ export const content = {
           },
         ],
       },
-      prices: {
-        eyebrow: "Prețuri transparente",
-        title: "Documente frecvente dintr-o privire",
-        intro: "Toate sumele sunt prețuri nete. Certificarea este inclusă pentru actele menționate.",
-        featuredIds: [
-          "birth-certificate",
-          "marriage-certificate",
-          "identity-documents",
-          "university-diploma",
-          "single-status",
-          "duplicate-copy",
-        ],
-      },
       biography: {
         imageAlt: "Vedere de pe Cristianu Mare din Munții Postăvarul spre Munții Bucegi",
         imageCaption:
@@ -488,77 +317,15 @@ export const content = {
           "În 1990 m-am stabilit cu familia în Germania. La 25 mai 1993 am fost numit de președintele Tribunalului Regional Offenburg traducător public autorizat pentru limba română.",
           "Din 1997 am lucrat și ca profesor la școlile profesionale din Schramberg. Precizia, claritatea și responsabilitatea personală îmi definesc activitatea până astăzi.",
         ],
-        timeline: [
-          { year: "1990", text: "Stabilirea în Germania" },
-          { year: "1993", text: "Autorizarea și depunerea jurământului" },
-          { year: "din 1997", text: "Activitate didactică în Schramberg" },
-        ],
       },
       credentials: {
         eyebrow: "Calificare verificabilă",
-        title: "Autorizare, jurământ și registre oficiale",
-        intro: "Puteți verifica autorizarea mea în documentele disponibile și în baza de date națională a justiției germane.",
-        cards: [
-          {
-            type: "PDF · 1993",
-            title: "Proces-verbal privind depunerea jurământului",
-            text: "Traducător de documente pentru limba română",
-            href: withBasePath("/documents/credentials/zulassung1.pdf"),
-          },
-          {
-            type: "PDF · Tribunal regional",
-            title: "Confirmarea autorizării",
-            text: "Confirmarea instanței competente",
-            href: withBasePath("/documents/credentials/zulassung2.pdf"),
-          },
-          {
-            type: "Registru oficial",
-            title: "Baza de date a justiției",
-            text: "Căutare națională după Otto Schuster",
-            href: "https://www.justiz-dolmetscher.de/Recherche/",
-          },
-        ],
-      },
-      faq: {
-        eyebrow: "Bine de știut",
-        title: "Întrebări frecvente",
-        items: [
-          {
-            question: "Aveți nevoie de original?",
-            answer:
-              "Pentru ofertă sunt suficiente fotografii clare sau fișiere PDF. Dacă traducerea finală trebuie certificată după original depinde de document și de instituția destinatară. Clarific acest lucru cu dumneavoastră înainte de comandă.",
-          },
-          {
-            question: "Traducerile sunt acceptate în toată Germania?",
-            answer:
-              "Traducerile mele autorizate sunt folosite în mod normal la autoritățile germane și la reprezentanțele României din Germania. Decizia finală aparține întotdeauna instituției destinatare.",
-          },
-          {
-            question: "Cât durează traducerea?",
-            answer:
-              "De regulă am nevoie de 2–4 zile lucrătoare. Volumul, domeniul, durata poștei și gradul de ocupare pot influența termenul; primiți în prealabil o estimare personală.",
-          },
-          {
-            question: "Care este diferența dintre certificare și apostilă?",
-            answer:
-              "Prin certificarea mea confirm exactitatea și integralitatea traducerii. Apostila confirmă autenticitatea unui document public și este emisă de o autoritate competentă, nu de traducător.",
-          },
-          {
-            question: "O traducere germană este automat valabilă în România?",
-            answer:
-              "Nu în orice procedură. Întrebați instituția destinatară, consulatul sau ambasada despre condițiile concrete. Vă pot ajuta cu plăcere la clarificarea în limba română.",
-          },
-          {
-            question: "Primesc și o copie digitală?",
-            answer:
-              "Da. Pe lângă exemplarul capsat, ștampilat și trimis prin poștă, trimit de regulă și o copie PDF prin e-mail sau WhatsApp.",
-          },
-          {
-            question: "Pot primi mai târziu un duplicat?",
-            answer:
-              "Da, chiar și după mulți ani. Un duplicat costă conform listei actuale de la 12 € net; eventualele adaptări le stabilim în prealabil.",
-          },
-        ],
+        title: "Autorizare ca traducător",
+        intro: "Mă puteți găsi în baza de date oficială pentru traducători și interpreți.",
+        link: {
+          label: "Baza de date a justiției",
+          href: "https://www.justiz-dolmetscher.de/Recherche/de/Person/Details/43746",
+        },
       },
       closing: {
         eyebrow: "Contact direct",
@@ -569,28 +336,18 @@ export const content = {
     pricePage: {
       metaTitle: "Prețuri pentru traduceri autorizate | Otto Schuster",
       metaDescription: "Prețuri nete actuale pentru traduceri autorizate germană–română, valabile din 25.08.2025.",
-      eyebrow: "Prețuri · actuale din 25.08.2025",
-      title: "Calcul transparent, confirmare personală",
+      eyebrow: "Actuale din 25.08.2025",
+      title: "Prețuri",
       intro:
-        "Multe acte standard au un preț fix. Pentru documentele voluminoase verific mai întâi conținutul și vă trimit o ofertă personală.",
+        "Multe acte standard au un preț fix. Pentru toate celelalte documente vă calculez cu plăcere o ofertă.",
       facts: [
         "Toate sumele sunt prețuri nete",
         "Se adaugă TVA de 19 %",
-        "Certificarea este inclusă la actele menționate",
-        "Expediere în Germania: 3 € normal sau 6 € recomandat",
+        "Certificarea este inclusă în preț",
+        "Expediere în Germania: 3 €",
         "Plata în avans prin transfer bancar",
       ],
-      searchLabel: "Caută documentul",
-      searchPlaceholder: "de ex. certificat, Führerschein, diplomă …",
-      filterLabel: "Filtrează după categorie",
-      allCategories: "Toate",
-      resultSingular: "Un rezultat",
-      resultPlural: "rezultate",
-      details: "Detalii și exemple",
-      noResultsTitle: "Nu am găsit un rezultat potrivit",
-      noResultsText: "Încercați alt termen sau trimiteți-mi documentul direct prin WhatsApp.",
-      clear: "Resetează filtrele",
-      net: "net",
+      net: "+ TVA",
       quote: "Ofertă personală",
       free: "gratuit",
       categories: {
@@ -605,93 +362,47 @@ export const content = {
       },
     },
     infoPage: {
-      metaTitle: "Informații despre apostilă și traduceri autorizate | Otto Schuster",
-      metaDescription: "Informații clare despre certificare, apostilă, originale și folosirea traducerilor în Germania și România.",
-      eyebrow: "Certificare, apostilă și utilizare",
-      title: "Informații importante pentru documentele dumneavoastră",
-      intro:
-        "Forma cerută depinde de document, țara emitentă și scop. Această prezentare oferă orientare; instituția destinatară decide în fiecare caz.",
-      contentsLabel: "Pe această pagină",
-      warningTitle: "Întrebați în prealabil instituția destinatară",
-      warningText:
-        "Cerințele se pot schimba. Cereți pe cât posibil o confirmare scrisă dacă sunt necesare originalul, copia legalizată, traducerea, apostila sau supralegalizarea.",
-      sections: [
+      metaTitle: "Întrebări frecvente despre traduceri autorizate | Otto Schuster",
+      metaDescription: "Răspunsuri la întrebări frecvente despre originale, termenul de realizare, certificare, apostilă și copii digitale.",
+      eyebrow: "Bine de știut",
+      title: "Întrebări frecvente",
+      items: [
         {
-          id: "beglaubigung-apostille",
-          title: "Traducerea autorizată și apostila nu sunt același lucru",
-          paragraphs: [
-            "Prin încheierea de certificare confirm, în calitate de traducător public autorizat, că traducerea este corectă și completă.",
-            "Apostila confirmă autenticitatea unui document public, în special semnătura, funcția și sigiliul. Este emisă de autoritatea competentă a statului emitent. Traducătorul poate traduce apostila, dar nu o poate emite.",
-          ],
-          links: [
-            { label: "Ministerul Federal de Externe: Convenția Apostilei", href: commonResources.apostilleGermany },
-            { label: "Exemplu de apostilă românească", href: withBasePath("/documents/examples/apostille-ro.pdf") },
-          ],
+          question: "Aveți nevoie de original?",
+          answer:
+            "Pentru ofertă sunt suficiente fotografii clare sau fișiere PDF. Dacă traducerea finală trebuie certificată după original depinde de document și de instituția destinatară. Clarific acest lucru cu dumneavoastră înainte de comandă.",
         },
         {
-          id: "apostille-legalisation",
-          title: "Apostilă și supralegalizare",
-          paragraphs: [
-            "Ambele proceduri servesc circulației internaționale a actelor. Apostila este procedura simplificată a Convenției de la Haga. La supralegalizare, o reprezentanță consulară confirmă autenticitatea documentului străin.",
-            "Procedura aplicabilă depinde de statele implicate și de document. Listele oficiale și instituția destinatară sunt decisive.",
-          ],
-          links: [
-            { label: "Autorități Baden-Württemberg: certificări", href: commonResources.authenticationBw },
-            { label: "Exemplu de apostilă germană", href: withBasePath("/documents/examples/apostille-de-scan1.pdf") },
-          ],
+          question: "Traducerile sunt acceptate în toată Germania?",
+          answer:
+            "Traducerile mele autorizate sunt folosite în mod normal la autoritățile germane și la reprezentanțele României din Germania. Decizia finală aparține întotdeauna instituției destinatare.",
         },
         {
-          id: "rumaenien",
-          title: "Documente din România",
-          paragraphs: [
-            "Între Germania și România se aplică Convenția de la Haga privind apostila. Dacă apostila este efectiv necesară sau poate fi omisă datorită unor reguli speciale trebuie clarificat cu instituția destinatară.",
-            "Dacă este necesară, apostila se aplică în principiu în statul emitent pe documentul public. Apoi poate fi tradus documentul împreună cu apostila.",
-          ],
-          links: [
-            { label: "Ministerul Afacerilor Externe al României: apostila", href: commonResources.apostilleRomania },
-          ],
+          question: "Cât durează traducerea?",
+          answer:
+            "De regulă am nevoie de 2–4 zile lucrătoare. Volumul, domeniul, durata poștei și gradul de ocupare pot influența termenul; primiți în prealabil o estimare personală.",
         },
         {
-          id: "moldau",
-          title: "Documente din Republica Moldova",
-          paragraphs: [
-            "Schimbare importantă: Germania și-a retras obiecția anterioară față de aderarea Republicii Moldova la Convenția Apostilei. Din 17 iulie 2026 convenția se aplică între Germania și Republica Moldova.",
-            "Informațiile mai vechi, potrivit cărora între cele două state ar fi obligatorie supralegalizarea în locul apostilei, sunt depășite. Confirmați totuși cerința concretă cu instituția destinatară.",
-          ],
-          links: [
-            { label: "HCCH: statutul oficial al Convenției Apostilei", href: commonResources.apostilleMoldova },
-          ],
+          question: "Care este diferența dintre certificare și apostilă?",
+          answer:
+            "Prin certificarea mea confirm exactitatea și integralitatea traducerii. Apostila confirmă autenticitatea unui document public și este emisă de o autoritate competentă, nu de traducător.",
         },
         {
-          id: "anerkennung",
-          title: "Utilizarea în Germania și România",
-          paragraphs: [
-            "Traducerile autorizate ale unui traducător public autorizat în Germania sunt folosite în mod normal la autoritățile germane și la reprezentanțele României din Germania.",
-            "Pentru folosirea directă în România pot exista alte cerințe de formă. Autoritatea română, consulatul sau ambasada decide ce traducere și ce certificare acceptă.",
-          ],
+          question: "O traducere germană este automat valabilă în România?",
+          answer:
+            "Nu în orice procedură. Întrebați instituția destinatară, consulatul sau ambasada despre condițiile concrete. Vă pot ajuta cu plăcere la clarificarea în limba română.",
         },
         {
-          id: "originale",
-          title: "Original, copie sau fișier digital?",
-          paragraphs: [
-            "Pentru verificarea prețului sunt suficiente de regulă fotografii clare sau fișiere PDF. Pentru traducerea finală poate fi necesar originalul ori o copie legalizată, în funcție de scop.",
-            "Traducerea tipărită se capsează împreună cu documentul folosit, se ștampilează și se semnează. De aceea este important să comunicați cerința instituției destinatare.",
-          ],
+          question: "Primesc și o copie digitală?",
+          answer:
+            "Da. Pe lângă exemplarul capsat, ștampilat și trimis prin poștă, trimit de regulă și o copie PDF prin e-mail sau WhatsApp.",
         },
         {
-          id: "lieferung-zweitfertigung",
-          title: "Livrare și duplicate",
-          paragraphs: [
-            "Primiți exemplarul autorizat prin poștă într-un plic DIN A4. De regulă trimit gratuit și o versiune PDF prin e-mail sau WhatsApp.",
-            "Dacă aveți nevoie mai târziu de încă un exemplar, acesta poate fi realizat chiar și după mulți ani. Prețul și eventualele adaptări se stabilesc în prealabil.",
-          ],
-          links: [
-            { label: "Exemplu de traducere tipărită", href: withBasePath("/documents/examples/bsp.pdf") },
-          ],
+          question: "Pot primi mai târziu un duplicat?",
+          answer:
+            "Da, chiar și după mulți ani. Un duplicat costă conform listei actuale de la 12 € net; eventualele adaptări le stabilim în prealabil.",
         },
       ],
-      disclaimer:
-        "Aceste informații au caracter practic general și nu reprezintă consultanță juridică. Pentru cerințe obligatorii este competentă instituția destinatară sau reprezentanța externă.",
     },
     contactPage: {
       metaTitle: "Contact | Birou de traduceri Schuster",
@@ -720,11 +431,8 @@ export const content = {
         ],
       },
       card: {
-        eyebrow: "Pentru salvare sau tipărire",
-        title: "Carte de vizită actuală",
-        text: "Prezentarea compactă conține datele de contact, serviciile și codurile QR.",
+        title: "Carte de vizită",
         alt: "Cartea de vizită actuală a biroului de traduceri Schuster cu date de contact și servicii",
-        link: "Deschide cartea de vizită la dimensiune mare",
       },
       connect: {
         eyebrow: "Conectare directă",

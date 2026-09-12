@@ -1,9 +1,7 @@
 ---
 import { getContent, navigationOrder } from "../data/content";
-import { site } from "../data/site";
 import type { Locale, PageId } from "../i18n/config";
 import { getLocalizedPath } from "../i18n/routes";
-import Icon from "./Icon.astro";
 import LanguageToggle from "./LanguageToggle.astro";
 
 interface Props {
@@ -22,7 +20,7 @@ const copy = getContent(locale);
       <span class="wordmark-sub">Deutsch <span aria-hidden="true">↔</span> Rumänisch</span>
     </a>
 
-    <nav class="desktop-nav" aria-label={copy.navigationLabel}>
+    <nav class="primary-nav" aria-label={copy.navigationLabel}>
       <ul>
         {navigationOrder.map((item) => (
           <li>
@@ -34,54 +32,6 @@ const copy = getContent(locale);
 
     <div class="header-tools">
       <LanguageToggle locale={locale} page={page} />
-      <button
-        class="menu-toggle"
-        type="button"
-        aria-label={copy.menuOpen}
-        aria-expanded="false"
-        aria-controls="mobile-navigation"
-        data-menu-toggle
-        data-open-label={copy.menuOpen}
-        data-close-label={copy.menuClose}
-      >
-        <span class="menu-open-icon"><Icon name="menu" /></span>
-        <span class="menu-close-icon"><Icon name="close" /></span>
-      </button>
     </div>
   </div>
-
-  <nav id="mobile-navigation" class="mobile-nav" aria-label={copy.navigationLabel} data-mobile-nav hidden>
-    <div class="container mobile-nav-inner">
-      <a class="mobile-whatsapp" href={site.whatsapp} target="_blank" rel="noopener noreferrer">
-        <Icon name="whatsapp" />
-        <span>{copy.actions.whatsapp}</span>
-        <Icon name="arrow" size={20} />
-      </a>
-      <ul>
-        {navigationOrder.map((item) => (
-          <li>
-            <a href={getLocalizedPath(item, locale)} aria-current={page === item ? "page" : undefined}>
-              <span>{copy.nav[item]}</span>
-              <Icon name="arrow" size={20} />
-            </a>
-          </li>
-        ))}
-      </ul>
-      <div class="mobile-contact-links">
-        <a href={site.phone.mobileHref}>{site.phone.mobileDisplay}</a>
-        <a href={`mailto:${site.email}`}>{site.email}</a>
-      </div>
-    </div>
-  </nav>
-
-  <noscript>
-    <nav class="no-js-nav" aria-label={copy.navigationLabel}>
-      <div class="container">
-        <a href={site.whatsapp} target="_blank" rel="noopener noreferrer">WhatsApp</a>
-        {navigationOrder.map((item) => (
-          <a href={getLocalizedPath(item, locale)} aria-current={page === item ? "page" : undefined}>{copy.nav[item]}</a>
-        ))}
-      </div>
-    </nav>
-  </noscript>
 </header>

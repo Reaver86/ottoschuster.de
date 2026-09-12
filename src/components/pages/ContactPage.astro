@@ -1,9 +1,8 @@
 ---
-import ContactBand from "../ContactBand.astro";
 import Icon from "../Icon.astro";
 import SectionHeading from "../SectionHeading.astro";
 import { getContent } from "../../data/content";
-import { assetPath, site, withBasePath } from "../../data/site";
+import { assetPath, site } from "../../data/site";
 import { getCurrentLocale } from "../../i18n/config";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 
@@ -65,24 +64,10 @@ const page = copy.contactPage;
     </div>
   </section>
 
-  <section class="section prepare-section">
-    <div class="container prepare-grid">
-      <SectionHeading eyebrow={page.prepare.eyebrow} title={page.prepare.title} />
-      <ol>
-        {page.prepare.items.map((item, index) => (
-          <li><span>{index + 1}</span><p>{item}</p></li>
-        ))}
-      </ol>
-    </div>
-  </section>
-
   <section class="section card-section">
     <div class="container card-preview-grid">
       <div>
-        <SectionHeading eyebrow={page.card.eyebrow} title={page.card.title} intro={page.card.text} />
-        <a class="text-link" href={assetPath.card1440} target="_blank" rel="noopener noreferrer">
-          {page.card.link}<Icon name="external" size={18} />
-        </a>
+        <SectionHeading title={page.card.title} />
       </div>
       <a class="business-card-preview" href={assetPath.card1440} target="_blank" rel="noopener noreferrer">
         <picture>
@@ -93,24 +78,4 @@ const page = copy.contactPage;
     </div>
   </section>
 
-  <section class="section qr-section">
-    <div class="container">
-      <SectionHeading eyebrow={page.connect.eyebrow} title={page.connect.title} intro={page.connect.text} />
-      <div class="direct-link-list">
-        {page.connect.items.map((item) => (
-          <a href={item.href} target="_blank" rel="noopener noreferrer">{item.label}<Icon name="external" size={17} /></a>
-        ))}
-      </div>
-      <div class="qr-grid">
-        {page.connect.items.map((item) => (
-          <a class="qr-card" href={item.href} target="_blank" rel="noopener noreferrer">
-            <img src={withBasePath(`/qr/${item.id}.svg`)} width="220" height="220" alt={`QR-Code: ${item.label}`} loading="lazy" />
-            <span>{item.label}<Icon name="external" size={16} /></span>
-          </a>
-        ))}
-      </div>
-    </div>
-  </section>
-
-  <ContactBand locale={locale} />
 </BaseLayout>

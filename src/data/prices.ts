@@ -22,6 +22,7 @@ export type Price =
 export interface PriceExample {
   label: LocalizedText;
   file: string;
+  preview: string;
 }
 
 export interface PriceEntry {
@@ -38,7 +39,11 @@ const example = (
   file: string,
   de = "Dokumentbeispiel",
   ro = "Exemplu de document",
-): PriceExample => ({ label: { de, ro }, file: withBasePath(`/documents/examples/${file}`) });
+): PriceExample => ({
+  label: { de, ro },
+  file: withBasePath(`/documents/examples/${file}`),
+  preview: withBasePath(`/images/document-previews/${file.replace(/\.pdf$/, ".jpg")}`),
+});
 
 export const priceCategories: PriceCategory[] = [
   "civil",
@@ -156,7 +161,6 @@ export const priceEntries: PriceEntry[] = [
     category: "civil",
     name: { de: "Bescheinigung über Namensänderung", ro: "Certificat de schimbare a numelui" },
     price: { type: "fixed", amount: 30 },
-    examples: [example("besch-namensaenderung-de.pdf", "Übersetzungsbeispiel", "Exemplu de traducere")],
   },
   {
     id: "identity-documents",
@@ -197,7 +201,6 @@ export const priceEntries: PriceEntry[] = [
     },
     examples: [
       example("apostille-ro.pdf", "Rumänische Apostille", "Apostilă românească"),
-      example("apostille-de.pdf", "Deutsche Übersetzung", "Traducere germană"),
     ],
   },
   {
@@ -229,7 +232,6 @@ export const priceEntries: PriceEntry[] = [
     price: { type: "fixed", amount: 35 },
     examples: [
       example("taufbesch-ro.pdf", "Vorlage", "Original"),
-      example("taufbesch-uebersetzung.pdf", "Übersetzung", "Traducere"),
     ],
   },
   {
@@ -239,7 +241,6 @@ export const priceEntries: PriceEntry[] = [
     price: { type: "fixed", amount: 30 },
     examples: [
       example("fuerungszeugnis-ro.pdf", "Rumänische Vorlage", "Original românesc"),
-      example("fuerungszeugnis-de.pdf", "Deutsche Übersetzung", "Traducere germană"),
     ],
   },
   {
@@ -404,7 +405,6 @@ export const priceEntries: PriceEntry[] = [
     },
     examples: [
       example("diploma-suppl-ro.pdf", "Rumänische Vorlage", "Original românesc"),
-      example("diploma-suppl-de.pdf", "Deutsche Übersetzung", "Traducere germană"),
     ],
   },
   {
@@ -415,7 +415,6 @@ export const priceEntries: PriceEntry[] = [
     note: { de: "Je nach Umfang etwa 90 €.", ro: "În funcție de volum, aproximativ 90 €." },
     examples: [
       example("matrikel1-8-ro.pdf", "Rumänische Vorlage", "Original românesc"),
-      example("matrikel1-8-de.pdf", "Deutsche Übersetzung", "Traducere germană"),
     ],
   },
   {
@@ -426,7 +425,6 @@ export const priceEntries: PriceEntry[] = [
     note: { de: "Der genaue Preis hängt vom Umfang ab.", ro: "Prețul exact depinde de volum." },
     examples: [
       example("matrikel9-12-ro.pdf", "Rumänische Vorlage", "Original românesc"),
-      example("matrikel9-12-de.pdf", "Deutsche Übersetzung", "Traducere germană"),
     ],
   },
   {

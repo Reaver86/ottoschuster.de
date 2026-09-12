@@ -5,32 +5,13 @@ import Icon from "../Icon.astro";
 import MountainPath from "../MountainPath.astro";
 import SectionHeading from "../SectionHeading.astro";
 import { getContent } from "../../data/content";
-import { priceEntries, type Price } from "../../data/prices";
 import { assetPath } from "../../data/site";
 import { getCurrentLocale } from "../../i18n/config";
-import { getLocalizedPath } from "../../i18n/routes";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 
 const locale = getCurrentLocale(Astro.currentLocale);
 const copy = getContent(locale);
 const page = copy.home;
-const priceCopy = copy.pricePage;
-const pricesPath = getLocalizedPath("prices", locale);
-const formatter = new Intl.NumberFormat(locale === "de" ? "de-DE" : "ro-RO", {
-  style: "currency",
-  currency: "EUR",
-  minimumFractionDigits: 0,
-});
-const formatPrice = (price: Price) => {
-  if (price.type === "fixed") return `${formatter.format(price.amount)} ${priceCopy.net}`;
-  if (price.type === "range") return `${formatter.format(price.min)}–${formatter.format(price.max)} ${priceCopy.net}`;
-  if (price.type === "free") return priceCopy.free;
-  return priceCopy.quote;
-};
-const firstWord = (value: string) => value.trim().split(/\s+/, 1)[0]?.replace(/[.,;:!?]+$/, "") ?? "";
-const featuredPrices = page.prices.featuredIds
-  .map((id) => priceEntries.find((entry) => entry.id === id))
-  .filter((entry) => entry !== undefined);
 ---
 
 <BaseLayout page="home" title={page.metaTitle} description={page.metaDescription}>
@@ -38,7 +19,6 @@ const featuredPrices = page.prices.featuredIds
     <MountainPath />
     <div class="container hero-grid">
       <div class="hero-copy">
-        <p class="eyebrow">{page.eyebrow}</p>
         <h1>{page.title}</h1>
         <p class="hero-intro">{page.intro}</p>
         <ul class="hero-proof-list">
@@ -73,30 +53,6 @@ const featuredPrices = page.prices.featuredIds
     </div>
   </section>
 
-  <section class="trust-strip" aria-label={locale === "de" ? "Vertrauensmerkmale" : "Garanții de încredere"}>
-    <div class="container">
-      <ul>
-        {page.trust.map((item) => <li><Icon name={item.icon} size={22} /><span>{item.text}</span></li>)}
-      </ul>
-    </div>
-  </section>
-
-  <section class="section categories-section">
-    <div class="container">
-      <SectionHeading eyebrow={page.categories.eyebrow} title={page.categories.title} intro={page.categories.intro} />
-      <div class="category-grid">
-        {page.categories.items.map((item) => (
-          <a class="category-card" href={`${pricesPath}?category=${item.priceCategory}#price-catalogue`}>
-            <div class="category-icon"><Icon name={item.icon} size={27} /></div>
-            <h3>{item.title}</h3>
-            <p>{item.text}</p>
-            <span class="card-link"><span>{copy.actions.categoryPrices}</span><Icon name="arrow" size={18} /></span>
-          </a>
-        ))}
-      </div>
-    </div>
-  </section>
-
   <section class="section process-section">
     <div class="container">
       <SectionHeading eyebrow={page.process.eyebrow} title={page.process.title} align="center" />
@@ -106,31 +62,16 @@ const featuredPrices = page.prices.featuredIds
             <div class="step-number">{index + 1}</div>
             <h3>{item.title}</h3>
             <p>{item.text}</p>
+            {index === 2 && (
+              <p>
+                <a class="text-link" href={assetPath.translationExample} target="_blank" rel="noopener noreferrer">
+                  {page.process.exampleLabel}
+                </a>
+              </p>
+            )}
           </li>
         ))}
       </ol>
-    </div>
-  </section>
-
-  <section class="section price-preview-section">
-    <div class="container">
-      <div class="section-heading-row">
-        <SectionHeading eyebrow={page.prices.eyebrow} title={page.prices.title} intro={page.prices.intro} />
-        <a class="text-link desktop-link" href={pricesPath}>{copy.actions.prices}<Icon name="arrow" size={19} /></a>
-      </div>
-      <div class="price-preview-grid">
-        {featuredPrices.map((entry) => (
-          <a
-            class="price-preview-card"
-            href={`${pricesPath}?search=${encodeURIComponent(firstWord(entry.name[locale]))}#price-catalogue`}
-          >
-            <span>{entry.name[locale]}</span>
-            <strong>{formatPrice(entry.price)}</strong>
-            <Icon name="arrow" size={19} />
-          </a>
-        ))}
-      </div>
-      <a class="text-link mobile-link" href={pricesPath}>{copy.actions.prices}<Icon name="arrow" size={19} /></a>
     </div>
   </section>
 
@@ -142,54 +83,22 @@ const featuredPrices = page.prices.featuredIds
       </picture>
       <figcaption class="container">{page.biography.imageCaption}</figcaption>
     </figure>
-    <div class="container biography-grid">
+    <div class="container biography-content">
       <div>
         <SectionHeading eyebrow={page.biography.eyebrow} title={page.biography.title} />
         <div class="prose">
           {page.biography.paragraphs.map((paragraph) => <p>{paragraph}</p>)}
         </div>
       </div>
-      <ol class="timeline">
-        {page.biography.timeline.map((item) => (
-          <li><span class="timeline-year">{item.year}</span><span>{item.text}</span></li>
-        ))}
-      </ol>
     </div>
   </section>
 
   <section class="section credentials-section">
     <div class="container">
       <SectionHeading eyebrow={page.credentials.eyebrow} title={page.credentials.title} intro={page.credentials.intro} />
-      <div class="credential-grid">
-        {page.credentials.cards.map((card) => {
-          const external = card.href.startsWith("http");
-          return (
-            <a class="credential-link-card" href={card.href} target="_blank" rel="noopener noreferrer">
-              <div class="credential-card-top">
-                <Icon name={external ? "building" : "document"} size={25} />
-                <span>{card.type}</span>
-              </div>
-              <h3>{card.title}</h3>
-              <p>{card.text}</p>
-              <span class="card-link"><span>{external ? copy.actions.external : copy.actions.pdf}</span><Icon name="external" size={17} /></span>
-            </a>
-          );
-        })}
-      </div>
-    </div>
-  </section>
-
-  <section class="section faq-section">
-    <div class="container faq-grid">
-      <SectionHeading eyebrow={page.faq.eyebrow} title={page.faq.title} />
-      <div class="faq-list">
-        {page.faq.items.map((item, index) => (
-          <details class="faq-item" open={index === 0}>
-            <summary><span>{item.question}</span><span class="faq-chevron"><Icon name="chevron" size={20} /></span></summary>
-            <div class="faq-answer"><p>{item.answer}</p></div>
-          </details>
-        ))}
-      </div>
+      <a class="button button-secondary" href={page.credentials.link.href} target="_blank" rel="noopener noreferrer">
+        {page.credentials.link.label}<Icon name="external" size={17} />
+      </a>
     </div>
   </section>
 
