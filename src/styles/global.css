@@ -490,6 +490,8 @@ h3 {
 .hero-copy h1 {
   max-width: 760px;
   margin-bottom: 24px;
+  text-align: center;
+  text-transform: uppercase;
 }
 
 .hero-intro {

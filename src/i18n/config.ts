@@ -6,7 +6,7 @@ export const defaultLocale: Locale = "de";
 export const pagePaths = {
   home: "",
   prices: "preise",
-  info: "infos",
+  info: "faq",
   contact: "kontakt",
   imprint: "impressum",
   privacy: "datenschutz",

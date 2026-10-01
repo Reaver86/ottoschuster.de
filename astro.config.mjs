@@ -25,7 +25,9 @@ export default defineConfig({
     "/impressum": withBasePath("/de/impressum/"),
     "/datenschutz": withBasePath("/de/datenschutz/"),
     "/ro/preturi": withBasePath("/ro/preise/"),
-    "/ro/informatii": withBasePath("/ro/infos/"),
+    "/de/infos": withBasePath("/de/faq/"),
+    "/ro/infos": withBasePath("/ro/faq/"),
+    "/ro/informatii": withBasePath("/ro/faq/"),
     "/ro/contact": withBasePath("/ro/kontakt/"),
   },
   build: {

@@ -133,34 +133,24 @@ export const content = {
     },
     infoPage: {
       metaTitle: "FAQ zu beglaubigten Übersetzungen | Otto Schuster",
-      metaDescription: "Antworten auf häufige Fragen zu Originalen, Bearbeitungszeit, Beglaubigung, Apostille und digitalen Kopien.",
+      metaDescription: "Antworten auf häufige Fragen zu Originalen, Anerkennung in Deutschland, Bearbeitungszeit, digitalen Kopien und Zweitfertigungen.",
       eyebrow: "Gut zu wissen",
       title: "Häufige Fragen",
       items: [
         {
           question: "Brauchen Sie das Original?",
           answer:
-            "Für ein Angebot reichen gut lesbare Fotos oder PDF-Dateien. Ob die spätere Beglaubigung anhand des Originals erforderlich ist, hängt vom Dokument und der empfangenden Stelle ab. Ich kläre das vor Auftragserteilung mit Ihnen.",
+            "Eine digitale Kopie, also ein gutes Foto oder noch besser ein Scan, ist ausreichend. Die deutsche Behörde wird Ihr rumänisches Original verlangen, um es zu sehen.",
         },
         {
           question: "Werden Ihre Übersetzungen in ganz Deutschland akzeptiert?",
           answer:
-            "Meine beglaubigten Übersetzungen werden grundsätzlich bei deutschen Behörden und bei den Auslandsvertretungen Rumäniens in Deutschland verwendet. Die endgültige Entscheidung trifft immer die jeweilige empfangende Stelle.",
+            "Da ich in Deutschland zugelassener beeidigter Übersetzer bin, werden meine Übersetzungen in ganz Deutschland bei allen Behörden akzeptiert. Sie können die beglaubigte Übersetzung wie ein Original für Deutschland betrachten und behandeln.",
         },
         {
           question: "Wie lange dauert eine Übersetzung?",
           answer:
-            "Üblicherweise benötige ich 2–4 Arbeitstage. Umfang, Fachgebiet, Postlaufzeit und aktuelle Auslastung können den Termin beeinflussen; Sie erhalten vorab eine persönliche Einschätzung.",
-        },
-        {
-          question: "Was ist der Unterschied zwischen Beglaubigung und Apostille?",
-          answer:
-            "Mit meiner Beglaubigung bestätige ich die Richtigkeit und Vollständigkeit der Übersetzung. Eine Apostille bestätigt die Echtheit einer öffentlichen Urkunde und wird von einer zuständigen Behörde erteilt – nicht vom Übersetzer.",
-        },
-        {
-          question: "Ist eine deutsche Übersetzung automatisch in Rumänien gültig?",
-          answer:
-            "Nicht in jedem Verfahren. Bitte fragen Sie die empfangende Behörde, das Konsulat oder die Botschaft nach den konkreten Anforderungen. Gern unterstütze ich Sie bei der Klärung auf Rumänisch.",
+            "Üblicherweise benötige ich 2–4 Arbeitstage.",
         },
         {
           question: "Erhalte ich auch eine digitale Kopie?",
@@ -170,7 +160,7 @@ export const content = {
         {
           question: "Kann ich später eine Zweitfertigung bekommen?",
           answer:
-            "Ja, auch nach vielen Jahren. Eine Zweitfertigung ist laut aktueller Preisliste ab 12 € netto möglich; notwendige Anpassungen stimmen wir vorher ab.",
+            "Ja, auch nach vielen Jahren. Preis siehe Preisliste.",
         },
       ],
     },
@@ -363,34 +353,24 @@ export const content = {
     },
     infoPage: {
       metaTitle: "Întrebări frecvente despre traduceri autorizate | Otto Schuster",
-      metaDescription: "Răspunsuri la întrebări frecvente despre originale, termenul de realizare, certificare, apostilă și copii digitale.",
+      metaDescription: "Răspunsuri la întrebări frecvente despre originale, acceptarea în Germania, termenul de realizare, copii digitale și duplicate.",
       eyebrow: "Bine de știut",
       title: "Întrebări frecvente",
       items: [
         {
           question: "Aveți nevoie de original?",
           answer:
-            "Pentru ofertă sunt suficiente fotografii clare sau fișiere PDF. Dacă traducerea finală trebuie certificată după original depinde de document și de instituția destinatară. Clarific acest lucru cu dumneavoastră înainte de comandă.",
+            "O copie digitală, adică o fotografie clară sau, și mai bine, o scanare, este suficientă. Autoritatea germană vă va solicita documentul original românesc pentru a-l vedea.",
         },
         {
           question: "Traducerile sunt acceptate în toată Germania?",
           answer:
-            "Traducerile mele autorizate sunt folosite în mod normal la autoritățile germane și la reprezentanțele României din Germania. Decizia finală aparține întotdeauna instituției destinatare.",
+            "În calitate de traducător autorizat și jurat în Germania, traducerile mele sunt acceptate de toate autoritățile din întreaga Germanie. Puteți considera și trata traducerea certificată ca pe un document original pentru Germania.",
         },
         {
           question: "Cât durează traducerea?",
           answer:
-            "De regulă am nevoie de 2–4 zile lucrătoare. Volumul, domeniul, durata poștei și gradul de ocupare pot influența termenul; primiți în prealabil o estimare personală.",
-        },
-        {
-          question: "Care este diferența dintre certificare și apostilă?",
-          answer:
-            "Prin certificarea mea confirm exactitatea și integralitatea traducerii. Apostila confirmă autenticitatea unui document public și este emisă de o autoritate competentă, nu de traducător.",
-        },
-        {
-          question: "O traducere germană este automat valabilă în România?",
-          answer:
-            "Nu în orice procedură. Întrebați instituția destinatară, consulatul sau ambasada despre condițiile concrete. Vă pot ajuta cu plăcere la clarificarea în limba română.",
+            "De regulă am nevoie de 2–4 zile lucrătoare.",
         },
         {
           question: "Primesc și o copie digitală?",
@@ -400,7 +380,7 @@ export const content = {
         {
           question: "Pot primi mai târziu un duplicat?",
           answer:
-            "Da, chiar și după mulți ani. Un duplicat costă conform listei actuale de la 12 € net; eventualele adaptări le stabilim în prealabil.",
+            "Da, chiar și după mulți ani. Pentru preț, consultați lista de prețuri.",
         },
       ],
     },
