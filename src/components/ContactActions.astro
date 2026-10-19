@@ -15,15 +15,15 @@ const copy = getContent(locale);
 ---
 
 <div class:list={["contact-actions", { compact }, className]}>
-  <a class="button button-whatsapp" href={site.whatsapp} target="_blank" rel="noopener noreferrer">
+  <a class="button button-whatsapp" href={site.whatsapp} data-analytics-event="contact-whatsapp" target="_blank" rel="noopener noreferrer">
     <Icon name="whatsapp" size={20} />
     <span>{copy.actions.whatsapp}</span>
   </a>
-  <a class="button button-secondary" href={site.phone.mobileHref}>
+  <a class="button button-secondary" href={site.phone.mobileHref} data-analytics-event="contact-phone">
     <Icon name="phone" size={20} />
     <span>{copy.actions.call}</span>
   </a>
-  <a class="button button-secondary button-email" href={`mailto:${site.email}`}>
+  <a class="button button-secondary button-email" href={`mailto:${site.email}`} data-analytics-event="contact-email">
     <Icon name="mail" size={20} />
     <span>{copy.actions.email}</span>
   </a>

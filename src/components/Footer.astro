@@ -24,9 +24,9 @@ const copy = getContent(locale);
     <div>
       <h2>{copy.footer.contact}</h2>
       <ul class="footer-links footer-contact-links icon-links">
-        <li><a href={site.phone.mobileHref}><Icon name="phone" size={18} />{site.phone.mobileDisplay}</a></li>
-        <li><a href={site.whatsapp} target="_blank" rel="noopener noreferrer"><Icon name="whatsapp" size={18} />WhatsApp</a></li>
-        <li class="footer-email"><a href={`mailto:${site.email}`}><Icon name="mail" size={18} />{site.email}</a></li>
+        <li><a href={site.phone.mobileHref} data-analytics-event="contact-phone"><Icon name="phone" size={18} />{site.phone.mobileDisplay}</a></li>
+        <li><a href={site.whatsapp} data-analytics-event="contact-whatsapp" target="_blank" rel="noopener noreferrer"><Icon name="whatsapp" size={18} />WhatsApp</a></li>
+        <li class="footer-email"><a href={`mailto:${site.email}`} data-analytics-event="contact-email"><Icon name="mail" size={18} />{site.email}</a></li>
       </ul>
       <address class="footer-address">
         {site.address.street}<br />

@@ -34,7 +34,7 @@ const formatPrice = (price: Price) => {
         </div>
         <div class="price-previews">
           {entry.examples?.map((item) => (
-            <a class="document-preview" href={item.file} target="_blank" rel="noopener noreferrer">
+            <a class="document-preview" href={item.file} data-analytics-event="sample-pdf" target="_blank" rel="noopener noreferrer">
               <img src={item.preview} alt={`${entry.name[locale]} – ${item.label[locale]}`} width="160" height="220" loading="lazy" decoding="async" />
               <span>{item.label[locale]}</span>
             </a>

@@ -43,7 +43,7 @@ const richParagraph = (paragraph: LegalParagraph) =>
           </section>
           <section>
             <h2>{legal.imprint.contactTitle}</h2>
-            <p>{legal.imprint.phoneLabel}: <a href={site.phone.landlineHref}>{site.phone.landlineDisplay}</a><br />{legal.imprint.mobileLabel}: <a href={site.phone.mobileHref}>{site.phone.mobileDisplay}</a><br />{legal.imprint.emailLabel}: <a href={`mailto:${site.email}`}>{site.email}</a></p>
+            <p>{legal.imprint.phoneLabel}: <a href={site.phone.landlineHref} data-analytics-event="contact-phone">{site.phone.landlineDisplay}</a><br />{legal.imprint.mobileLabel}: <a href={site.phone.mobileHref} data-analytics-event="contact-phone">{site.phone.mobileDisplay}</a><br />{legal.imprint.emailLabel}: <a href={`mailto:${site.email}`} data-analytics-event="contact-email">{site.email}</a></p>
           </section>
           <section>
             <h2>{legal.imprint.vatTitle}</h2>
@@ -54,7 +54,7 @@ const richParagraph = (paragraph: LegalParagraph) =>
         <>
           <section>
             <h2>{legal.privacy.controllerTitle}</h2>
-            <p><strong>{site.name}</strong><br />{site.owner}<br />{site.address.street}<br />{site.address.city}<br />{legal.privacy.emailLabel}: <a href={`mailto:${site.email}`}>{site.email}</a><br />{legal.privacy.phoneLabel}: <a href={site.phone.landlineHref}>{site.phone.landlineDisplay}</a></p>
+            <p><strong>{site.name}</strong><br />{site.owner}<br />{site.address.street}<br />{site.address.city}<br />{legal.privacy.emailLabel}: <a href={`mailto:${site.email}`} data-analytics-event="contact-email">{site.email}</a><br />{legal.privacy.phoneLabel}: <a href={site.phone.landlineHref} data-analytics-event="contact-phone">{site.phone.landlineDisplay}</a></p>
           </section>
         </>
       )}

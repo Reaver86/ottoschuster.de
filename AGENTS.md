@@ -1,10 +1,13 @@
-# UI verification
+# Project instructions
 
-For every change affecting the website's appearance or interaction, verify the
-affected pages in a real browser on both mobile and desktop before declaring the
-work complete. Check at least a narrow mobile viewport (320px), a typical mobile
-viewport (390px), and a desktop viewport (1440px).
-
-Inspect screenshots for layout, wrapping, alignment, and overflow, and exercise
-any affected interactions. Verify both German and Romanian when shared markup or
-styles change. Run `npm test` for the project's existing checks.
+- Before changing site structure, content, styles, or behavior, read
+  [docs/architecture.md](docs/architecture.md).
+- For changes affecting appearance or interaction, follow
+  [docs/verification.md](docs/verification.md), including real-browser checks in
+  German and Romanian at 320, 390, and 1440 px. Run `npm test` for project changes.
+- Deploy to production **only when the user explicitly asks** (for example,
+  "deploy it"). Then read [docs/deploy.md](docs/deploy.md) and follow its procedure.
+  A request to edit, test, commit, push, or prepare deployment is not permission
+  to publish. Never attach production deployment to an automatic push trigger.
+- For analytics changes or production analytics configuration, read
+  [docs/analytics.md](docs/analytics.md).

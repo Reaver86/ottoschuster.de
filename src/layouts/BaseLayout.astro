@@ -4,6 +4,7 @@ import Footer from "../components/Footer.astro";
 import Header from "../components/Header.astro";
 import { getContent } from "../data/content";
 import { assetPath } from "../data/site";
+import { analyticsEnabled } from "../data/analytics";
 import { getCurrentLocale, type PageId } from "../i18n/config";
 import { getLocalizedUrl } from "../i18n/routes";
 
@@ -52,6 +53,7 @@ const imageUrl = new URL(image, Astro.site);
     <meta property="og:image" content={imageUrl} />
     <meta name="twitter:card" content="summary_large_image" />
     <title>{title}</title>
+    {analyticsEnabled && <script is:inline defer src="/metrics/tracker.js" data-site="ottoschuster.de"></script>}
     <script is:inline>document.documentElement.classList.add("js");</script>
   </head>
   <body>

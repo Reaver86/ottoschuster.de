@@ -1,4 +1,5 @@
 import type { Locale } from "../i18n/config";
+import { analyticsEnabled } from "./analytics";
 
 export type LegalLinkId = "directory" | "email" | "whatsappPrivacy";
 
@@ -69,9 +70,17 @@ export const legalContent = {
         {
           title: "Website",
           paragraphs: [
-            "Diese Website verwendet keine Cookies, Kontaktformulare oder Trackingdienste. Beim Besuch verarbeitet unser selbst betriebener Webserver technisch notwendige Verbindungsdaten, insbesondere Ihre IP-Adresse und die angeforderte Seite. Grundlage ist unser berechtigtes Interesse am sicheren Betrieb (Art. 6 Abs. 1 lit. f DSGVO). Etwaige Serverprotokolle werden nur so lange aufbewahrt, wie dies für Betrieb und Sicherheit erforderlich ist.",
+            "Diese Website verwendet keine Cookies oder Kontaktformulare. Beim Besuch verarbeitet unser selbst betriebener Webserver technisch notwendige Verbindungsdaten, insbesondere Ihre IP-Adresse und die angeforderte Seite. Grundlage ist unser berechtigtes Interesse am sicheren Betrieb (Art. 6 Abs. 1 lit. f DSGVO). Etwaige Serverprotokolle werden nur so lange aufbewahrt, wie dies für Betrieb und Sicherheit erforderlich ist.",
           ],
         },
+        ...(analyticsEnabled ? [{
+          title: "Besuchsstatistik",
+          paragraphs: [
+            "Wir erfassen Seitenaufrufe und Klicks auf Telefon-, E-Mail-, WhatsApp- und Beispiel-PDF-Links zur Verbesserung unseres Angebots auf unserem Hosting bei netcup in Deutschland. Gespeichert werden Tag, Seitenpfad, verweisende Domain und Gerätekategorie. Kontaktklicks sind keine bestätigten Anfragen.",
+            "Wir verwenden keine Cookies oder Browserspeicher, erfassen keine Nachrichteninhalte oder Sitzungsaufzeichnungen und schließen URL-Abfrageparameter und Seitenanker aus. IP-Adresse und Browserkennung werden technisch verarbeitet und für eine täglich wechselnde, nur für diese Website gültige pseudonyme Besucherkennung verwendet. Die Rohwerte werden nicht in der Statistik gespeichert. Do Not Track und Global Privacy Control werden berücksichtigt.",
+            "Grundlage ist unser berechtigtes Interesse an einer datensparsamen Verbesserung der Website (Art. 6 Abs. 1 lit. f DSGVO). Einzelereignisse werden nach 90 Tagen gelöscht; zusammengefasste Berichte werden per E-Mail versandt. Serverprotokolle bestehen unabhängig davon. Sie können widersprechen, indem Sie uns kontaktieren oder Do Not Track aktivieren.",
+          ],
+        }] : []),
         {
           title: "Kontakt und Aufträge",
           paragraphs: [
@@ -156,9 +165,17 @@ export const legalContent = {
         {
           title: "Site-ul",
           paragraphs: [
-            "Acest site nu utilizează module cookie, formulare de contact sau servicii de urmărire. La accesare, serverul web administrat de noi prelucrează datele de conexiune necesare din punct de vedere tehnic, în special adresa IP și pagina solicitată. Temeiul este interesul nostru legitim privind funcționarea sigură (art. 6 alin. (1) lit. (f) RGPD). Eventualele jurnale ale serverului sunt păstrate numai atât timp cât este necesar pentru funcționare și securitate.",
+            "Acest site nu utilizează module cookie sau formulare de contact. La accesare, serverul web administrat de noi prelucrează datele de conexiune necesare din punct de vedere tehnic, în special adresa IP și pagina solicitată. Temeiul este interesul nostru legitim privind funcționarea sigură (art. 6 alin. (1) lit. (f) RGPD). Eventualele jurnale ale serverului sunt păstrate numai atât timp cât este necesar pentru funcționare și securitate.",
           ],
         },
+        ...(analyticsEnabled ? [{
+          title: "Statistici de vizitare",
+          paragraphs: [
+            "Înregistrăm accesările paginilor și clicurile pe linkurile pentru telefon, e-mail, WhatsApp și exemple PDF pentru a îmbunătăți site-ul, folosind găzduirea noastră la netcup în Germania. Stocăm ziua, calea paginii, domeniul de proveniență și categoria dispozitivului. Clicurile nu reprezintă solicitări confirmate.",
+            "Nu utilizăm cookie-uri sau stocarea browserului, nu colectăm conținutul mesajelor și nu înregistrăm sesiuni. Excludem parametrii de interogare și fragmentele URL. Adresa IP și identificarea browserului sunt prelucrate tehnic pentru a genera un identificator pseudonim care se schimbă zilnic și este valabil numai pentru acest site. Valorile originale nu sunt stocate în statistici. Respectăm Do Not Track și Global Privacy Control.",
+            "Temeiul este interesul nostru legitim de a îmbunătăți site-ul cu un volum redus de date (art. 6 alin. (1) lit. (f) RGPD). Evenimentele individuale sunt șterse după 90 de zile; rapoartele agregate sunt trimise prin e-mail. Jurnalele tehnice ale serverului există separat. Vă puteți opune contactându-ne sau activând Do Not Track.",
+          ],
+        }] : []),
         {
           title: "Contact și comenzi",
           paragraphs: [

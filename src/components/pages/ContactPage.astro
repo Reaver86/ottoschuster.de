@@ -29,7 +29,7 @@ const page = copy.contactPage;
 
   <section class="section contact-options-section">
     <div class="container">
-      <a class="whatsapp-panel" href={site.whatsapp} target="_blank" rel="noopener noreferrer">
+      <a class="whatsapp-panel" href={site.whatsapp} data-analytics-event="contact-whatsapp" target="_blank" rel="noopener noreferrer">
         <div class="whatsapp-panel-icon"><Icon name="whatsapp" size={34} /></div>
         <div>
           <p class="panel-label">WhatsApp · {site.phone.mobileDisplay}</p>
@@ -40,14 +40,14 @@ const page = copy.contactPage;
       </a>
 
       <div class="contact-card-grid">
-        <a class="contact-card" href={site.phone.mobileHref}>
+        <a class="contact-card" href={site.phone.mobileHref} data-analytics-event="contact-phone">
           <div class="contact-card-icon"><Icon name="phone" size={26} /></div>
           <p class="panel-label">{page.phoneTitle}</p>
           <h2>{site.phone.mobileDisplay}</h2>
           <p>{page.phoneText}</p>
           <span>{copy.actions.call}<Icon name="arrow" size={18} /></span>
         </a>
-        <a class="contact-card" href={`mailto:${site.email}`}>
+        <a class="contact-card" href={`mailto:${site.email}`} data-analytics-event="contact-email">
           <div class="contact-card-icon"><Icon name="mail" size={26} /></div>
           <p class="panel-label">{page.emailTitle}</p>
           <h2>{site.email}</h2>

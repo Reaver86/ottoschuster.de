@@ -39,8 +39,12 @@ export default defineConfig({
   },
   security: {
     csp: {
+      scriptDirective: {
+        resources: ["'self'"],
+      },
       directives: [
         "default-src 'self'",
+        "connect-src 'self'",
         "base-uri 'self'",
         "font-src 'self' data:",
         "form-action 'self'",
