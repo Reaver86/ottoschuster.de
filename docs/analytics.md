@@ -139,5 +139,16 @@ Never commit or upload them into a public directory.
 The two WCP tasks use PHP 8.4: daily cleanup at 07:50 and monthly reporting on
 day 1 at 08:00, Europe/Berlin. Error notifications go only to Alexander.
 The initial English demo was received by Alexander before the German report
-update. The temporary `analytics-demo` runner is superseded by the shared
-application. No Umami client or configuration remains in either source tree.
+update. The temporary `analytics-demo` runner, deployment archives and verification
+helpers were removed on 20 October 2026. No Umami client or configuration remains in either source tree.
+
+Production configuration was verified on **20 October 2026**. Both domains use
+PHP 8.4.24 and the supported subscription-level `open_basedir` setting, allowing
+the private backend while keeping it outside httpdocs. Collection starts on
+**2026-10-20**, so the first report on November 1 covers October 20–31.
+Live HTTP and database checks verified storage, duplicate suppression, DNT/GPC,
+origin validation and private-file protection; only the specific probe records
+were removed afterwards. Backend file hashes matched the tested source.
+Full pre-release backups and build manifests are under each repository's ignored
+`output/deploy/2026-10-19-analytics/` folder (preparation began on October 19).
+No Umami code was found in either source tree or complete pre-release website backup.
