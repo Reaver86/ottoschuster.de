@@ -62,7 +62,7 @@ export const legalContent = {
       metaTitle: "Datenschutz | Übersetzungsbüro Schuster",
       metaDescription: "Informationen zur Verarbeitung personenbezogener Daten auf ottoschuster.de.",
       title: "Datenschutz",
-      intro: "Ihre Daten werden vertraulich behandelt und nur weitergegeben, soweit dies für die Bearbeitung Ihrer Anfrage oder Ihres Auftrags erforderlich oder gesetzlich vorgeschrieben ist. Wir speichern Ihre Daten nur im erforderlichen Umfang und so lange, wie dies für Ihre Anfrage, Ihren Auftrag oder gesetzliche Aufbewahrungspflichten notwendig ist.",
+      intro: "Wir behandeln Ihre Daten vertraulich und nach den Vorgaben der Datenschutz-Grundverordnung (DSGVO).",
       controllerTitle: "Verantwortlicher",
       emailLabel: "E-Mail",
       phoneLabel: "Telefon",
@@ -70,39 +70,39 @@ export const legalContent = {
         {
           title: "Website",
           paragraphs: [
-            "Diese Website verwendet keine Cookies oder Kontaktformulare. Beim Besuch verarbeitet unser selbst betriebener Webserver technisch notwendige Verbindungsdaten, insbesondere Ihre IP-Adresse und die angeforderte Seite. Grundlage ist unser berechtigtes Interesse am sicheren Betrieb (Art. 6 Abs. 1 lit. f DSGVO). Etwaige Serverprotokolle werden nur so lange aufbewahrt, wie dies für Betrieb und Sicherheit erforderlich ist.",
+            "Diese Website nutzt keine Cookies oder Kontaktformulare. Unser Webserver verarbeitet IP-Adresse und aufgerufene Seite für den sicheren Betrieb (Art. 6 Abs. 1 lit. f DSGVO). Serverprotokolle werden nur so lange wie dafür erforderlich aufbewahrt.",
           ],
         },
         ...(analyticsEnabled ? [{
           title: "Besuchsstatistik",
           paragraphs: [
-            "Wir erfassen Seitenaufrufe und Klicks auf Telefon-, E-Mail-, WhatsApp- und Beispiel-PDF-Links zur Verbesserung unseres Angebots auf unserem Hosting bei netcup in Deutschland. Gespeichert werden Tag, Seitenpfad, verweisende Domain und Gerätekategorie. Kontaktklicks sind keine bestätigten Anfragen.",
-            "Wir verwenden keine Cookies oder Browserspeicher, erfassen keine Nachrichteninhalte oder Sitzungsaufzeichnungen und schließen URL-Abfrageparameter und Seitenanker aus. IP-Adresse und Browserkennung werden technisch verarbeitet und für eine täglich wechselnde, nur für diese Website gültige pseudonyme Besucherkennung verwendet. Die Rohwerte werden nicht in der Statistik gespeichert. Do Not Track und Global Privacy Control werden berücksichtigt.",
-            "Grundlage ist unser berechtigtes Interesse an einer datensparsamen Verbesserung der Website (Art. 6 Abs. 1 lit. f DSGVO). Einzelereignisse werden nach 90 Tagen gelöscht; zusammengefasste Berichte werden per E-Mail versandt. Serverprotokolle bestehen unabhängig davon. Sie können widersprechen, indem Sie uns kontaktieren oder Do Not Track aktivieren.",
+            "Zur Verbesserung der Website erfassen wir Seitenaufrufe und Klicks auf Telefon-, E-Mail-, WhatsApp- und Beispiel-PDF-Links bei netcup in Deutschland: Tag, Seitenpfad, verweisende Domain und Gerätekategorie.",
+            "Aus IP-Adresse und Browserkennung entsteht eine täglich wechselnde, nur hier gültige pseudonyme Besucherkennung; die Rohwerte werden nicht in der Statistik gespeichert. Keine Cookies, Browserspeicher, Nachrichteninhalte, Sitzungsaufzeichnungen, URL-Abfrageparameter oder Seitenanker. Do Not Track und Global Privacy Control werden berücksichtigt.",
+            "Grundlage ist unser berechtigtes Interesse an der Verbesserung der Website (Art. 6 Abs. 1 lit. f DSGVO). Einzelereignisse werden nach 90 Tagen gelöscht; zusammengefasste Berichte per E-Mail versandt und dort bis zur Löschung aufbewahrt. Serverprotokolle bestehen separat. Widerspruch: über unsere Kontaktdaten oder Do Not Track.",
           ],
         }] : []),
         {
           title: "Kontakt und Aufträge",
           paragraphs: [
-            "Kontaktdaten, Nachrichten und Unterlagen nutzen wir zur Bearbeitung Ihrer Anfrage und Ihres Auftrags (Art. 6 Abs. 1 lit. b DSGVO); bei sonstigen Anliegen aufgrund unseres berechtigten Interesses an deren Beantwortung (lit. f). Angaben sind freiwillig; notwendige Informationen benötigen wir zur Bearbeitung. Empfänger können E-Mail-, Telekommunikations- und Versanddienstleister sowie Steuerberatung und Finanzbehörden sein.",
+            "Wir nutzen Kontaktdaten, Nachrichten und Unterlagen für Anfragen und Aufträge (Art. 6 Abs. 1 lit. b DSGVO), sonstige Anliegen und die erforderliche Pflege laufender Kundenbeziehungen (lit. f: berechtigtes Interesse an Kundenbetreuung). Angaben sind freiwillig; ohne notwendige Daten können wir Aufträge nicht bearbeiten. Daten erhalten nur erforderliche Dienstleister für E-Mail, Telekommunikation, Versand und Steuerberatung sowie gesetzlich berechtigte Behörden.",
             {
-              before: "Bei WhatsApp verarbeitet WhatsApp Ireland Limited auch Daten in eigener Verantwortung; Übermittlungen außerhalb des EWR sind möglich, insbesondere in die USA. WhatsApp nennt hierfür unter anderem das EU-US Data Privacy Framework und Standardvertragsklauseln. Einzelheiten und Informationen zu den Garantien: ",
+              before: "Bei WhatsApp verarbeitet WhatsApp Ireland Limited Daten auch in eigener Verantwortung, gegebenenfalls außerhalb des EWR, insbesondere in den USA. Informationen zu EU-US Data Privacy Framework und Standardvertragsklauseln: ",
               link: "whatsappPrivacy",
               label: "Datenschutz bei WhatsApp",
-              after: ". Alternativ erreichen Sie uns per E-Mail, Telefon oder Post. Externe Links verbinden Sie erst beim Öffnen mit dem jeweiligen Anbieter.",
+              after: ". Alternativ: E-Mail, Telefon oder Post. Externe Anbieter werden erst beim Öffnen ihrer Links aufgerufen.",
             },
           ],
         },
         {
           title: "Speicherung",
           paragraphs: [
-            "Anfrage- und Auftragsdaten löschen wir, sobald die Bearbeitung abgeschlossen ist und keine Aufbewahrungspflichten oder erforderliche Rechtsverteidigung entgegenstehen. Steuerlich relevante Geschäftsbriefe sind grundsätzlich sechs, Buchungsbelege acht Jahre ab Ende des Entstehungsjahres aufzubewahren (§ 147 AO); Grundlage ist Art. 6 Abs. 1 lit. c DSGVO.",
+            "Wir speichern Kundendaten, soweit und solange dies für die laufende Geschäftsbeziehung, Aufträge, erforderliche Rechtsverteidigung oder gesetzliche Aufbewahrungspflichten notwendig ist. Steuerlich relevante Geschäftsbriefe werden grundsätzlich sechs, Buchungsbelege acht Jahre ab Jahresende aufbewahrt (§ 147 AO, Art. 6 Abs. 1 lit. c DSGVO).",
           ],
         },
         {
           title: "Ihre Rechte",
           paragraphs: [
-            "Sie haben unter den gesetzlichen Voraussetzungen Rechte auf Auskunft, Berichtigung, Löschung, Einschränkung und Datenübertragbarkeit sowie auf Beschwerde bei einer Datenschutz-Aufsichtsbehörde. Gegen Verarbeitungen aufgrund berechtigter Interessen können Sie aus Gründen Ihrer besonderen Situation Widerspruch einlegen. Eine erteilte Einwilligung können Sie jederzeit für die Zukunft widerrufen. Wenden Sie sich dafür an die oben genannten Kontaktdaten.",
+            "Sie haben nach Maßgabe der DSGVO Rechte auf Auskunft, Berichtigung, Löschung, Einschränkung, Datenübertragbarkeit und Beschwerde bei einer Datenschutz-Aufsichtsbehörde. Verarbeitungen aufgrund berechtigter Interessen können Sie aus Gründen Ihrer besonderen Situation widersprechen; Einwilligungen jederzeit für die Zukunft widerrufen. Nutzen Sie dafür die Kontaktdaten oben.",
           ],
         },
       ],
@@ -157,7 +157,7 @@ export const legalContent = {
       metaTitle: "Protecția datelor | Biroul de traduceri Schuster",
       metaDescription: "Informații privind prelucrarea datelor cu caracter personal pe ottoschuster.de.",
       title: "Protecția datelor",
-      intro: "Datele dumneavoastră sunt tratate confidențial și sunt transmise altor destinatari numai dacă acest lucru este necesar pentru solicitarea sau comanda dumneavoastră ori este impus de lege. Stocăm datele numai în măsura și pe durata necesare pentru solicitarea sau comanda dumneavoastră ori pentru îndeplinirea obligațiilor legale de păstrare.",
+      intro: "Tratăm datele dumneavoastră confidențial și conform Regulamentului general privind protecția datelor (RGPD).",
       controllerTitle: "Operatorul",
       emailLabel: "E-mail",
       phoneLabel: "Telefon",
@@ -165,39 +165,39 @@ export const legalContent = {
         {
           title: "Site-ul",
           paragraphs: [
-            "Acest site nu utilizează module cookie sau formulare de contact. La accesare, serverul web administrat de noi prelucrează datele de conexiune necesare din punct de vedere tehnic, în special adresa IP și pagina solicitată. Temeiul este interesul nostru legitim privind funcționarea sigură (art. 6 alin. (1) lit. (f) RGPD). Eventualele jurnale ale serverului sunt păstrate numai atât timp cât este necesar pentru funcționare și securitate.",
+            "Acest site nu utilizează cookie-uri sau formulare de contact. Serverul nostru prelucrează adresa IP și pagina accesată pentru funcționarea sigură (art. 6 alin. (1) lit. (f) RGPD). Jurnalele serverului sunt păstrate numai cât este necesar în acest scop.",
           ],
         },
         ...(analyticsEnabled ? [{
           title: "Statistici de vizitare",
           paragraphs: [
-            "Înregistrăm accesările paginilor și clicurile pe linkurile pentru telefon, e-mail, WhatsApp și exemple PDF pentru a îmbunătăți site-ul, folosind găzduirea noastră la netcup în Germania. Stocăm ziua, calea paginii, domeniul de proveniență și categoria dispozitivului. Clicurile nu reprezintă solicitări confirmate.",
-            "Nu utilizăm cookie-uri sau stocarea browserului, nu colectăm conținutul mesajelor și nu înregistrăm sesiuni. Excludem parametrii de interogare și fragmentele URL. Adresa IP și identificarea browserului sunt prelucrate tehnic pentru a genera un identificator pseudonim care se schimbă zilnic și este valabil numai pentru acest site. Valorile originale nu sunt stocate în statistici. Respectăm Do Not Track și Global Privacy Control.",
-            "Temeiul este interesul nostru legitim de a îmbunătăți site-ul cu un volum redus de date (art. 6 alin. (1) lit. (f) RGPD). Evenimentele individuale sunt șterse după 90 de zile; rapoartele agregate sunt trimise prin e-mail. Jurnalele tehnice ale serverului există separat. Vă puteți opune contactându-ne sau activând Do Not Track.",
+            "Pentru îmbunătățirea site-ului, înregistrăm accesările paginilor și clicurile pe linkurile de telefon, e-mail, WhatsApp și exemple PDF la netcup în Germania: ziua, calea paginii, domeniul de proveniență și categoria dispozitivului.",
+            "Din adresa IP și identificarea browserului generăm un identificator pseudonim, schimbat zilnic și valabil doar aici; valorile originale nu sunt stocate în statistici. Fără cookie-uri, stocare în browser, conținutul mesajelor, înregistrări de sesiuni, parametri de interogare sau fragmente URL. Respectăm Do Not Track și Global Privacy Control.",
+            "Temeiul este interesul nostru legitim de a îmbunătăți site-ul (art. 6 alin. (1) lit. (f) RGPD). Evenimentele sunt șterse după 90 de zile; rapoartele agregate sunt trimise prin e-mail și păstrate acolo până la ștergere. Jurnalele serverului există separat. Vă puteți opune contactându-ne sau activând Do Not Track.",
           ],
         }] : []),
         {
           title: "Contact și comenzi",
           paragraphs: [
-            "Utilizăm datele de contact, mesajele și documentele pentru a soluționa solicitarea și a executa comanda dumneavoastră (art. 6 alin. (1) lit. (b) RGPD); pentru alte întrebări, în baza interesului nostru legitim de a răspunde (lit. (f)). Furnizarea datelor este voluntară; avem nevoie de informațiile necesare pentru prelucrare. Destinatarii pot include furnizori de servicii de e-mail, telecomunicații și expediere, consultanți fiscali și autorități fiscale.",
+            "Utilizăm datele de contact, mesajele și documentele pentru solicitări și comenzi (art. 6 alin. (1) lit. (b) RGPD), alte întrebări și menținerea necesară a relațiilor curente cu clienții (lit. (f): interes legitim privind asistența clienților). Datele sunt furnizate voluntar; fără informațiile necesare nu putem executa comenzile. Datele sunt transmise numai furnizorilor necesari de e-mail, telecomunicații, expediere și consultanță fiscală, precum și autorităților îndreptățite prin lege.",
             {
-              before: "La utilizarea WhatsApp, WhatsApp Ireland Limited prelucrează date și pe proprie răspundere; sunt posibile transferuri în afara SEE, în special în SUA. WhatsApp menționează în acest scop, printre altele, Cadrul UE-SUA privind confidențialitatea datelor și clauze contractuale standard. Detalii și informații despre garanții: ",
+              before: "WhatsApp Ireland Limited prelucrează date și pe proprie răspundere, eventual în afara SEE, în special în SUA. Informații despre Cadrul UE-SUA privind confidențialitatea datelor și clauzele contractuale standard: ",
               link: "whatsappPrivacy",
               label: "Protecția datelor la WhatsApp",
-              after: ". Ne puteți contacta și prin e-mail, telefon sau poștă. Linkurile externe vă conectează la furnizorul respectiv numai când le deschideți.",
+              after: ". Alternativ: e-mail, telefon sau poștă. Furnizorii externi sunt contactați doar la deschiderea linkurilor lor.",
             },
           ],
         },
         {
           title: "Stocarea",
           paragraphs: [
-            "Ștergem datele aferente solicitărilor și comenzilor după încheierea prelucrării, dacă nu există obligații de păstrare sau necesitatea apărării unor drepturi în justiție. Corespondența comercială relevantă fiscal se păstrează, în principiu, șase ani, iar documentele contabile opt ani, de la sfârșitul anului în care au fost întocmite (§ 147 AO); temeiul este art. 6 alin. (1) lit. (c) RGPD.",
+            "Păstrăm datele clienților în măsura și pe durata necesare relației comerciale curente, comenzilor, apărării unor drepturi în justiție sau obligațiilor legale de păstrare. Corespondența relevantă fiscal se păstrează, în principiu, șase ani, iar documentele contabile opt ani de la sfârșitul anului (§ 147 AO, art. 6 alin. (1) lit. (c) RGPD).",
           ],
         },
         {
           title: "Drepturile dumneavoastră",
           paragraphs: [
-            "În condițiile legii, aveți dreptul de acces, rectificare, ștergere, restricționare și portabilitate a datelor, precum și dreptul de a depune o plângere la o autoritate de supraveghere a protecției datelor. Vă puteți opune prelucrării bazate pe interese legitime din motive legate de situația dumneavoastră particulară. Puteți retrage oricând un consimțământ acordat, cu efect pentru viitor. Pentru aceasta, utilizați datele de contact de mai sus.",
+            "Conform RGPD, aveți dreptul de acces, rectificare, ștergere, restricționare, portabilitate și plângere la o autoritate de supraveghere. Vă puteți opune prelucrării bazate pe interese legitime din motive legate de situația dumneavoastră particulară și puteți retrage oricând consimțământul pentru viitor. Utilizați datele de contact de mai sus.",
           ],
         },
       ],
