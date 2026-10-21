@@ -94,7 +94,8 @@ Concurrent runs use a database advisory lock. Failed handoff can be retried manu
 Disable collection by removing the build flag and deploying both sites; disable
 both scheduled tasks separately to stop reports. Preserve private config during website
 releases and back it up securely along with the database. Never put backups under
-httpdocs. Rollback static sites using their deployment runbooks.
+httpdocs. Routine static deployments follow [deploy.md](deploy.md); they preserve
+the private backend and do not trigger analytics audits or database tests.
 
 ## Verification
 

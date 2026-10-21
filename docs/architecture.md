@@ -57,3 +57,5 @@ See [analytics.md](analytics.md) before changing tracking or its privacy text.
 `main`; it does not update Netcup. Production is an explicitly requested operation
 described in [deploy.md](deploy.md). Upload only generated site files, never the
 repository, credentials, or development artifacts.
+`npm run deploy` builds production and uploads changed files using a local hash
+manifest; routine deployments only check homepage reachability.

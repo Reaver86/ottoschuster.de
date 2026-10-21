@@ -23,10 +23,9 @@ real browser before declaring the work complete:
    For global layout changes, cover all six page types in both languages.
 6. Check for failed images, missing assets, browser errors, and horizontal overflow.
 
-For a production release, inspect the built site before uploading, then verify
-the live affected pages and interactions at these same widths in both languages.
-Check HTTPS, redirects, PDFs, and asset loading as described in
-[deploy.md](deploy.md). Record what was checked and any remaining limitation.
+Deployment alone does not trigger these checks. Follow [deploy.md](deploy.md):
+build, upload changed files, and check homepage reachability. Run a thorough
+release check only when the user explicitly requests one.
 
 Documentation-only changes do not need website screenshots. Check documentation
-links and commands, and run `npm test`.
+links and commands. Deployment-tool changes need focused offline tests.
