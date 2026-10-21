@@ -26,6 +26,11 @@ const files = await walk(outputRoot);
 const htmlFiles = files.filter((file) => extname(file) === ".html");
 let localReferenceCount = 0;
 
+const rootHtml = await readFile(join(outputRoot, "index.html"), "utf8");
+if (!rootHtml.includes(`http-equiv="refresh" content="0;url=${basePath}/de/"`)) {
+  failures.push("dist/index.html: missing permanent redirect to the German homepage");
+}
+
 const resolveTarget = (reference) => {
   const withoutFragment = reference.split("#")[0].split("?")[0];
   if (!withoutFragment) return null;
