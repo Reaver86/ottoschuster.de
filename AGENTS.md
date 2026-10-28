@@ -1,5 +1,8 @@
 # Project instructions
 
+- For **WhatsApp + a timeframe**, read [docs/whatsapp.md](docs/whatsapp.md):
+  instructions from Dad (Otto Schuster) in the open WhatsApp app.
+
 - Before changing site structure, content, styles, or behavior, read
   [docs/architecture.md](docs/architecture.md).
 - For changes affecting appearance or interaction, follow
