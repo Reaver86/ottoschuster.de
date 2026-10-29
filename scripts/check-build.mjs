@@ -29,7 +29,10 @@ let localReferenceCount = 0;
 
 const rootHtml = await readFile(join(outputRoot, "index.html"), "utf8");
 if (!rootHtml.includes(`http-equiv="refresh" content="0;url=${basePath}/de/"`)) {
-  failures.push("dist/index.html: missing permanent redirect to the German homepage");
+  failures.push("dist/index.html: missing no-JavaScript fallback to the German homepage");
+}
+if (!rootHtml.includes("<noscript>") || !rootHtml.includes(`data-romanian-home="${basePath}/ro/"`)) {
+  failures.push("dist/index.html: missing static browser-language fallback");
 }
 
 const apacheRules = await readFile(join(outputRoot, ".htaccess"), "utf8");

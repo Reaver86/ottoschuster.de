@@ -17,8 +17,7 @@ export default defineConfig({
     defaultLocale,
     routing: {
       prefixDefaultLocale: true,
-      // The root page returns a permanent redirect without creating a duplicate
-      // prerender route in Astro's static build.
+      // Root language selection is handled by Apache, with a static fallback.
       redirectToDefaultLocale: false,
     },
   },

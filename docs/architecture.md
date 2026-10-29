@@ -23,7 +23,15 @@ with Apache HTTP 301 rules (for Netcup). Static redirects alone return HTML with
 a meta refresh, not an HTTP 301. Keep the map when changing routes, preserve the
 original language, and avoid redirecting unrelated missing pages to the homepage.
 Keep legacy mappings indefinitely so external links and bookmarks keep working.
-The root `/` currently redirects to German; it does not detect browser language.
+The root `/` selects Romanian when the first browser language in `Accept-Language`
+is `ro` (including `ro-RO`/`ro-MD`), and German otherwise. Apache returns HTTP 302
+with `Vary: Accept-Language` and `Cache-Control: no-store`; it never overrides an
+explicit `/de/` or `/ro/` URL. No preference cookie or location lookup is used.
+`src/pages/index.astro` provides the same first-language choice using
+`navigator.languages` on static hosts such as the Pages preview, preserving query
+parameters and fragments. Without JavaScript, that fallback opens German and
+also provides explicit links to both languages. Previously cached permanent
+redirects may still send returning visitors to German until their cache expires.
 
 ## Languages and content
 

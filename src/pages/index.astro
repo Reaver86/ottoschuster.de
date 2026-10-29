@@ -1,7 +1,33 @@
 ---
-import { defaultLocale } from "../i18n/config";
 import { getLocalizedPath } from "../i18n/routes";
 
-const target = getLocalizedPath("home", defaultLocale);
-return Astro.redirect(target, 301);
+const germanHome = getLocalizedPath("home", "de");
+const romanianHome = getLocalizedPath("home", "ro");
 ---
+
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="robots" content="noindex" />
+    <title>Übersetzungsbüro Schuster</title>
+    <noscript><meta http-equiv="refresh" content={`0;url=${germanHome}`} /></noscript>
+  </head>
+  <body data-german-home={germanHome} data-romanian-home={romanianHome}>
+    <p><a href={germanHome} lang="de">Deutsch</a> · <a href={romanianHome} lang="ro">Română</a></p>
+    <script>
+      // Static hosts cannot execute Apache's language redirect. Match its rule
+      // using the browser's first language, while retaining incoming URL details.
+      const language = navigator.languages?.[0] ?? navigator.language ?? "";
+      const romanian = /^ro(?:-|$)/i.test(language);
+      const path = romanian ? document.body.dataset.romanianHome : document.body.dataset.germanHome;
+      if (path) {
+        const destination = new URL(path, location.origin);
+        destination.search = location.search;
+        destination.hash = location.hash;
+        location.replace(destination.href);
+      }
+    </script>
+  </body>
+</html>

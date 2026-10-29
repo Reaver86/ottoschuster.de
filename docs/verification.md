@@ -7,12 +7,21 @@ build does not replace browser verification.
 The build checks also verify the generated `.htaccess`, all legacy static
 redirects, their deployment prefixes, and the existence of their destinations.
 For redirect changes, additionally serve `dist/` using Apache with `mod_alias`,
-`mod_dir`, `AllowOverride FileInfo`, and `DirectoryIndex index.html`. Astro's dev
+`mod_headers`, `mod_dir`, `AllowOverride FileInfo`, and `DirectoryIndex index.html`. Astro's dev
 and preview servers do not execute `.htaccess`. Check that each legacy address
 returns HTTP 301 directly to its mapped destination, preserves query parameters,
 and ends at HTTP 200. Check that current German/Romanian routes stay accessible
 and unknown addresses still return 404. In the browser, follow representative
 old links in both languages at the three viewport widths below.
+
+Run `node scripts/check-http-redirects.mjs http://127.0.0.1:4381/` against that
+Apache server. It checks root HTTP 302 language selection, cache headers, query
+preservation, legacy HTTP 301 redirects, and explicit-language URLs. Check the
+root in real browsers with Romanian and German locales at all three widths,
+including language switching and direct links with the opposite browser language.
+Repeat root-language selection on a static server (which ignores `.htaccess`)
+with JavaScript enabled, and verify the German fallback with JavaScript disabled.
+Check the GitHub Pages base prefix too; preserve queries and fragments.
 
 ## Website appearance and interaction
 

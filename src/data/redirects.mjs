@@ -27,7 +27,19 @@ export const getLegacyRedirects = (basePath = "") => Object.fromEntries(
 );
 
 export const renderApacheRedirects = (basePath = "") => [
-  "# Generated from src/data/redirects.mjs. Keep old links working with HTTP 301.",
+  "# Generated from src/data/redirects.mjs.",
+  "# Only the root chooses a language. Explicit language URLs remain stable.",
+  `<If "%{REQUEST_URI} == '${basePath}/'">`,
+  '  Header always merge Vary "Accept-Language"',
+  '  Header always set Cache-Control "no-store"',
+  '  <If "req(\'Accept-Language\') =~ m#(?i)^ro(?:[-,;]|$)#">',
+  `    RedirectMatch 302 "^${basePath}/$" "${basePath}/ro/"`,
+  "  </If>",
+  "  <Else>",
+  `    RedirectMatch 302 "^${basePath}/$" "${basePath}/de/"`,
+  "  </Else>",
+  "</If>",
+  "# Legacy addresses keep permanent redirects to their established language.",
   ...Object.entries(getLegacyRedirects(basePath)).map(([source, target]) => {
     const pattern = `${basePath}${source}`.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
     return `RedirectMatch 301 "^${pattern}/?$" "${target}"`;
