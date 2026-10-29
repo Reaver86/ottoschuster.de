@@ -16,6 +16,15 @@ trailing slashes, legacy redirects, and Content Security Policy. `SITE_URL` and
 `BASE_PATH` allow the same source to build for production or the GitHub Pages
 preview. Do not hardcode preview paths into components.
 
+`src/data/redirects.mjs` maps the former flat `.html`/`.htm` pages and earlier
+redesign routes directly to their current equivalents. It drives both Astro's
+static redirect pages (for the Pages preview) and the generated `dist/.htaccess`
+with Apache HTTP 301 rules (for Netcup). Static redirects alone return HTML with
+a meta refresh, not an HTTP 301. Keep the map when changing routes, preserve the
+original language, and avoid redirecting unrelated missing pages to the homepage.
+Keep legacy mappings indefinitely so external links and bookmarks keep working.
+The root `/` currently redirects to German; it does not detect browser language.
+
 ## Languages and content
 
 - `src/pages/de/` and `src/pages/ro/` are thin route wrappers around shared

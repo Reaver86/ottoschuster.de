@@ -1,6 +1,7 @@
 import { readdir, readFile, stat } from "node:fs/promises";
 import { existsSync } from "node:fs";
 import { extname, join, normalize } from "node:path";
+import { getLegacyRedirects, renderApacheRedirects } from "../src/data/redirects.mjs";
 
 const outputRoot = "dist";
 const basePath = (process.env.BASE_PATH ?? "/").replace(/\/$/, "");
@@ -29,6 +30,24 @@ let localReferenceCount = 0;
 const rootHtml = await readFile(join(outputRoot, "index.html"), "utf8");
 if (!rootHtml.includes(`http-equiv="refresh" content="0;url=${basePath}/de/"`)) {
   failures.push("dist/index.html: missing permanent redirect to the German homepage");
+}
+
+const apacheRules = await readFile(join(outputRoot, ".htaccess"), "utf8");
+if (apacheRules !== renderApacheRedirects(basePath)) {
+  failures.push("dist/.htaccess: missing or outdated permanent legacy redirects");
+}
+
+for (const [source, target] of Object.entries(getLegacyRedirects(basePath))) {
+  const fallback = source === "/index.html"
+    ? rootHtml
+    : await readFile(join(outputRoot, source.slice(1), "index.html"), "utf8");
+  if (!fallback.includes(`http-equiv="refresh" content="0;url=${target}"`)) {
+    failures.push(`${source}: missing static redirect to ${target}`);
+  }
+  const targetPath = target.slice(basePath.length).replace(/^\//, "");
+  if (!existsSync(join(outputRoot, targetPath, "index.html"))) {
+    failures.push(`${source}: redirect destination does not exist: ${target}`);
+  }
 }
 
 const resolveTarget = (reference) => {

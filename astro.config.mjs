@@ -1,10 +1,11 @@
 import { defineConfig } from "astro/config";
+import { writeFile } from "node:fs/promises";
 import { defaultLocale, locales } from "./src/i18n/config";
+import { getLegacyRedirects, renderApacheRedirects } from "./src/data/redirects.mjs";
 
 const site = process.env.SITE_URL ?? "https://www.ottoschuster.de";
 const base = process.env.BASE_PATH ?? "/";
 const basePath = base.replace(/\/$/, "");
-const withBasePath = (path) => `${basePath}${path}`;
 
 export default defineConfig({
   site,
@@ -21,15 +22,17 @@ export default defineConfig({
       redirectToDefaultLocale: false,
     },
   },
-  redirects: {
-    "/impressum": withBasePath("/de/impressum/"),
-    "/datenschutz": withBasePath("/de/datenschutz/"),
-    "/ro/preturi": withBasePath("/ro/preise/"),
-    "/de/infos": withBasePath("/de/faq/"),
-    "/ro/infos": withBasePath("/ro/faq/"),
-    "/ro/informatii": withBasePath("/ro/faq/"),
-    "/ro/contact": withBasePath("/ro/kontakt/"),
-  },
+  // /index.html already exists as the root page's static redirect.
+  redirects: Object.fromEntries(Object.entries(getLegacyRedirects(basePath))
+    .filter(([source]) => source !== "/index.html")),
+  integrations: [{
+    name: "legacy-http-redirects",
+    hooks: {
+      "astro:build:done": async ({ dir }) => {
+        await writeFile(new URL(".htaccess", dir), renderApacheRedirects(basePath));
+      },
+    },
+  }],
   build: {
     format: "directory",
     inlineStylesheets: "always",

@@ -4,6 +4,16 @@ Run `npm test` for the project's existing checks. It runs `astro check`, content
 validation, a production build, and local-link/asset validation. A successful
 build does not replace browser verification.
 
+The build checks also verify the generated `.htaccess`, all legacy static
+redirects, their deployment prefixes, and the existence of their destinations.
+For redirect changes, additionally serve `dist/` using Apache with `mod_alias`,
+`mod_dir`, `AllowOverride FileInfo`, and `DirectoryIndex index.html`. Astro's dev
+and preview servers do not execute `.htaccess`. Check that each legacy address
+returns HTTP 301 directly to its mapped destination, preserves query parameters,
+and ends at HTTP 200. Check that current German/Romanian routes stay accessible
+and unknown addresses still return 404. In the browser, follow representative
+old links in both languages at the three viewport widths below.
+
 ## Website appearance and interaction
 
 For every change affecting appearance or interaction, verify affected pages in a
